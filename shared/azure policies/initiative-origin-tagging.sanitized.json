@@ -1,0 +1,45 @@
+{
+  "description": "Automatically tags Azure VMs with resource-origin = azure and Arc-enabled machines with resource-origin = arc to distinguish native and hybrid resources across <ORGANIZATION_NAME> environments.",
+  "displayName": "init-dine-origin-tag-<ORG>",
+  "id": "/subscriptions/<SUBSCRIPTION_ID>/providers/Microsoft.Authorization/policySetDefinitions/<INITIATIVE_DEFINITION_ID>",
+  "metadata": {
+    "category": "<ORGANIZATION_NAME> Security",
+    "createdBy": "<CREATED_BY_OBJECT_ID>",
+    "createdOn": "<CREATED_TIMESTAMP_UTC>",
+    "updatedBy": "<UPDATED_BY_OBJECT_ID>",
+    "updatedOn": "<UPDATED_TIMESTAMP_UTC>"
+  },
+  "name": "<INITIATIVE_DEFINITION_ID>",
+  "parameters": {},
+  "policyDefinitionGroups": [],
+  "policyDefinitions": [
+    {
+      "definitionVersion": "1.0.*",
+      "groupNames": [],
+      "parameters": {},
+      "policyDefinitionId": "/subscriptions/<SUBSCRIPTION_ID>/providers/Microsoft.Authorization/policyDefinitions/<POLICY_DEFINITION_ID_AZURE_VM>",
+      "policyDefinitionReferenceId": "dine-origin-tag-azure-if-azurevm-<ORG>_1"
+    },
+    {
+      "definitionVersion": "1.0.*",
+      "groupNames": [],
+      "parameters": {},
+      "policyDefinitionId": "/subscriptions/<SUBSCRIPTION_ID>/providers/Microsoft.Authorization/policyDefinitions/<POLICY_DEFINITION_ID_ARC_MACHINE>",
+      "policyDefinitionReferenceId": "dine-origin-tag-arc-if-hybridcompute-<ORG>_1"
+    }
+  ],
+  "policyType": "Custom",
+  "systemData": {
+    "createdAt": "<CREATED_TIMESTAMP_UTC>",
+    "createdBy": "<CREATED_BY_UPN_OR_SPN>",
+    "createdByType": "User",
+    "lastModifiedAt": "<UPDATED_TIMESTAMP_UTC>",
+    "lastModifiedBy": "<UPDATED_BY_UPN_OR_SPN>",
+    "lastModifiedByType": "User"
+  },
+  "type": "Microsoft.Authorization/policySetDefinitions",
+  "version": "1.0.0",
+  "versions": [
+    "1.0.0"
+  ]
+}
