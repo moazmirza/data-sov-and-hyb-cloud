@@ -1,4 +1,4 @@
-# Contoso Sovereignty and Compliance Reference Solution
+# Data Governance and Hybrid Cloud Flexibility - Reference Solution
 
 A reusable reference implementation showing how to combine Azure, Microsoft Fabric, Purview, Power Platform, Azure Functions, and Copilot Studio to build governance reporting and guided remediation scenarios.
 
