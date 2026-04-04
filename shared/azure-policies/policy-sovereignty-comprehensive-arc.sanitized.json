@@ -1,0 +1,95 @@
+{
+  "description": "This policy automatically applies a sovereignty-zone = comprehensive tag to Azure Arc-enabled machines that are already tagged as resource-origin = arc, if the sovereignty zone tag is missing or incorrect.",
+  "displayName": "dine-sovereignty-tag-comprehensive-if-origin-arc-<ORG>",
+  "id": "/subscriptions/<SUBSCRIPTION_ID>/providers/Microsoft.Authorization/policyDefinitions/<POLICY_DEFINITION_ID_SOVEREIGNTY_COMPREHENSIVE_ARC>",
+  "metadata": {
+    "category": "<ORGANIZATION_NAME> Security",
+    "createdBy": "<CREATED_BY_OBJECT_ID>",
+    "createdOn": "<CREATED_TIMESTAMP_UTC>",
+    "updatedBy": "<UPDATED_BY_OBJECT_ID>",
+    "updatedOn": "<UPDATED_TIMESTAMP_UTC>"
+  },
+  "mode": "Indexed",
+  "name": "<POLICY_DEFINITION_ID_SOVEREIGNTY_COMPREHENSIVE_ARC>",
+  "parameters": {
+    "originTagName": {
+      "defaultValue": "resource-origin",
+      "metadata": {
+        "description": "Tag name that indicates compute origin.",
+        "displayName": "Origin tag name"
+      },
+      "type": "String"
+    },
+    "originTagValue": {
+      "defaultValue": "arc",
+      "metadata": {
+        "description": "Origin tag value that triggers the sovereignty zone value.",
+        "displayName": "Origin tag value"
+      },
+      "type": "String"
+    },
+    "zoneTagName": {
+      "defaultValue": "sovereignty-zone",
+      "metadata": {
+        "description": "Tag name to set for sovereignty zone.",
+        "displayName": "Sovereignty zone tag name"
+      },
+      "type": "String"
+    },
+    "zoneTagValue": {
+      "defaultValue": "comprehensive",
+      "metadata": {
+        "description": "Sovereignty zone value to enforce.",
+        "displayName": "Sovereignty zone tag value"
+      },
+      "type": "String"
+    }
+  },
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "equals": "Microsoft.HybridCompute/machines",
+          "field": "type"
+        },
+        {
+          "equals": "[parameters('originTagValue')]",
+          "field": "[concat('tags[', parameters('originTagName'), ']')]"
+        },
+        {
+          "field": "[concat('tags[', parameters('zoneTagName'), ']')]",
+          "notEquals": "[parameters('zoneTagValue')]"
+        }
+      ]
+    },
+    "then": {
+      "details": {
+        "operations": [
+          {
+            "field": "[concat('tags[', parameters('zoneTagName'), ']')]",
+            "operation": "addOrReplace",
+            "value": "[parameters('zoneTagValue')]"
+          }
+        ],
+        "roleDefinitionIds": [
+          "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+        ]
+      },
+      "effect": "modify"
+    }
+  },
+  "policyType": "Custom",
+  "systemData": {
+    "createdAt": "<CREATED_TIMESTAMP_UTC>",
+    "createdBy": "<CREATED_BY_UPN_OR_SPN>",
+    "createdByType": "User",
+    "lastModifiedAt": "<UPDATED_TIMESTAMP_UTC>",
+    "lastModifiedBy": "<UPDATED_BY_UPN_OR_SPN>",
+    "lastModifiedByType": "User"
+  },
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "version": "1.0.0",
+  "versions": [
+    "1.0.0"
+  ]
+}
