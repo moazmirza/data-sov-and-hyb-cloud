@@ -1,0 +1,49 @@
+{
+  "description": "Audits Arc-enabled machines for a System-Assigned Managed Identity and automatically grants that identity the Key Vault Secrets User role, enabling secure, credential-free secret access for hybrid machines in <ORGANIZATION_NAME>'s comprehensive sovereignty zone.",
+  "displayName": "init-audit-masi-and-dine-kv-access-to-masi-<ORG>",
+  "id": "/subscriptions/<SUBSCRIPTION_ID>/providers/Microsoft.Authorization/policySetDefinitions/<INITIATIVE_DEFINITION_ID>",
+  "metadata": {
+    "category": "<ORGANIZATION_NAME> Security",
+    "createdBy": "<CREATED_BY_OBJECT_ID>",
+    "createdOn": "<CREATED_TIMESTAMP_UTC>",
+    "updatedBy": "<UPDATED_BY_OBJECT_ID>",
+    "updatedOn": "<UPDATED_TIMESTAMP_UTC>"
+  },
+  "name": "<INITIATIVE_DEFINITION_ID>",
+  "parameters": {},
+  "policyDefinitionGroups": [],
+  "policyDefinitions": [
+    {
+      "definitionVersion": "1.0.*",
+      "groupNames": [],
+      "parameters": {
+        "keyVaultResourceId": {
+          "value": "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<KEYVAULT_RESOURCE_GROUP>/providers/Microsoft.KeyVault/vaults/<KEYVAULT_NAME>"
+        }
+      },
+      "policyDefinitionId": "/subscriptions/<SUBSCRIPTION_ID>/providers/Microsoft.Authorization/policyDefinitions/<POLICY_DEFINITION_ID_DINE_KV_TO_MASI>",
+      "policyDefinitionReferenceId": "dine-kv-secrets-user-to-sami-comprehensive-<ORG>_1"
+    },
+    {
+      "definitionVersion": "1.0.*",
+      "groupNames": [],
+      "parameters": {},
+      "policyDefinitionId": "/subscriptions/<SUBSCRIPTION_ID>/providers/Microsoft.Authorization/policyDefinitions/<POLICY_DEFINITION_ID_AUDIT_MASI_ON_ARC>",
+      "policyDefinitionReferenceId": "audit-masi-on-arc-<ORG>_1"
+    }
+  ],
+  "policyType": "Custom",
+  "systemData": {
+    "createdAt": "<CREATED_TIMESTAMP_UTC>",
+    "createdBy": "<CREATED_BY_UPN_OR_SPN>",
+    "createdByType": "User",
+    "lastModifiedAt": "<UPDATED_TIMESTAMP_UTC>",
+    "lastModifiedBy": "<UPDATED_BY_UPN_OR_SPN>",
+    "lastModifiedByType": "User"
+  },
+  "type": "Microsoft.Authorization/policySetDefinitions",
+  "version": "1.0.0",
+  "versions": [
+    "1.0.0"
+  ]
+}
