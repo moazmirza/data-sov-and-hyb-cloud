@@ -1,0 +1,34 @@
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Build and temp
+dist/
+build/
+out/
+*.log
+
+# Environment and secrets
+.env
+.env.*
+local.settings.json
+
+# Data and exports
+samples/sample-data/*
+!samples/sample-data/.gitkeep
+*.pbix
+*.zip
+*.bacpac

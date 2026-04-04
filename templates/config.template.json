@@ -1,0 +1,8 @@
+{
+  "tenantId": "<TENANT_ID>",
+  "subscriptionId": "<SUBSCRIPTION_ID>",
+  "resourceGroupName": "<RESOURCE_GROUP_NAME>",
+  "purviewAccountName": "<PURVIEW_ACCOUNT_NAME>",
+  "fabricWorkspaceName": "<WORKSPACE_NAME>",
+  "functionAppUrl": "<FUNCTION_APP_URL>"
+}
