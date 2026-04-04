@@ -19,4 +19,4 @@ Include:
 ## Sensitive Data Rules
 
 Never commit secrets, keys, tokens, tenant identifiers, or customer-specific exports.
-Use placeholders from `templates/`.
+Use placeholders from `shared/templates/base/`.

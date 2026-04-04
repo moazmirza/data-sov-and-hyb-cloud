@@ -26,9 +26,11 @@ out/
 .env.*
 local.settings.json
 
-# Data and exports
-samples/sample-data/*
-!samples/sample-data/.gitkeep
+# Release artifacts and exports
+releases/module-bundles/*
+!releases/module-bundles/README.md
+releases/full-solution-bundles/*
+!releases/full-solution-bundles/README.md
 *.pbix
 *.zip
 *.bacpac
