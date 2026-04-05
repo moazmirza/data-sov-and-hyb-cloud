@@ -1,0 +1,80 @@
+[
+  {
+    "changedTime": "2026-02-24T04:18:04.495246+00:00",
+    "createdTime": "2026-02-24T04:06:00.355251+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057/extensions/WindowsAgent.SqlServer",
+    "identity": null,
+    "kind": null,
+    "location": "eastus2",
+    "managedBy": null,
+    "name": "i-05c131818f13b0057/WindowsAgent.SqlServer",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg_arc_us_contoso",
+    "sku": null,
+    "systemData": {
+      "createdAt": "2026-02-24T04:06:00.3761988Z",
+      "createdBy": "a12e8ccb-0fcd-46f8-b6a1-b9df7a9d7231",
+      "createdByType": "Application",
+      "lastModifiedAt": "2026-02-24T04:06:00.3761988Z",
+      "lastModifiedBy": "a12e8ccb-0fcd-46f8-b6a1-b9df7a9d7231",
+      "lastModifiedByType": "Application"
+    },
+    "tags": null,
+    "type": "Microsoft.HybridCompute/machines/extensions"
+  },
+  {
+    "changedTime": "2026-03-03T16:29:50.637953+00:00",
+    "createdTime": "2026-02-24T04:26:50.568628+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057/extensions/WindowsOsUpdateExtension",
+    "identity": null,
+    "kind": null,
+    "location": "eastus2",
+    "managedBy": null,
+    "name": "i-05c131818f13b0057/WindowsOsUpdateExtension",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg_arc_us_contoso",
+    "sku": null,
+    "systemData": {
+      "createdAt": "2026-02-24T04:26:50.5792022Z",
+      "createdBy": "8c420feb-03df-47cc-8a05-55df0cf3064b",
+      "createdByType": "Application",
+      "lastModifiedAt": "2026-03-03T16:18:32.3685637Z",
+      "lastModifiedBy": "8c420feb-03df-47cc-8a05-55df0cf3064b",
+      "lastModifiedByType": "Application"
+    },
+    "tags": null,
+    "type": "Microsoft.HybridCompute/machines/extensions"
+  },
+  {
+    "changedTime": "2026-02-24T04:59:16.098550+00:00",
+    "createdTime": "2026-02-24T04:47:13.010061+00:00",
+    "extendedLocation": null,
+    "id": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057/extensions/MDE.Windows",
+    "identity": null,
+    "kind": null,
+    "location": "eastus2",
+    "managedBy": null,
+    "name": "i-05c131818f13b0057/MDE.Windows",
+    "plan": null,
+    "properties": null,
+    "provisioningState": "Succeeded",
+    "resourceGroup": "rg_arc_us_contoso",
+    "sku": null,
+    "systemData": {
+      "createdAt": "2026-02-24T04:47:13.0187117Z",
+      "createdBy": "8edd93e1-2103-40b4-bd70-6e34e586362d",
+      "createdByType": "Application",
+      "lastModifiedAt": "2026-02-24T04:47:13.0187117Z",
+      "lastModifiedBy": "8edd93e1-2103-40b4-bd70-6e34e586362d",
+      "lastModifiedByType": "Application"
+    },
+    "tags": null,
+    "type": "Microsoft.HybridCompute/machines/extensions"
+  }
+]

@@ -1,0 +1,274 @@
+{
+  "extendedLocation": null,
+  "id": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057",
+  "identity": {
+    "principalId": "d45813cd-74af-48b9-8d64-42d28656bd20",
+    "tenantId": "30c6fd04-b13e-43b1-906e-eed50b203685",
+    "type": "SystemAssigned",
+    "userAssignedIdentities": null
+  },
+  "kind": null,
+  "location": "eastus2",
+  "managedBy": null,
+  "name": "i-05c131818f13b0057",
+  "plan": null,
+  "properties": {
+    "adFqdn": "EC2AMAZ-FB9T9E0",
+    "agentConfiguration": {
+      "configMode": "full",
+      "extensionsAllowList": [],
+      "extensionsBlockList": [],
+      "extensionsEnabled": "true",
+      "guestConfigurationEnabled": "true",
+      "incomingConnectionsPorts": [
+        "17426"
+      ],
+      "proxyBypass": [],
+      "proxyUrl": ""
+    },
+    "agentUpgrade": {
+      "enableAutomaticUpgrade": false
+    },
+    "agentVersion": "1.61.03319.2737",
+    "clientPublicKey": "MIIBCgKCAQEA1ekWa6kyq8cE+qLuWAG0iMHsrrj5YMq7tnM0bxkhXxuZfSpSuzYptExDH61lafUOF0KWcZgVbPGQ/O0lxEDHx/SgwxCX9boNoFM5dNnxhM0qWJxw3BEi7pc4q6Esv3lMbrO7JTKqhFbrBPAQYYdKqdfWKHjPUlXnfY6wkqZ+cSS6ODZ7WyoYLoGk0ty4weH37DmOm5ffRmIXud5kp6VNPr5sMBx4PymE7XqANYn4t/U6BPDNskJt9Hnz3OXHm2BDtFis7vXXothWRN0uTBwlg3c01Y7xKqDf1SCNxMgiOG4AfnTWKIUBE0lB2XhWn3URaDjkHvxBGcxlInAhcaTVywIDAQAB",
+    "cloudMetadata": {
+      "provider": "AWS"
+    },
+    "detectedProperties": {
+      "AWS-accountId": "953650655358",
+      "AWS-instanceId": "i-05c131818f13b0057",
+      "AWS-region": "us-east-1",
+      "architecture": "amd64",
+      "cloudprovider": "AWS",
+      "coreCount": "2",
+      "hypervisorType": "EC2",
+      "logicalCoreCount": "4",
+      "manufacturer": "Amazon EC2",
+      "model": "m5.xlarge",
+      "mssqldiscovered": "true",
+      "mysqldiscovered": "false",
+      "pgsqldiscovered": "false",
+      "processorCount": "1",
+      "processorNames": "Intel(R) Xeon(R) Platinum 8175M CPU @ 2.50GHz",
+      "productType": "8",
+      "serialNumber": "ec24160f-0dd9-c0a1-05a7-0b3715fb6c0b",
+      "serverType": "Server;Workstation",
+      "smbiosAssetTag": "Amazon EC2",
+      "totalPhysicalMemoryInBytes": "17179869184",
+      "totalPhysicalMemoryInGigabytes": "16",
+      "vmuuidEsu2012": "EC24160F-0DD9-C0A1-05A7-0B3715FB6C0B"
+    },
+    "displayName": "EC2AMAZ-FB9T9E0",
+    "dnsFqdn": "EC2AMAZ-FB9T9E0",
+    "domainName": "WORKGROUP",
+    "errorDetails": [],
+    "firmwareProfile": {
+      "serialNumber": "ec24160f-0dd9-c0a1-05a7-0b3715fb6c0b",
+      "type": "BIOS"
+    },
+    "hardwareProfile": {
+      "numberOfCpuSockets": 1,
+      "processors": [
+        {
+          "name": "Intel(R) Xeon(R) Platinum 8175M CPU @ 2.50GHz",
+          "numberOfCores": 2
+        }
+      ],
+      "totalPhysicalMemoryInBytes": 17179869184
+    },
+    "lastStatusChange": "2026-03-03T21:37:47.2669683Z",
+    "licenseProfile": {
+      "esuProfile": {
+        "esuEligibility": "Ineligible",
+        "esuKeyState": "Inactive",
+        "licenseAssignmentState": "NotAssigned",
+        "serverType": "Datacenter"
+      },
+      "licenseChannel": "Volume:GVLK",
+      "licenseStatus": "Licensed",
+      "productProfile": {}
+    },
+    "machineFqdn": "EC2AMAZ-FB9T9E0",
+    "mssqlDiscovered": "true",
+    "networkProfile": {
+      "networkInterfaces": [
+        {
+          "id": "7",
+          "ipAddresses": [
+            {
+              "address": "172.31.41.46",
+              "ipAddressVersion": "IPv4",
+              "subnet": {
+                "addressPrefix": "172.31.32.0/20"
+              }
+            }
+          ],
+          "macAddress": "0e:76:86:c7:98:a9",
+          "name": "Ethernet 3"
+        }
+      ]
+    },
+    "osEdition": "serverdatacenter",
+    "osInstallDate": "2026-02-24T03:50:17Z",
+    "osName": "windows",
+    "osProfile": {
+      "computerName": "EC2AMAZ-FB9T9E0"
+    },
+    "osSku": "Windows Server 2022 Datacenter",
+    "osType": "windows",
+    "osVersion": "10.0.20348.4773",
+    "provisioningState": "Succeeded",
+    "serviceStatuses": {
+      "extensionService": {
+        "startupType": "automatic",
+        "status": "running"
+      },
+      "guestConfigurationService": {
+        "startupType": "automatic",
+        "status": "running"
+      }
+    },
+    "status": "Disconnected",
+    "storageProfile": {
+      "disks": [
+        {
+          "diskType": "Fixed hard disk media",
+          "generatedId": "\\\\.\\PHYSICALDRIVE0",
+          "id": "2414964035",
+          "maxSizeInBytes": 80525491200,
+          "name": "NVMe Amazon Elastic B SCSI Disk Device",
+          "path": "\\\\.\\PHYSICALDRIVE0"
+        }
+      ]
+    },
+    "vmId": "67ec031d-164a-4f11-8e00-78f9ce01fb18",
+    "vmUuid": "EC24160F-0DD9-C0A1-05A7-0B3715FB6C0B"
+  },
+  "resourceGroup": "rg_arc_us_contoso",
+  "resources": [
+    {
+      "id": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057/extensions/MDE.Windows",
+      "location": "eastus2",
+      "name": "MDE.Windows",
+      "properties": {
+        "autoUpgradeMinorVersion": true,
+        "enableAutomaticUpgrade": true,
+        "instanceView": {
+          "name": "MDE.Windows",
+          "status": {
+            "code": "0",
+            "level": "Information",
+            "message": "Extension Message: {\r\n    \"azureResourceId\":  \"/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057\",\r\n    \"securityWorkspaceId\":  \"17d52165-9be5-418b-a7f4-6b3e7d82d155\",\r\n    \"osDetails\":  {\r\n                      \"osMetadata\":  {\r\n                                         \"majorVersion\":  10,\r\n                                         \"minorVersion\":  0,\r\n                                         \"buildVersion\":  20348,\r\n                                         \"productType\":  3,\r\n                                         \"operatingSystemSku\":  8\r\n                                     },\r\n                      \"osName\":  \"Microsoft Windows Server 2022 Datacenter\"\r\n                  },\r\n    \"onboardingPackageOperationResultCode\":  \"Success\",\r\n    \"proxyUri\":  null,\r\n    \"machineId\":  \"439d29967dc1b782567a5d2e5c29230e9d92007e\"\r\n}"
+          },
+          "type": "MDE.Windows",
+          "typeHandlerVersion": "1.0.17.0"
+        },
+        "provisioningState": "Succeeded",
+        "publisher": "Microsoft.Azure.AzureDefenderForServers",
+        "settings": {
+          "autoUpdate": true,
+          "azureResourceId": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057",
+          "forceReOnboarding": false,
+          "vNextEnabled": true
+        },
+        "type": "MDE.Windows",
+        "typeHandlerVersion": "1.0.17.0"
+      },
+      "resourceGroup": "rg_arc_us_contoso",
+      "systemData": {
+        "createdAt": "2026-02-24T04:47:13.0187117Z",
+        "createdBy": "8edd93e1-2103-40b4-bd70-6e34e586362d",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-02-24T04:47:13.0187117Z",
+        "lastModifiedBy": "8edd93e1-2103-40b4-bd70-6e34e586362d",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.HybridCompute/machines/extensions"
+    },
+    {
+      "id": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057/extensions/WindowsAgent.SqlServer",
+      "location": "eastus2",
+      "name": "WindowsAgent.SqlServer",
+      "properties": {
+        "autoUpgradeMinorVersion": false,
+        "enableAutomaticUpgrade": true,
+        "instanceView": {
+          "name": "WindowsAgent.SqlServer",
+          "status": {
+            "code": "0",
+            "level": "Information",
+            "message": "Extension Message: SQL Server Extension Agent: Healthy; timestampUTC : 2026/03/03, 21:16:32.966; uploadStatus : OK; uploadMessage : \"Upload succeeded.\"; telemetryUploadStatus : {\"logs\":{\"status\":\"OK\",\"message\":\"Upload succeeded.\"},\"dmv\":{\"status\":\"OK\",\"message\":\"Upload succeeded.\"},\"ma\":{\"status\":\"OK\",\"message\":\"Upload succeeded.\"}};AutomaticBackups: Suspended;PurviewPlugin: {};AzureActiveDirectoryPlugin: {\r\n  \"MSSQLSERVER\": \"\"\r\n};DatabaseMonitorArcPlugin: {\"State\":\"Running\",\"MetricsUploadStatus\":\"OK\"}, AutomaticBackups: {\"retentionPeriodInDays\":7,\"profiles\":[]}, Purview plugin: [], Azure active directory configuration plugin: [], Assessment: [], Assessment Status: {\"AssessmentHistory\":[],\"Enabled\":false,\"ErrorMessage\":\"\",\"NextScheduledTime\":null,\"RunStatus\":\"NotRunning\",\"StartTime\":null}, DatabaseMonitorArcPlugin: {\"endpointUrl\":\"https://telemetry.{0}.arcdataservices.com/\",\"endpointAppId\":\"524058e3-2702-4b98-932b-b2d1de613fd2\"}, MigrationAssessmentPlugin: {\"excludedSqlInstances\":[],\"azureAD\":[],\"externalPolicyBasedAuthorization\":[],\"licenseType\":\"Undefined\",\"enableExtendedSecurityUpdates\":false,\"esuLastUpdatedTimestamp\":\"0001-01-01T00:00:00\"}, SQL Server Extension Agent Deployer: {\"FailureCount\":0,\"LastUpdatedTimestamp\":\"2026\\/03\\/03, 16:18:24.097\",\"Message\":\"Completed asyncEnable\",\"SeqNum\":0}"
+          },
+          "type": "WindowsAgent.SqlServer",
+          "typeHandlerVersion": "1.1.3238.350"
+        },
+        "provisioningState": "Succeeded",
+        "publisher": "Microsoft.AzureData",
+        "settings": {
+          "SqlManagement": {
+            "IsEnabled": "true"
+          }
+        },
+        "type": "WindowsAgent.SqlServer",
+        "typeHandlerVersion": "1.1.3238.350"
+      },
+      "resourceGroup": "rg_arc_us_contoso",
+      "systemData": {
+        "createdAt": "2026-02-24T04:06:00.3761988Z",
+        "createdBy": "a12e8ccb-0fcd-46f8-b6a1-b9df7a9d7231",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-02-24T04:06:00.3761988Z",
+        "lastModifiedBy": "a12e8ccb-0fcd-46f8-b6a1-b9df7a9d7231",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.HybridCompute/machines/extensions"
+    },
+    {
+      "id": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057/extensions/WindowsOsUpdateExtension",
+      "location": "eastus2",
+      "name": "WindowsOsUpdateExtension",
+      "properties": {
+        "autoUpgradeMinorVersion": false,
+        "enableAutomaticUpgrade": true,
+        "instanceView": {
+          "name": "WindowsOsUpdateExtension",
+          "status": {
+            "code": "0",
+            "level": "Information",
+            "message": "Extension Message: Assessment operation with activity id ee635c69-4985-479a-a7f0-68087162021c completed successfully. 0 patches were found. , OperationResult: {\"activityId\":\"ee635c69-4985-479a-a7f0-68087162021c\",\"inputStartTime\":\"2026-03-03T16:18:30Z\",\"lastModifiedTime\":\"2026-03-03T16:19:43Z\",\"extensionTriggerTime\":\"2026-03-03T16:19:33Z\",\"action\":\"Assessment\",\"actionStatus\":\"success\",\"patchServiceUsed\":\"WU\",\"isManagedBySccm\":false,\"assessmentDetails\":{\"rebootPending\":false,\"countByCategory\":{\"critical\":0,\"security\":0,\"updateRollup\":0,\"featurePack\":0,\"servicePack\":0,\"definition\":0,\"tools\":0,\"updates\":0,\"other\":0},\"totalCount\":0,\"patches\":\"i44FAA==\",\"action\":\"Assessment\"},\"topLevelStatusMessage\":\"Assessment operation with activity id ee635c69-4985-479a-a7f0-68087162021c completed successfully. 0 patches were found. \",\"internalErrorMessage\":\"\",\"topLevelStatus\":0,\"logs\":\"i44FAA==\",\"errorCount\":0,\"failureRetryCount\":0,\"retriggerCount\":0,\"sequenceNumber\":1,\"errors\":null}"
+          },
+          "type": "WindowsOsUpdateExtension",
+          "typeHandlerVersion": "1.0.35.0"
+        },
+        "provisioningState": "Succeeded",
+        "publisher": "Microsoft.SoftwareUpdateManagement",
+        "settings": {
+          "updateConfiguration": {
+            "action": "Assessment",
+            "activityId": "ee635c69-4985-479a-a7f0-68087162021c",
+            "startTime": "2026-03-03T16:18:30.8869696Z"
+          }
+        },
+        "type": "WindowsOsUpdateExtension",
+        "typeHandlerVersion": "1.0.35.0"
+      },
+      "resourceGroup": "rg_arc_us_contoso",
+      "systemData": {
+        "createdAt": "2026-02-24T04:26:50.5792022Z",
+        "createdBy": "8c420feb-03df-47cc-8a05-55df0cf3064b",
+        "createdByType": "Application",
+        "lastModifiedAt": "2026-03-03T16:18:32.3685637Z",
+        "lastModifiedBy": "8c420feb-03df-47cc-8a05-55df0cf3064b",
+        "lastModifiedByType": "Application"
+      },
+      "type": "Microsoft.HybridCompute/machines/extensions"
+    }
+  ],
+  "sku": null,
+  "tags": {
+    "dataproductid": "fc24b70e-469e-4dc2-a0d1-73bcf189638c",
+    "resource-origin": "arc",
+    "sovereignty-zone": "comprehensive"
+  },
+  "type": "Microsoft.HybridCompute/machines"
+}
