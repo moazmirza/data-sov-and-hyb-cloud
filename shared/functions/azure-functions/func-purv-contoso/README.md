@@ -57,11 +57,6 @@ App settings used:
 | PURVIEW_API_VERSION | Yes | Version for Purview lookup APIs used during preview. |
 | RESIDENCY_PARENT_TERM_NAME | Optional | Default parent term for residency resolution if omitted by caller. |
 | HTTP_TIMEOUT | Optional | Timeout control for Purview REST calls. |
-| FABRIC_SQL_LOGGING_ENABLED | Optional | Enables best-effort log persistence path for preview action logs. |
-| FABRIC_SQL_SERVER | Optional | Target Fabric SQL endpoint when logging is enabled. |
-| FABRIC_SQL_DATABASE | Optional | Target Fabric SQL database when logging is enabled. |
-| FABRIC_SQL_DRIVER | Optional | ODBC driver selection for Fabric SQL logging. |
-| FABRIC_CHANGELOG_TABLE_PURVIEW | Optional | Destination table name for Purview action logs. |
 
 ### purview_residency_update_apply
 Purpose:
