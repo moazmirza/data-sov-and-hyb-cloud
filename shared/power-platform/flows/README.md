@@ -30,3 +30,6 @@ Each flow folder README defines flow-specific payload fields inside `payload`.
 | ResidencyUpdatePreview_wrapped | Generates a no-write preview of the planned residency update. | [ResidencyUpdatePreview_wrapped/README.md](ResidencyUpdatePreview_wrapped/README.md) | |
 | ResidencyUpdateApply_wrapped | Applies a confirmed residency update and returns apply status. | [ResidencyUpdateApply_wrapped/README.md](ResidencyUpdateApply_wrapped/README.md) | |
 | Apply_CCPII_Tag_And_Notify | Applies CC/PII investigate tag actions and triggers notification handling. | [Apply_CCPII_Tag_And_Notify/README.md](Apply_CCPII_Tag_And_Notify/README.md) | |
+| Retrieve_CCPII_Eligibility | Retrieves CC/PII eligibility context for data products from Power BI-backed lookups. | [Retrieve_CCPII_Eligibility/README.md](Retrieve_CCPII_Eligibility/README.md) | |
+| RetrieveSovDashboardInfo | Retrieves sovereignty dashboard summary metrics for agent responses. | [RetrieveSovDashboardInfo/README.md](RetrieveSovDashboardInfo/README.md) | |
+| RunFabricPipeline | Invokes a Fabric pipeline endpoint and returns run status details. | [RunFabricPipeline/README.md](RunFabricPipeline/README.md) | |
