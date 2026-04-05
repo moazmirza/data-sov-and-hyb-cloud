@@ -8,6 +8,18 @@ This folder contains a sanitized export of the Azure Functions app source retrie
 - requirements.txt
 
 ## Functions discovered
+| Function name | Purpose |
+|---|---|
+| purview_residency | Resolve current Purview residency term for a data product. |
+| purview_residency_update_preview | Build a no-write preview plan for a Purview residency change. |
+| purview_residency_update_apply | Apply a confirmed Purview residency change with safeguards. |
+| azure_tag_compliance | Evaluate Azure tag-based compliance signals for Data Product IDs. |
+| azure_residency_compliance | Return Azure resource locations per Data Product ID for residency scoring. |
+| azure_cc_for_pii_compliance | Collect confidential compute and patch evidence for VM-class assets. |
+| azure_cc_pii_investigate_tag_apply | Preview/apply investigate tag updates on Azure resources. |
+| azure_defender_compliance | Calculate Defender posture scoring from pricing, assessments, and alerts. |
+| azure_residency_compliance_aws | Read AWS S3 bucket residency and tags for cross-cloud residency checks. |
+
 ### purview_residency
 Purpose:
 - Resolves the current Purview residency term for a given data product name.
