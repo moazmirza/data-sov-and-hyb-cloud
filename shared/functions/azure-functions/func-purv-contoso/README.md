@@ -18,6 +18,15 @@ High-level flow:
 3. If a residency term is missing, return a structured "missing residency" response.
 4. Normalize the residency value and return a consistent JSON payload.
 
+App settings used:
+
+| App setting | Required | Used for |
+|---|---|---|
+| PURVIEW_ENDPOINT | Yes | Base URL for Purview data-plane API calls. |
+| PURVIEW_API_VERSION | Yes | API version used for Purview requests. |
+| RESIDENCY_PARENT_TERM_NAME | Optional | Default parent glossary term when parentTermName is not provided in request. |
+| HTTP_TIMEOUT | Optional | Timeout (seconds) for outbound HTTP requests. |
+
 ### purview_residency_update_preview
 Purpose:
 - Produces a safe, non-writing preview plan before any Purview residency change.
@@ -27,6 +36,20 @@ High-level flow:
 2. Validate request shape and prerequisites (target term lookup, current state checks).
 3. Build a plan showing what relationships would be removed/added.
 4. Return preview details and status code without mutating Purview.
+
+App settings used:
+
+| App setting | Required | Used for |
+|---|---|---|
+| PURVIEW_ENDPOINT | Yes | Reads data product and glossary term relationships in preview plan. |
+| PURVIEW_API_VERSION | Yes | Version for Purview lookup APIs used during preview. |
+| RESIDENCY_PARENT_TERM_NAME | Optional | Default parent term for residency resolution if omitted by caller. |
+| HTTP_TIMEOUT | Optional | Timeout control for Purview REST calls. |
+| FABRIC_SQL_LOGGING_ENABLED | Optional | Enables best-effort log persistence path for preview action logs. |
+| FABRIC_SQL_SERVER | Optional | Target Fabric SQL endpoint when logging is enabled. |
+| FABRIC_SQL_DATABASE | Optional | Target Fabric SQL database when logging is enabled. |
+| FABRIC_SQL_DRIVER | Optional | ODBC driver selection for Fabric SQL logging. |
+| FABRIC_CHANGELOG_TABLE_PURVIEW | Optional | Destination table name for Purview action logs. |
 
 ### purview_residency_update_apply
 Purpose:
@@ -38,6 +61,20 @@ High-level flow:
 3. Remove old residency relationship(s) and create the new relationship when applicable.
 4. Emit action-log/changelog metadata (best effort) and return final status + details.
 
+App settings used:
+
+| App setting | Required | Used for |
+|---|---|---|
+| PURVIEW_ENDPOINT | Yes | Reads and writes Purview glossary term relationships. |
+| PURVIEW_API_VERSION | Yes | API version for Purview mutation and verification calls. |
+| RESIDENCY_PARENT_TERM_NAME | Optional | Default parent term when not explicitly supplied. |
+| HTTP_TIMEOUT | Optional | Timeout control for Purview API operations. |
+| FABRIC_SQL_LOGGING_ENABLED | Optional | Enables best-effort apply/audit logging to Fabric SQL. |
+| FABRIC_SQL_SERVER | Optional | Fabric SQL server endpoint for action log insert. |
+| FABRIC_SQL_DATABASE | Optional | Fabric SQL database for action log insert. |
+| FABRIC_SQL_DRIVER | Optional | ODBC driver used for SQL connection. |
+| FABRIC_CHANGELOG_TABLE_PURVIEW | Optional | Purview action log table name. |
+
 ### azure_tag_compliance
 Purpose:
 - Evaluates tag-based compliance per Data Product ID across Azure resources.
@@ -48,6 +85,18 @@ High-level flow:
 3. Read observed tag signals (`resource-origin`, `sovereignty-zone`).
 4. Score each Data Product ID and return matched/missing breakdowns.
 
+App settings used:
+
+| App setting | Required | Used for |
+|---|---|---|
+| AZURE_SUBSCRIPTIONS | Optional | Default subscription list when subscriptions are not passed in the request. |
+| RESOURCE_GRAPH_API_VERSION | Yes | API version for Azure Resource Graph queries. |
+| HTTP_TIMEOUT | Optional | Timeout for Resource Graph and ARM HTTP calls. |
+| ARM_TENANT_B_TENANT_ID | Optional | Enables cross-tenant ARM/ARG auth profile when configured with matching tenant B settings. |
+| ARM_TENANT_B_CLIENT_ID | Optional | Service principal client ID for cross-tenant profile. |
+| ARM_TENANT_B_CLIENT_SECRET | Optional | Service principal secret for cross-tenant profile. |
+| ARM_TENANT_B_SUBSCRIPTIONS | Optional | Comma-separated subscriptions to route through cross-tenant profile. |
+
 ### azure_residency_compliance
 Purpose:
 - Returns all resource locations for each Data Product ID so downstream systems can score residency.
@@ -57,6 +106,18 @@ High-level flow:
 2. Query Resource Graph for tag matches using common `DataProductId` tag variants.
 3. Group resources by Data Product ID and derive distinct location codes.
 4. Return per-ID resource lists, location sets, and missing IDs.
+
+App settings used:
+
+| App setting | Required | Used for |
+|---|---|---|
+| AZURE_SUBSCRIPTIONS | Optional | Default subscriptions fallback when not provided by caller. |
+| RESOURCE_GRAPH_API_VERSION | Yes | API version used for residency Resource Graph queries. |
+| HTTP_TIMEOUT | Optional | Timeout for Resource Graph calls. |
+| ARM_TENANT_B_TENANT_ID | Optional | Cross-tenant auth toggle for selected subscriptions. |
+| ARM_TENANT_B_CLIENT_ID | Optional | Cross-tenant service principal client ID. |
+| ARM_TENANT_B_CLIENT_SECRET | Optional | Cross-tenant service principal secret. |
+| ARM_TENANT_B_SUBSCRIPTIONS | Optional | Subscription routing list for cross-tenant profile. |
 
 ### azure_cc_for_pii_compliance
 Purpose:
@@ -69,6 +130,19 @@ High-level flow:
 4. Pull patch assessment summaries from Update Manager ARG tables.
 5. Return per-ID compliance evidence (resource kind, lookup SKU source, patch status, details).
 
+App settings used:
+
+| App setting | Required | Used for |
+|---|---|---|
+| AZURE_SUBSCRIPTIONS | Optional | Default subscription list fallback. |
+| RESOURCE_GRAPH_API_VERSION | Yes | API version for ARG resource and patchassessmentresources queries. |
+| VM_API_VERSION | Optional | ARM API version for VM details fallback lookups. |
+| HTTP_TIMEOUT | Optional | Timeout for ARG and ARM calls. |
+| ARM_TENANT_B_TENANT_ID | Optional | Cross-tenant auth enablement for selected subscriptions. |
+| ARM_TENANT_B_CLIENT_ID | Optional | Cross-tenant service principal client ID. |
+| ARM_TENANT_B_CLIENT_SECRET | Optional | Cross-tenant service principal secret. |
+| ARM_TENANT_B_SUBSCRIPTIONS | Optional | Subscription list mapped to cross-tenant profile. |
+
 ### azure_cc_pii_investigate_tag_apply
 Purpose:
 - Applies (or previews) an investigate/compliance tag update to one or more Azure resources.
@@ -78,6 +152,21 @@ High-level flow:
 2. Enforce write safety: real updates require `dryRun=false` and `confirm=true`.
 3. Merge target tag(s) into existing resource tags using ARM tags API.
 4. Emit best-effort changelog entries and return per-item status (`preview`, `applied`, or `error`).
+
+App settings used:
+
+| App setting | Required | Used for |
+|---|---|---|
+| HTTP_TIMEOUT | Optional | Timeout for ARM tag read/write operations. |
+| FABRIC_SQL_LOGGING_ENABLED | Optional | Enables best-effort changelog persistence. |
+| FABRIC_SQL_SERVER | Optional | Fabric SQL endpoint for cc changelog writes. |
+| FABRIC_SQL_DATABASE | Optional | Fabric SQL database for changelog writes. |
+| FABRIC_SQL_DRIVER | Optional | ODBC driver used for SQL connection. |
+| FABRIC_CHANGELOG_TABLE_CC | Optional | Target table for CC investigate action logs. |
+| ARM_TENANT_B_TENANT_ID | Optional | Cross-tenant write profile support. |
+| ARM_TENANT_B_CLIENT_ID | Optional | Cross-tenant service principal client ID. |
+| ARM_TENANT_B_CLIENT_SECRET | Optional | Cross-tenant service principal secret. |
+| ARM_TENANT_B_SUBSCRIPTIONS | Optional | Subscription routing list for cross-tenant operations. |
 
 ### azure_defender_compliance
 Purpose:
@@ -89,6 +178,18 @@ High-level flow:
 3. Query Defender pricing tiers (configured), assessments (running/health), and active high alerts.
 4. Apply scoring rubric (`0/25/50/75/100`) and return per-ID rollups and diagnostics.
 
+App settings used:
+
+| App setting | Required | Used for |
+|---|---|---|
+| AZURE_SUBSCRIPTIONS | Optional | Default subscription list fallback. |
+| RESOURCE_GRAPH_API_VERSION | Yes | API version used for Defender securityresources and resources queries. |
+| HTTP_TIMEOUT | Optional | Timeout for Defender and ARG queries. |
+| ARM_TENANT_B_TENANT_ID | Optional | Cross-tenant auth profile support. |
+| ARM_TENANT_B_CLIENT_ID | Optional | Cross-tenant service principal client ID. |
+| ARM_TENANT_B_CLIENT_SECRET | Optional | Cross-tenant service principal secret. |
+| ARM_TENANT_B_SUBSCRIPTIONS | Optional | Subscription routing list for cross-tenant profile. |
+
 ### azure_residency_compliance_aws
 Purpose:
 - Lightweight connectivity/compliance helper for AWS S3 residency and tag retrieval.
@@ -98,6 +199,15 @@ High-level flow:
 2. Validate required AWS credential app settings.
 3. Read bucket location and bucket tags via `boto3`.
 4. Return normalized region/location and tag dictionary.
+
+App settings used:
+
+| App setting | Required | Used for |
+|---|---|---|
+| AWS_ACCESS_KEY_ID | Yes | AWS authentication for S3 API calls. |
+| AWS_SECRET_ACCESS_KEY | Yes | AWS authentication secret for S3 API calls. |
+| AWS_SESSION_TOKEN | Optional | Session token for temporary AWS credentials. |
+| AWS_REGION | Optional | Default AWS region when request does not include region. |
 
 ## Sanitization notes
 - Replaced organization-specific emails with example addresses.
