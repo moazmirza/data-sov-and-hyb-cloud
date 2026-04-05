@@ -1,0 +1,31 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Purview Connector - azure_cc_pii_investigate_tag_apply",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/azure_cc_pii_investigate_tag_apply": {
+      "post": {
+        "operationId": "azure_cc_pii_investigate_tag_apply",
+        "summary": "Preview or apply investigate tag updates for resources.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Replace with exact schema from your validated backend contract for this operation."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "per-item status (preview/applied/error)"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "code": "PreconditionFailed",
+  "status": "error",
+  "message": "confirm=true is required when dryRun=false"
+}

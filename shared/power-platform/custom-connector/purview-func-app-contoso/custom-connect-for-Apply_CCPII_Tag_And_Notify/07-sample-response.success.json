@@ -1,0 +1,12 @@
+{
+  "results": [
+    {
+      "tags": {
+        "investigate": "true"
+      },
+      "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-example/providers/Microsoft.Compute/virtualMachines/vm-example",
+      "action": "applied"
+    }
+  ],
+  "status": "ok"
+}

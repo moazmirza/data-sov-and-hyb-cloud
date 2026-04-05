@@ -1,0 +1,22 @@
+{
+  "operationId": "azure_cc_pii_investigate_tag_apply",
+  "policies": [
+    {
+      "name": "set-header",
+      "enabled": false,
+      "description": "Optional. Add default headers if your backend requires them.",
+      "settings": {
+        "headerName": "x-correlation-id",
+        "headerValue": "@{guid()}"
+      }
+    },
+    {
+      "name": "rewrite-uri",
+      "enabled": false,
+      "description": "Optional. Keep disabled unless your backend path routing requires rewrite.",
+      "settings": {
+        "template": "/api/azure_cc_pii_investigate_tag_apply"
+      }
+    }
+  ]
+}

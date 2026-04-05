@@ -1,0 +1,5 @@
+{
+  "code": "BadRequest",
+  "status": "error",
+  "message": "dataProductName is required"
+}

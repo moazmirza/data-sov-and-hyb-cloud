@@ -1,0 +1,9 @@
+{
+  "expectedCurrentResidency": "US",
+  "targetResidencyCode": "EU",
+  "dataProductId": "11111111-2222-3333-4444-555555555555",
+  "metadata": {
+    "ticketId": "CHG-1001",
+    "requestedBy": "user@contoso.com"
+  }
+}

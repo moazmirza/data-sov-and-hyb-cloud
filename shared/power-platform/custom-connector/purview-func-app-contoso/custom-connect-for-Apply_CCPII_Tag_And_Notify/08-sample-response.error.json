@@ -1,0 +1,5 @@
+{
+  "code": "Unauthorized",
+  "status": "error",
+  "message": "Caller is not authorized to update tags on resource"
+}

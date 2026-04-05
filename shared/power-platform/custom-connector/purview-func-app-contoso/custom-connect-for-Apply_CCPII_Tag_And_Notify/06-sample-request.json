@@ -1,0 +1,12 @@
+{
+  "confirm": true,
+  "items": [
+    {
+      "tagName": "investigate",
+      "subscriptionId": "00000000-0000-0000-0000-000000000000",
+      "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-example/providers/Microsoft.Compute/virtualMachines/vm-example",
+      "tagValue": "true"
+    }
+  ],
+  "dryRun": false
+}
