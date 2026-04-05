@@ -9,5 +9,5 @@ Each machine folder contains only:
 - `summary.md`: short operational summary (purpose, tags, OS details, and policy-derived OS patch status signal).
 
 Machine folders:
-- `i-0c2d4ca587bee1bbf/`
-- `i-05c131818f13b0057/`
+- `AWS WIN EU/`
+- `AWS SQL IaaS CC/`
