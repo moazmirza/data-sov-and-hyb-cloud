@@ -1,0 +1,157 @@
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.26031.182" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.26031.00182">
+  <Entities></Entities>
+  <Roles></Roles>
+  <Workflows>
+    <Workflow WorkflowId="{a30252e4-dc13-f111-8341-002248081faf}" Name="Apply_CCPII_Tag_And_Notify" Description="This flow starts when manually triggered. It sets up several values to track progress and status. It then processes a list of resources provided in the trigger, iterating through each item in the list. For every resource, it extracts a specific identifier. The flow is structured so that each step only runs after the previous one succeeds, ensuring a clear and reliable sequence. The main purpose is to prepare, loop through, and handle each resource in a controlled manner, making it suitable for batch processing or automation tasks involving multiple items.">
+      <JsonFileName>/Workflows/Apply_CCPII_Tag_And_Notify-A30252E4-DC13-F111-8341-002248081FAF.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <ModernFlowType>1</ModernFlowType>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Apply_CCPII_Tag_And_Notify" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="This flow starts when manually triggered. It sets up several values to track progress and status. It then processes a list of resources provided in the trigger, iterating through each item in the list. For every resource, it extracts a specific identifier. The flow is structured so that each step only runs after the previous one succeeds, ensuring a clear and reliable sequence. The main purpose is to prepare, loop through, and handle each resource in a controlled manner, making it suitable for batch processing or automation tasks involving multiple items." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{ee876561-630b-f111-8406-6045bd08fd21}" Name="Fetch Residency Info From Purview">
+      <JsonFileName>/Workflows/FetchResidencyInfoFromPurview-EE876561-630B-F111-8406-6045BD08FD21.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <ModernFlowType>1</ModernFlowType>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Fetch Residency Info From Purview" />
+      </LocalizedNames>
+    </Workflow>
+    <Workflow WorkflowId="{a674c7cd-e064-d2ea-a93e-bfae5972604c}" Name="ResidencyUpdateApply_wrapped" Description="This flow starts when a manual trigger receives input about a data product and residency codes. It checks and normalizes the expected residency code, then attempts to update the residency for the data product. The flow evaluates if the update was successful, already at the target, or failed due to a stale preview. It generates a message and status based on the outcome, verifies if the residency matches the target, and confirms the result. Finally, it responds with details about whether the update was applied, the status, a confirmation, and a message for the agent.">
+      <JsonFileName>/Workflows/ResidencyUpdateApply_wrapped-A674C7CD-E064-D2EA-A93E-BFAE5972604C.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <ModernFlowType>1</ModernFlowType>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="ResidencyUpdateApply_wrapped" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="This flow starts when a manual trigger receives input about a data product and residency codes. It checks and normalizes the expected residency code, then attempts to update the residency for the data product. The flow evaluates if the update was successful, already at the target, or failed due to a stale preview. It generates a message and status based on the outcome, verifies if the residency matches the target, and confirms the result. Finally, it responds with details about whether the update was applied, the status, a confirmation, and a message for the agent." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{8db5f7d4-170a-54b4-ac27-c8a12abb4312}" Name="ResidencyUpdatePreview_wrapped" Description="This flow starts when a manual trigger receives input about a data product and residency codes. It checks and normalizes the expected residency value, then calls a preview operation to assess if a residency update can be applied. The flow evaluates the preview results for conflicts, needed changes, and recommended actions. It generates a message based on these outcomes and collects relevant details like current and target residency codes and the data product display name. Finally, it responds with a summary of the preview, including whether changes are needed and any conflicts detected.">
+      <JsonFileName>/Workflows/ResidencyUpdatePreview_wrapped-8DB5F7D4-170A-54B4-AC27-C8A12ABB4312.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <ModernFlowType>1</ModernFlowType>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="ResidencyUpdatePreview_wrapped" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="This flow starts when a manual trigger receives input about a data product and residency codes. It checks and normalizes the expected residency value, then calls a preview operation to assess if a residency update can be applied. The flow evaluates the preview results for conflicts, needed changes, and recommended actions. It generates a message based on these outcomes and collects relevant details like current and target residency codes and the data product display name. Finally, it responds with a summary of the preview, including whether changes are needed and any conflicts detected." />
+      </Descriptions>
+    </Workflow>
+  </Workflows>
+  <FieldSecurityProfiles></FieldSecurityProfiles>
+  <Templates />
+  <EntityMaps />
+  <EntityRelationships />
+  <OrganizationSettings />
+  <optionsets />
+  <CustomControls />
+  <EntityDataProviders />
+  <Connectors>
+    <Connector>
+      <connectorid>7352a9fa-7cf0-4a89-82d7-fecfb22f74f1</connectorid>
+      <description>custom connector to be used by copilot agent, that connects to function app that connects to purview for data sovereignty queries</description>
+      <displayname>purview-func-app-example</displayname>
+      <iconbrandcolor>#007ee5</iconbrandcolor>
+      <name>new_purview-2dfunc-2dapp-2dexample</name>
+      <connectortype>1</connectortype>
+      <openapidefinition>/Connector/new_purview-2dfunc-2dapp-2dexample_openapidefinition.json</openapidefinition>
+      <connectionparameters>/Connector/new_purview-2dfunc-2dapp-2dexample_connectionparameters.json</connectionparameters>
+      <policytemplateinstances>/Connector/new_purview-2dfunc-2dapp-2dexample_policytemplateinstances.json</policytemplateinstances>
+      <iconblob>/Connector/new_purview-2dfunc-2dapp-2dexample_iconblob.Png</iconblob>
+    </Connector>
+  </Connectors>
+  <connectionreferences>
+    <connectionreference connectionreferencelogicalname="new_sharedpurview2dfunc2dapp2dexampleaaaaaaaaaaaaaaaa_bbbbb">
+      <connectionreferencedisplayname>purview-func-app-example</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_purview-2dfunc-2dapp-2dexample-aaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb</connectorid>
+      <customconnectorid>
+        <connectorid>7352a9fa-7cf0-4a89-82d7-fecfb22f74f1</connectorid>
+      </customconnectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+  </connectionreferences>
+  <Languages>
+    <Language>1033</Language>
+  </Languages>
+</ImportExportXml>

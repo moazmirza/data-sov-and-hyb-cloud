@@ -1,0 +1,126 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_purview-2dfunc-2dapp-2dexample-aaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedpurview2dfunc2dapp2dexampleaaaaaaaaaaaaaaaa_bbbbb"
+        },
+        "api": {
+          "name": "shared_purview-2dfunc-2dapp-2dexample-aaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb",
+          "logicalName": "new_purview-2dfunc-2dapp-2dexample"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Skills",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "description": "Please enter your input",
+                  "title": "dataProductName",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "GetResidency": {
+          "runAfter": {},
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "dataProductName": "@triggerBody()?['text']",
+              "nocache": 1
+            },
+            "host": {
+              "apiId": "",
+              "operationId": "GetResidency",
+              "connectionName": "shared_purview-2dfunc-2dapp-2dexample-aaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb"
+            }
+          }
+        },
+        "Parse_JSON": {
+          "runAfter": {
+            "GetResidency": [
+              "Succeeded"
+            ]
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('GetResidency')",
+            "schema": {
+              "dataProductName": "Fabric Lakehouse - ERP - ExampleCorp",
+              "dataProductId": "c9639b9e-447c-430e-b2ad-e88704a1f6cf",
+              "parentTermName": "Gl-Region",
+              "parentTermId": "c8273dfa-93e9-4a6a-8358-fdb8152bc658",
+              "residencyTerms": [
+                {
+                  "termId": "fd957d5f-179f-4a02-977a-4fb213dfdd13",
+                  "termName": "East US 2",
+                  "parentId": "c8273dfa-93e9-4a6a-8358-fdb8152bc658"
+                }
+              ],
+              "residency": "East US 2"
+            }
+          }
+        },
+        "Respond_to_the_agent": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "type": "Response",
+          "kind": "Skills",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "residency": {
+                  "title": "residency",
+                  "description": "Region or Residency information",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                }
+              },
+              "additionalProperties": {}
+            },
+            "statusCode": 200,
+            "body": {
+              "residency": "@{body('Parse_JSON')?['residency']\r\n}"
+            }
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

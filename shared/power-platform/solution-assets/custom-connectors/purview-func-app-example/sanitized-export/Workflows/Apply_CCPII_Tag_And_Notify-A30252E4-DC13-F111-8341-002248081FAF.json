@@ -1,0 +1,243 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_purview-2dfunc-2dapp-2dexample-aaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb": {
+        "api": {
+          "name": "shared_purview-2dfunc-2dapp-2dexample-aaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb",
+          "logicalName": "new_purview-2dfunc-2dapp-2dexample"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedpurview2dfunc2dapp2dexampleaaaaaaaaaaaaaaaa_bbbbb"
+        },
+        "runtimeSource": "invoker"
+      },
+      "shared_teams": {
+        "api": {
+          "name": "shared_teams"
+        },
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedteams_9e8f4"
+        },
+        "runtimeSource": "invoker"
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Skills",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text_1": {
+                  "description": "Please enter your input",
+                  "title": "dataProductId",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "text_2": {
+                  "description": "Please enter your input",
+                  "title": "dataProductDisplayName",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "text_3": {
+                  "description": "Please enter your input",
+                  "title": "ownerEmail",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "text": {
+                  "description": "Please enter your input",
+                  "title": "tagKey",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "text_4": {
+                  "description": "Please enter your input",
+                  "title": "tagValue",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "text_5": {
+                  "description": "Please enter your input",
+                  "title": "resourceId",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "number": {
+                  "description": "Please enter a number",
+                  "title": "ccScorePct",
+                  "type": "number",
+                  "x-ms-content-hint": "NUMBER",
+                  "x-ms-dynamically-added": true
+                }
+              },
+              "required": [
+                "text_1",
+                "text_2",
+                "text_3",
+                "text",
+                "text_4",
+                "text_5",
+                "number"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "RequestId": {
+          "runAfter": {},
+          "type": "Compose",
+          "inputs": "@concat('ccpii-', guid())"
+        },
+        "CCPII_ApplyInvestigateTag": {
+          "runAfter": {
+            "RequestId": [
+              "Succeeded"
+            ]
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "body/dryRun": false,
+              "body/confirm": true,
+              "body/requestId": "@outputs('RequestId')",
+              "body/requestSource": "CopilotStudio",
+              "body/dataProductId": "@triggerBody()?['text_1']",
+              "body/dataProductDisplayName": "@triggerBody()?['text_2']",
+              "body/items": [
+                {
+                  "resourceId": "@triggerBody()?['text_5']",
+                  "ccScorePct": "@triggerBody()?['number']",
+                  "ownerEmail": "@triggerBody()?['text_3']",
+                  "tagKey": "@triggerBody()?['text']",
+                  "tagValue": "@triggerBody()?['text_4']"
+                }
+              ]
+            },
+            "host": {
+              "apiId": "",
+              "operationId": "CCPII_ApplyInvestigateTag",
+              "connectionName": "shared_purview-2dfunc-2dapp-2dexample-aaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb"
+            }
+          }
+        },
+        "Respond_to_the_agent": {
+          "runAfter": {
+            "Post_card_in_a_chat_or_channel": [
+              "Succeeded"
+            ]
+          },
+          "type": "Response",
+          "kind": "Skills",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "title": "success",
+                  "description": "",
+                  "type": "boolean",
+                  "x-ms-content-hint": "BOOLEAN",
+                  "x-ms-dynamically-added": true
+                },
+                "message": {
+                  "title": "message",
+                  "description": "",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "dataproductdisplayname": {
+                  "title": "dataProductDisplayName",
+                  "description": "",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "resourceid": {
+                  "title": "resourceId",
+                  "description": "",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "tagkey": {
+                  "title": "tagKey",
+                  "description": "",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                },
+                "tagvalue": {
+                  "title": "tagValue",
+                  "description": "",
+                  "type": "string",
+                  "x-ms-content-hint": "TEXT",
+                  "x-ms-dynamically-added": true
+                }
+              },
+              "additionalProperties": {}
+            },
+            "statusCode": 200,
+            "body": {
+              "success": "Yes",
+              "message": "Investigation tag request completed successfully",
+              "dataproductdisplayname": "@{triggerBody()?['text_2']}",
+              "resourceid": "@{triggerBody()?['text_5']}",
+              "tagkey": "@{triggerBody()?['text']}",
+              "tagvalue": "@{triggerBody()?['text_4']}"
+            }
+          }
+        },
+        "Post_card_in_a_chat_or_channel": {
+          "runAfter": {
+            "CCPII_ApplyInvestigateTag": [
+              "Succeeded"
+            ]
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "poster": "Flow bot",
+              "location": "Channel",
+              "body/recipient/groupId": "e1a9b340-6d4a-43f9-8ce5-faf859873670",
+              "body/recipient/channelId": "19:CsqyIBpg9_oQvmxiaZG6z_8B5wApph-uS7figeiPqpc1@thread.tacv2",
+              "body/messageBody": "{\n  \"type\": \"AdaptiveCard\",\n  \"$schema\": \"http://adaptivecards.io/schemas/adaptive-card.json\",\n  \"version\": \"1.4\",\n  \"body\": [\n    {\n      \"type\": \"TextBlock\",\n      \"text\": \"CC/PII Investigation Tag Applied\",\n      \"weight\": \"Bolder\",\n      \"size\": \"Medium\",\n      \"wrap\": true\n    },\n    {\n      \"type\": \"TextBlock\",\n      \"text\": \"A compliance investigation tag was applied successfully.\",\n      \"isSubtle\": true,\n      \"spacing\": \"Small\",\n      \"wrap\": true\n    },\n    {\n      \"type\": \"Container\",\n      \"spacing\": \"Medium\",\n      \"items\": [\n        {\n          \"type\": \"TextBlock\",\n          \"text\": \"Data Product\",\n          \"weight\": \"Bolder\",\n          \"wrap\": true\n        },\n        {\n          \"type\": \"TextBlock\",\n          \"text\": \"@{triggerBody()?['text_2']}\",\n          \"wrap\": true,\n          \"spacing\": \"None\"\n        }\n      ]\n    },\n    {\n      \"type\": \"Container\",\n      \"spacing\": \"Medium\",\n      \"items\": [\n        {\n          \"type\": \"TextBlock\",\n          \"text\": \"Data Product ID\",\n          \"weight\": \"Bolder\",\n          \"wrap\": true\n        },\n        {\n          \"type\": \"TextBlock\",\n          \"text\": \"@{triggerBody()?['text_1']}\",\n          \"wrap\": true,\n          \"spacing\": \"None\"\n        }\n      ]\n    },\n    {\n      \"type\": \"Container\",\n      \"spacing\": \"Medium\",\n      \"items\": [\n        {\n          \"type\": \"TextBlock\",\n          \"text\": \"Resource ID\",\n          \"weight\": \"Bolder\",\n          \"wrap\": true\n        },\n        {\n          \"type\": \"TextBlock\",\n          \"text\": \"@{triggerBody()?['text_5']}\",\n          \"wrap\": true,\n          \"spacing\": \"None\"\n        }\n      ]\n    },\n    {\n      \"type\": \"Container\",\n      \"spacing\": \"Medium\",\n      \"items\": [\n        {\n          \"type\": \"TextBlock\",\n          \"text\": \"CC Score\",\n          \"weight\": \"Bolder\",\n          \"wrap\": true\n        },\n        {\n          \"type\": \"TextBlock\",\n          \"text\": \"@{triggerBody()?['number']}%\",\n          \"wrap\": true,\n          \"spacing\": \"None\"\n        }\n      ]\n    },\n    {\n      \"type\": \"Container\",\n      \"spacing\": \"Medium\",\n      \"items\": [\n        {\n          \"type\": \"TextBlock\",\n          \"text\": \"Owner Email\",\n          \"weight\": \"Bolder\",\n          \"wrap\": true\n        },\n        {\n          \"type\": \"TextBlock\",\n          \"text\": \"@{triggerBody()?['text_3']}\",\n          \"wrap\": true,\n          \"spacing\": \"None\"\n        }\n      ]\n    },\n    {\n      \"type\": \"Container\",\n      \"spacing\": \"Medium\",\n      \"items\": [\n        {\n          \"type\": \"TextBlock\",\n          \"text\": \"Tag Applied\",\n          \"weight\": \"Bolder\",\n          \"wrap\": true\n        },\n        {\n          \"type\": \"TextBlock\",\n          \"text\": \"@{triggerBody()?['text']} = @{triggerBody()?['text_4']}\",\n          \"wrap\": true,\n          \"spacing\": \"None\"\n        }\n      ]\n    },\n    {\n      \"type\": \"Container\",\n      \"spacing\": \"Medium\",\n      \"items\": [\n        {\n          \"type\": \"TextBlock\",\n          \"text\": \"Request ID\",\n          \"weight\": \"Bolder\",\n          \"wrap\": true\n        },\n        {\n          \"type\": \"TextBlock\",\n          \"text\": \"@{outputs('RequestId')}\",\n          \"wrap\": true,\n          \"spacing\": \"None\"\n        }\n      ]\n    }\n  ]\n}"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams",
+              "operationId": "PostCardToConversation",
+              "connectionName": "shared_teams"
+            }
+          }
+        }
+      },
+      "outputs": {},
+      "description": "This flow starts when manually triggered. It sets up several values to track progress and status. It then processes a list of resources provided in the trigger, iterating through each item in the list. For every resource, it extracts a specific identifier. The flow is structured so that each step only runs after the previous one succeeds, ensuring a clear and reliable sequence. The main purpose is to prepare, loop through, and handle each resource in a controlled manner, making it suitable for batch processing or automation tasks involving multiple items."
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
