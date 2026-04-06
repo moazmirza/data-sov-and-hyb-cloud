@@ -88,6 +88,7 @@ This solution documents how Confidential Compute for PII (CC-for-PII) is hydrate
 ```mermaid
 flowchart LR
 	LH["Lakehouse sources"] --> BASE["Notebook: build dp_base"]
+	LH --> RULES["Ruleset table<br/>CC_SKUS_TABLE = rs_confidential_compute_skus"]
 	BASE --> PII{"PII gate<br/>HasFullNameClassification == 1 ?"}
 	PII -- No --> NA1["NA_NotPII<br/>CCForPIIScore = 100"]
 	PII -- Yes --> CALL["Call Azure Function<br/>/api/azure/ccForPiiCompliance<br/>payload: subscriptions + dataProductIds"]
@@ -108,6 +109,7 @@ flowchart LR
 	NA1 --> JOIN
 
 	JOIN --> SCORE["Notebook scoring rubric<br/>0 / 25 / 50 / 75 / 100"]
+	RULES --> SCORE
 	SCORE --> CC["Write dp_dataproduct_cccompliance_current"]
 	CC --> SUMM["Build compliance summary<br/>CCScorePct = AVG(CCForPIIScore)<br/>by DataProductId"]
 	SUMM --> MODEL["Semantic model mapping<br/>Conf. Compute Compliance (%) <- CCScorePct"]
@@ -122,6 +124,12 @@ The notebook confirms PII applicability from table `dp_dataproduct_fullnameclass
 
 It then derives:
 - `CCApplicable = (HasFullNameClassification == 1)`
+
+Ruleset lookup used by notebook scoring:
+- `CC_SKUS_TABLE = "rs_confidential_compute_skus"`
+- This table is joined by normalized lookup SKU/model (`LookupSku_lc`) to determine:
+	- `IsConfidentialSku`
+	- `IsApprovedSkuCalc`
 
 Behavior:
 - `CCApplicable = true`: data product is sent to the CC endpoint for evaluation.
@@ -149,6 +157,11 @@ It matches resources against the incoming `dataProductIds` and applies supported
 | Applicable, non-confidential SKU/model | `IsConfidentialSku == false` | 50 | Resource is in scope but not running confidential compute |
 | Applicable, confidential but unapproved | `IsConfidentialSku == true` and `IsApprovedSkuCalc == false` | 75 | Confidential compute detected but not approved |
 | Applicable, confidential and approved | `IsConfidentialSku == true` and `IsApprovedSkuCalc == true` | 100 | Fully compliant confidential compute posture |
+
+How the ruleset affects scoring:
+- If lookup SKU/model does not exist in `rs_confidential_compute_skus`, notebook treats it as non-confidential (`IsConfidentialSku = false`) and scores `50` when applicable.
+- If it exists with approved flag false, notebook scores `75`.
+- If it exists with approved flag true, notebook scores `100`.
 
 ### Dashboard roll-up mapping
 
