@@ -180,6 +180,24 @@ Column derivation in `dp_dataproduct_compliance_summary_current` (from notebook 
 - Scorecards & matrix visuals rendering compliance state from `Data Product Compliance Scores` & `Confidential Compute (cc) PII Compliance Investigations (Current)`
 - Published as output for Copilot/Data Agent consumption
 
+## Residency scorecard scoring rubric
+
+### Report: `report_purview_dataproduct_residency__Report`
+
+**Page: Compliance Dashboard**
+
+| Score | Remember it as | This happens when | Plain English |
+|---|---|---|---|
+| 0 | No resource found | No associated Azure resource was found, and no valid AWS S3 fallback resource was found | We could not verify where this data product actually lives |
+| 25 | Resource found, but no Purview residency | A resource was found, but the Purview/glossary residency value is missing, blank, unknown, or not assigned | We found the infrastructure, but governance metadata is missing |
+| 50 | Purview residency exists, but not approved | A resource was found and Purview residency exists, but that residency is not in the approved regions list | Governance has a residency value, but policy does not allow it |
+| 75 | Approved residency, but wrong region | A resource was found, Purview residency exists, and it is approved, but it does not match the actual detected resource region | The declared residency looks valid, but it does not match reality |
+| 100 | Approved residency and correct match | A resource was found, Purview residency exists, it is approved, and it matches the actual detected resource region | Governance, policy, and actual deployment all line up |
+
+### Report: `Compliance Scoring Report for Data Agent`
+
+- Uses the same residency score values (0/25/50/75/100) from `ResidencyScorePct` in `dp_dataproduct_residencycompliance_current` when residency compliance is surfaced in downstream scorecards.
+
 ## Table type legend
 
 - **Dimension (current-state)**: `*_current` suffix. Single latest snapshot per data product. Refreshed nightly. Safe for real-time filtering.

@@ -485,7 +485,7 @@ dp_base = (
 # Tagging: not applicable for S3 (external) -> N/A=100
 dp_base = dp_base.withColumn("TagApplicable", ~F.col("IsS3"))
 
-# Residency: you explicitly said "no N/A scenario"
+# Residency: "no N/A scenario"
 dp_base = dp_base.withColumn("ResidencyApplicable", F.lit(True))
 
 # CC for PII: only meaningful when PII exists; otherwise N/A=100
