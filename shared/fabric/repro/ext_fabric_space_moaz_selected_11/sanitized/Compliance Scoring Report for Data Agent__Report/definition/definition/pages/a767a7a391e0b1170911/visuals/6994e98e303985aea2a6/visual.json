@@ -1,0 +1,207 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "6994e98e303985aea2a6",
+  "position": {
+    "x": 9.5013605745639467,
+    "y": 130.09555248249097,
+    "z": 2001,
+    "height": 159.33050809653389,
+    "width": 1260.7574608556006,
+    "tabOrder": 2001
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confidential Compute (cc) PII Compliance Investigations (Current)"
+                    }
+                  },
+                  "Property": "data product id"
+                }
+              },
+              "queryRef": "Confidential Compute (cc) PII Compliance Investigations (Current).data product id",
+              "nativeQueryRef": "data product id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confidential Compute (cc) PII Compliance Investigations (Current)"
+                    }
+                  },
+                  "Property": "investigation required"
+                }
+              },
+              "queryRef": "Confidential Compute (cc) PII Compliance Investigations (Current).investigation required",
+              "nativeQueryRef": "investigation required"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confidential Compute (cc) PII Compliance Investigations (Current)"
+                    }
+                  },
+                  "Property": "subscription id"
+                }
+              },
+              "queryRef": "Confidential Compute (cc) PII Compliance Investigations (Current).subscription id",
+              "nativeQueryRef": "subscription id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confidential Compute (cc) PII Compliance Investigations (Current)"
+                    }
+                  },
+                  "Property": "data product owner email"
+                }
+              },
+              "queryRef": "Confidential Compute (cc) PII Compliance Investigations (Current).data product owner email",
+              "nativeQueryRef": "data product owner email"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confidential Compute (cc) PII Compliance Investigations (Current)"
+                    }
+                  },
+                  "Property": "investigation reason code"
+                }
+              },
+              "queryRef": "Confidential Compute (cc) PII Compliance Investigations (Current).investigation reason code",
+              "nativeQueryRef": "investigation reason code"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Confidential Compute (cc) PII Compliance Investigations (Current)"
+                  }
+                },
+                "Property": "data product id"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Data Products requiring investigation for Confidential Compute (CC) PII'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b963cbee08b1397544b1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confidential Compute (cc) PII Compliance Investigations (Current)"
+              }
+            },
+            "Property": "data product id"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "df0806b4e051d8c3804b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confidential Compute (cc) PII Compliance Investigations (Current)"
+              }
+            },
+            "Property": "investigation required"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d79cc32e876ba3c56a0a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confidential Compute (cc) PII Compliance Investigations (Current)"
+              }
+            },
+            "Property": "subscription id"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7f68ba91a888045069a2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confidential Compute (cc) PII Compliance Investigations (Current)"
+              }
+            },
+            "Property": "data product owner email"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9bc91cc63b3080088980",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confidential Compute (cc) PII Compliance Investigations (Current)"
+              }
+            },
+            "Property": "investigation reason code"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

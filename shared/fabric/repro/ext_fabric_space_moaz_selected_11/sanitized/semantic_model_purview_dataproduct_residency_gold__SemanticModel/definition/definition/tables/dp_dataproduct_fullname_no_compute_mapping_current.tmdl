@@ -1,0 +1,69 @@
+table dp_dataproduct_fullname_no_compute_mapping_current
+	lineageTag: 19ee3397-26b8-4226-ae6c-0e27f073ba74
+	sourceLineageTag: [dbo].[dp_dataproduct_fullname_no_compute_mapping_current]
+
+	measure 'FullName DPs - No Compute Mapping' = ```
+			
+			DISTINCTCOUNT(dp_dataproduct_fullname_no_compute_mapping_current[DataProductId])
+			
+			```
+		formatString: 0
+		lineageTag: 08cc6bbd-71cf-48d4-addb-085be761e113
+
+		changedProperty = Name
+
+	column SnapshotUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 29dc2ee2-dc58-4b26-8e9c-9da9e675cf60
+		sourceLineageTag: SnapshotUtc
+		summarizeBy: none
+		sourceColumn: SnapshotUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductId
+		dataType: string
+		lineageTag: a93c52ce-85b0-4755-9131-6dc634320d5b
+		sourceLineageTag: DataProductId
+		summarizeBy: none
+		sourceColumn: DataProductId
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductDisplayName
+		dataType: string
+		lineageTag: cd40e62b-71fb-4309-a73d-9b2dfed5aafc
+		sourceLineageTag: DataProductDisplayName
+		summarizeBy: none
+		sourceColumn: DataProductDisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullNameColumnCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e4dc904-a673-48fb-9e84-d95448581678
+		sourceLineageTag: FullNameColumnCount
+		summarizeBy: sum
+		sourceColumn: FullNameColumnCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column ComputeVmCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 809288d8-3434-4860-8682-13d338208dd5
+		sourceLineageTag: ComputeVmCount
+		summarizeBy: sum
+		sourceColumn: ComputeVmCount
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dp_dataproduct_fullname_no_compute_mapping_current = entity
+		mode: directLake
+		source
+			entityName: dp_dataproduct_fullname_no_compute_mapping_current
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+

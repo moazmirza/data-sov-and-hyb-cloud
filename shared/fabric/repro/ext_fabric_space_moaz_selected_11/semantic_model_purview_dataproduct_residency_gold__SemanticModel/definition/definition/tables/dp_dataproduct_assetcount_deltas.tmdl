@@ -1,0 +1,81 @@
+table dp_dataproduct_assetcount_deltas
+	lineageTag: 865b0e0b-befe-44fe-ad73-e1691b6e88d1
+	sourceLineageTag: [dbo].[dp_dataproduct_assetcount_deltas]
+
+	column SnapshotTS
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 34e55d15-f830-4499-acd8-0ed06b0d5d3b
+		sourceLineageTag: SnapshotTS
+		summarizeBy: none
+		sourceColumn: SnapshotTS
+
+		annotation SummarizationSetBy = Automatic
+
+	column SnapshotDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ea3d9ae7-283b-452e-8b41-d8e7b2e12b56
+		sourceLineageTag: SnapshotDate
+		summarizeBy: none
+		sourceColumn: SnapshotDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductName
+		dataType: string
+		lineageTag: 6086fafb-3cca-4f2c-ad30-6b52cbd62aa8
+		sourceLineageTag: DataProductName
+		summarizeBy: none
+		sourceColumn: DataProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalAssets
+		dataType: int64
+		formatString: 0
+		lineageTag: c9fe90c8-cfc9-44fb-b012-77f4e3bffb86
+		sourceLineageTag: TotalAssets
+		summarizeBy: sum
+		sourceColumn: TotalAssets
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrevAssets
+		dataType: int64
+		formatString: 0
+		lineageTag: 9bb12d84-daeb-4219-92bf-fb21a3d9fcdb
+		sourceLineageTag: PrevAssets
+		summarizeBy: sum
+		sourceColumn: PrevAssets
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeltaAssets
+		dataType: int64
+		formatString: 0
+		lineageTag: 26f21394-e020-4f63-8afa-8e894340b08e
+		sourceLineageTag: DeltaAssets
+		summarizeBy: sum
+		sourceColumn: DeltaAssets
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeltaPct
+		dataType: double
+		lineageTag: 1328b3e5-0754-4568-8f04-777ba6dc23ac
+		sourceLineageTag: DeltaPct
+		summarizeBy: sum
+		sourceColumn: DeltaPct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition dp_dataproduct_assetcount_deltas = entity
+		mode: directLake
+		source
+			entityName: dp_dataproduct_assetcount_deltas
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+

@@ -1,0 +1,292 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "8ac2e454e8e0b4000158",
+  "position": {
+    "x": 630.8167770419426,
+    "y": 201.3245033112583,
+    "z": 5000,
+    "height": 158.94039735099338,
+    "width": 635.76158940397352,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dp_dataproduct_assetcount_deltas"
+                    }
+                  },
+                  "Property": "SnapshotTS"
+                }
+              },
+              "queryRef": "dp_dataproduct_assetcount_deltas.SnapshotTS",
+              "nativeQueryRef": "SnapshotTS"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dp_dataproduct_assetcount_deltas"
+                    }
+                  },
+                  "Property": "DataProductName"
+                }
+              },
+              "queryRef": "dp_dataproduct_assetcount_deltas.DataProductName",
+              "nativeQueryRef": "DataProductName"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dp_dataproduct_assetcount_deltas"
+                        }
+                      },
+                      "Property": "PrevAssets"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dp_dataproduct_assetcount_deltas.PrevAssets)",
+              "nativeQueryRef": "Sum of PrevAssets"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dp_dataproduct_assetcount_deltas"
+                        }
+                      },
+                      "Property": "TotalAssets"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dp_dataproduct_assetcount_deltas.TotalAssets)",
+              "nativeQueryRef": "Sum of TotalAssets"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dp_dataproduct_assetcount_deltas"
+                        }
+                      },
+                      "Property": "DeltaAssets"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dp_dataproduct_assetcount_deltas.DeltaAssets)",
+              "nativeQueryRef": "Sum of DeltaAssets"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dp_dataproduct_assetcount_deltas"
+                        }
+                      },
+                      "Property": "DeltaPct"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dp_dataproduct_assetcount_deltas.DeltaPct)",
+              "nativeQueryRef": "Sum of DeltaPct"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "dp_dataproduct_assetcount_deltas"
+                      }
+                    },
+                    "Property": "PrevAssets"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Data Product Asset Count over Time'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b15c96da83ac8b3dcd93",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dp_dataproduct_assetcount_deltas"
+              }
+            },
+            "Property": "SnapshotTS"
+          }
+        },
+        "type": "RelativeTime",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "dp_dataproduct_assetcount_deltas",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Between": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "d"
+                        }
+                      },
+                      "Property": "SnapshotTS"
+                    }
+                  },
+                  "LowerBound": {
+                    "DateAdd": {
+                      "Expression": {
+                        "Now": {}
+                      },
+                      "Amount": -168,
+                      "TimeUnit": 7
+                    }
+                  },
+                  "UpperBound": {
+                    "Now": {}
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "57c82abc258d120c9250",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dp_dataproduct_assetcount_deltas"
+                  }
+                },
+                "Property": "DeltaAssets"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "dp_dataproduct_assetcount_deltas",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "d"
+                                }
+                              },
+                              "Property": "DeltaAssets"
+                            }
+                          },
+                          "Function": 0
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "0L"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

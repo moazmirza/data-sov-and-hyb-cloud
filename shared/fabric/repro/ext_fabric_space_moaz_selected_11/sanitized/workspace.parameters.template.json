@@ -1,0 +1,30 @@
+{
+  "sourceWorkspace": {
+    "name": "<SOURCE_WORKSPACE_NAME>",
+    "workspaceId": "<FABRIC_WORKSPACE_ID>"
+  },
+  "targetWorkspace": {
+    "name": "<TARGET_WORKSPACE_NAME>",
+    "workspaceId": "<TARGET_WORKSPACE_ID>"
+  },
+  "azure": {
+    "tenantId": "<TENANT_ID>",
+    "subscriptionIds": [
+      "<SUBSCRIPTION_ID_1>",
+      "<SUBSCRIPTION_ID_2>"
+    ],
+    "functionAppBaseUrl": "https://<FUNCTION_APP>.azurewebsites.net",
+    "keyVaultUrl": "https://<KEYVAULT_NAME>.vault.azure.net/"
+  },
+  "fabricBindings": {
+    "lakehouseName": "<TARGET_LAKEHOUSE_NAME>",
+    "sqlEndpointName": "<TARGET_SQL_ENDPOINT_NAME>",
+    "pipelineName": "<TARGET_PIPELINE_NAME>"
+  },
+  "secrets": {
+    "clientId": "<APP_CLIENT_ID>",
+    "clientSecret": "<STORE_IN_KEYVAULT_OR_SECRET_SCOPE>",
+    "resourceAppClientId": "<RESOURCE_APP_CLIENT_ID>"
+  }
+}
+

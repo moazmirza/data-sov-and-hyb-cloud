@@ -1,0 +1,352 @@
+table dp_dataproduct_cccompliance_investigate_current
+	lineageTag: 1aa036c6-6d8b-4e6a-aaf5-2923b8584ff1
+	sourceLineageTag: [dbo].[dp_dataproduct_cccompliance_investigate_current]
+
+	measure 'CC - Investigation Required Count' =
+			
+			COUNTROWS('dp_dataproduct_cccompliance_investigate_current')
+		formatString: 0
+		lineageTag: e04bc758-f97f-48e1-bcb8-f0ed66266c85
+
+		changedProperty = Name
+
+	measure 'CC - Investigation Distinct Owners' =
+			
+			DISTINCTCOUNT('dp_dataproduct_cccompliance_investigate_current'[OwnerEmail])
+		formatString: 0
+		lineageTag: 97b6fcfb-e743-42a6-a8d3-39fd1a1ac506
+
+		changedProperty = Name
+
+	measure 'CC - Score 0 Count' =
+			
+			CALCULATE(
+			    COUNTROWS('dp_dataproduct_cccompliance_current'),
+			    'dp_dataproduct_cccompliance_current'[CCForPIIScore] = 0
+			)
+		formatString: 0
+		lineageTag: 49041b79-25b9-4b26-95ae-eb4119f259c0
+
+		changedProperty = Name
+
+	column SnapshotUtc
+		dataType: string
+		lineageTag: ef54a00e-33fa-4c3f-be1a-7d4b38af15fa
+		sourceLineageTag: SnapshotUtc
+		summarizeBy: none
+		sourceColumn: SnapshotUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductId
+		dataType: string
+		lineageTag: 9cb2efac-0178-4ee9-a7bf-3985ecd64a0e
+		sourceLineageTag: DataProductId
+		summarizeBy: none
+		sourceColumn: DataProductId
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductDisplayName
+		dataType: string
+		lineageTag: d5fe5323-5712-40e9-89b3-17a624dffb06
+		sourceLineageTag: DataProductDisplayName
+		summarizeBy: none
+		sourceColumn: DataProductDisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductDescription
+		dataType: string
+		lineageTag: 622b08de-b1bb-4418-869d-63592ee457f8
+		sourceLineageTag: DataProductDescription
+		summarizeBy: none
+		sourceColumn: DataProductDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column CCScorePct
+		dataType: int64
+		formatString: 0
+		lineageTag: f5c6cf1a-30a3-4752-92f6-4d556abe5650
+		sourceLineageTag: CCScorePct
+		summarizeBy: sum
+		sourceColumn: CCScorePct
+
+		annotation SummarizationSetBy = Automatic
+
+	column CCState
+		dataType: string
+		lineageTag: ff17b298-007e-46a2-85ae-8b3b1bb6ae4b
+		sourceLineageTag: CCState
+		summarizeBy: none
+		sourceColumn: CCState
+
+		annotation SummarizationSetBy = Automatic
+
+	column CCReason
+		dataType: string
+		lineageTag: a1059a2f-eb39-4f5f-9374-6245e717ef4b
+		sourceLineageTag: CCReason
+		summarizeBy: none
+		sourceColumn: CCReason
+
+		annotation SummarizationSetBy = Automatic
+
+	column InvestigationRequired
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3ebbe78d-4e47-4a09-8795-288dd8b76cfe
+		sourceLineageTag: InvestigationRequired
+		summarizeBy: none
+		sourceColumn: InvestigationRequired
+
+		annotation SummarizationSetBy = Automatic
+
+	column InvestigationReasonCode
+		dataType: string
+		lineageTag: 2265aac3-835f-495e-b107-dd5d933f57e9
+		sourceLineageTag: InvestigationReasonCode
+		summarizeBy: none
+		sourceColumn: InvestigationReasonCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResourceFound
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 00968c15-94b6-477f-862e-d1d9748f55ac
+		sourceLineageTag: ResourceFound
+		summarizeBy: none
+		sourceColumn: ResourceFound
+
+		annotation SummarizationSetBy = Automatic
+
+	column CCApplicableResource
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 16e4042e-0ccf-4095-be4f-31e1fbb18094
+		sourceLineageTag: CCApplicableResource
+		summarizeBy: none
+		sourceColumn: CCApplicableResource
+
+		annotation SummarizationSetBy = Automatic
+
+	column CCApplicable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8d9f45ca-70a6-45d5-8cbc-eeea6bb95831
+		sourceLineageTag: CCApplicable
+		summarizeBy: none
+		sourceColumn: CCApplicable
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResourceId
+		dataType: string
+		lineageTag: f8bd01b3-27a6-4a19-9883-222d2f485b0b
+		sourceLineageTag: ResourceId
+		summarizeBy: none
+		sourceColumn: ResourceId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResourceName
+		dataType: string
+		lineageTag: f03daeb2-8ded-4974-b6b4-d9b1303b1daa
+		sourceLineageTag: ResourceName
+		summarizeBy: none
+		sourceColumn: ResourceName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResourceType
+		dataType: string
+		lineageTag: 101d8ef7-bcf9-41b6-9305-010af3a28be5
+		sourceLineageTag: ResourceType
+		summarizeBy: none
+		sourceColumn: ResourceType
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubscriptionId
+		dataType: string
+		lineageTag: 46264b5f-bcd6-415c-bd6e-50130b763556
+		sourceLineageTag: SubscriptionId
+		summarizeBy: none
+		sourceColumn: SubscriptionId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResourceGroup
+		dataType: string
+		lineageTag: 958f0540-d14d-4176-a618-906cd5546afc
+		sourceLineageTag: ResourceGroup
+		summarizeBy: none
+		sourceColumn: ResourceGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		dataType: string
+		lineageTag: f19fdf99-8f66-493d-9e85-48fbdf7a7794
+		sourceLineageTag: Location
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column HasFullNameClassification
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d3ba264-f397-4fc1-9c26-89b74f5ce509
+		sourceLineageTag: HasFullNameClassification
+		summarizeBy: sum
+		sourceColumn: HasFullNameClassification
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullNameColumnCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 3746fdb6-83dd-406a-906a-e268860f7d9a
+		sourceLineageTag: FullNameColumnCount
+		summarizeBy: sum
+		sourceColumn: FullNameColumnCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column OwnerObjectId
+		dataType: string
+		lineageTag: 043ec5c8-63bb-4a30-ab71-181e4f547a29
+		sourceLineageTag: OwnerObjectId
+		summarizeBy: none
+		sourceColumn: OwnerObjectId
+
+		annotation SummarizationSetBy = Automatic
+
+	column OwnerName
+		dataType: string
+		lineageTag: fb4ce035-3ad0-4a86-8df5-133b1605057b
+		sourceLineageTag: OwnerName
+		summarizeBy: none
+		sourceColumn: OwnerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column OwnerEmail
+		dataType: string
+		lineageTag: d2e548a8-d1d9-46f2-903e-bd40ef1f88b3
+		sourceLineageTag: OwnerEmail
+		summarizeBy: none
+		sourceColumn: OwnerEmail
+
+		annotation SummarizationSetBy = Automatic
+
+	column OwnerSource
+		dataType: string
+		lineageTag: efdf216d-a976-4169-b581-d4d6be7eeff5
+		sourceLineageTag: OwnerSource
+		summarizeBy: none
+		sourceColumn: OwnerSource
+
+		annotation SummarizationSetBy = Automatic
+
+	column OwnerResolveStatus
+		dataType: string
+		lineageTag: 415c202a-fd78-4fe4-a8c4-500ab449ea3e
+		sourceLineageTag: OwnerResolveStatus
+		summarizeBy: none
+		sourceColumn: OwnerResolveStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column SuggestedTagKey
+		dataType: string
+		lineageTag: b26f87c5-95f9-4ee3-86d9-ce175a0ae37a
+		sourceLineageTag: SuggestedTagKey
+		summarizeBy: none
+		sourceColumn: SuggestedTagKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SuggestedTagValue
+		dataType: string
+		lineageTag: 599b443d-92ec-4c5b-8162-2a5af2186335
+		sourceLineageTag: SuggestedTagValue
+		summarizeBy: none
+		sourceColumn: SuggestedTagValue
+
+		annotation SummarizationSetBy = Automatic
+
+	column LookupSkuOrModel
+		dataType: string
+		lineageTag: 3c0d0acc-9199-4cfa-bf76-ac5a96abf50a
+		sourceLineageTag: LookupSkuOrModel
+		summarizeBy: none
+		sourceColumn: LookupSkuOrModel
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsApprovedSku
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ffdb7a04-6381-424c-b610-13178be7ac8f
+		sourceLineageTag: IsApprovedSku
+		summarizeBy: none
+		sourceColumn: IsApprovedSku
+
+		annotation SummarizationSetBy = Automatic
+
+	column CCResourceKind
+		dataType: string
+		lineageTag: 76e0eb42-9cee-4805-9102-57ce77fff84b
+		sourceLineageTag: CCResourceKind
+		summarizeBy: none
+		sourceColumn: CCResourceKind
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArcCloudProvider
+		dataType: string
+		lineageTag: 13e024bb-ed34-4adb-8f80-5513cc2573cc
+		sourceLineageTag: ArcCloudProvider
+		summarizeBy: none
+		sourceColumn: ArcCloudProvider
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArcStatus
+		dataType: string
+		lineageTag: b6a43bd3-c270-4e30-8482-19bf324acf0c
+		sourceLineageTag: ArcStatus
+		summarizeBy: none
+		sourceColumn: ArcStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column VmSizeCompat
+		dataType: string
+		lineageTag: 61f4949b-88a6-48fb-866b-1f66e13b16b4
+		sourceLineageTag: VmSizeCompat
+		summarizeBy: none
+		sourceColumn: VmSizeCompat
+
+		annotation SummarizationSetBy = Automatic
+
+	column SecurityType
+		dataType: string
+		lineageTag: 73a870c8-5770-4637-ab6c-8437d3f535e2
+		sourceLineageTag: SecurityType
+		summarizeBy: none
+		sourceColumn: SecurityType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dp_dataproduct_cccompliance_investigate_current = entity
+		mode: directLake
+		source
+			entityName: dp_dataproduct_cccompliance_investigate_current
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+

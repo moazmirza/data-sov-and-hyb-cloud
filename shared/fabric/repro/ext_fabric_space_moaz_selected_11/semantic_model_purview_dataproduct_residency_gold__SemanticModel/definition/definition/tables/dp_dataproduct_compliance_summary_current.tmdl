@@ -1,0 +1,93 @@
+table dp_dataproduct_compliance_summary_current
+	lineageTag: da26e7a9-b4f2-4f75-967f-4996a9d906e6
+	sourceLineageTag: [dbo].[dp_dataproduct_compliance_summary_current]
+
+	column 'Data Product ID'
+		dataType: string
+		lineageTag: 5dec6385-190e-4716-8bea-c7bf5bbceb40
+		sourceLineageTag: DataProductId
+		summarizeBy: none
+		sourceColumn: DataProductId
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Product Name'
+		dataType: string
+		lineageTag: fba6ab70-b98c-4841-8222-2d5daebdb47c
+		sourceLineageTag: DataProductDisplayName
+		summarizeBy: none
+		sourceColumn: DataProductDisplayName
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Residency Compliance (%)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 77b84c5c-3b4d-4d28-8369-725366026767
+		sourceLineageTag: ResidencyScorePct
+		summarizeBy: sum
+		sourceColumn: ResidencyScorePct
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Conf. Compute Compliance (%)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a3c8a80-c57f-4f93-be63-cdd52dda584e
+		sourceLineageTag: CCScorePct
+		summarizeBy: sum
+		sourceColumn: CCScorePct
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Defender Compliance (%)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9fd88e87-d637-40fb-8ae7-4551eed807df
+		sourceLineageTag: DefenderScorePct
+		summarizeBy: sum
+		sourceColumn: DefenderScorePct
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tag Compliance (%)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9f8996ec-88e2-445f-84d8-ae9d07d6dafa
+		sourceLineageTag: TagScorePct
+		summarizeBy: sum
+		sourceColumn: TagScorePct
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Patch Compliance (%)'
+		dataType: int64
+		formatString: 0
+		lineageTag: fc07910a-833c-4383-a6fe-23c85dfca6c4
+		sourceLineageTag: PatchComplianceScorePct
+		summarizeBy: sum
+		sourceColumn: PatchComplianceScorePct
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dp_dataproduct_compliance_summary_current = entity
+		mode: directLake
+		source
+			entityName: dp_dataproduct_compliance_summary_current
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+

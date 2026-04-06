@@ -1,0 +1,175 @@
+table 'Data Products'
+	lineageTag: 01fc78a1-d92c-4ba9-91ef-c483286d3bb5
+	sourceLineageTag: [dbo].[dp_dataproductresidency_gold]
+
+	measure 'Total Data Products' = ```
+			
+			DISTINCTCOUNT ( 'Data Products'[ID] )
+			
+			```
+		formatString: 0
+		lineageTag: 6ebad1d3-94f2-46ab-80eb-802888447530
+
+		changedProperty = Name
+
+	measure 'Products with Residency' = ```
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( 'Data Products'[ID] ),
+			    NOT ( ISBLANK ( 'Data Products'[Residency] ) )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 681fcffc-2ec4-4fa1-b96f-3f7d80ffedc4
+
+		changedProperty = Name
+
+	measure 'Residency Coverage %' = ```
+			
+			DIVIDE ( [Products with Residency], [Total Data Products] )
+			
+			```
+		lineageTag: dfb42139-a0c8-4cdf-837c-7089f9ee3054
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Products Missing Residency' = ```
+			
+			[Total Data Products] - [Products with Residency]
+			
+			```
+		formatString: 0
+		lineageTag: 152dd94b-35a4-4499-943e-45cbe0992a85
+
+		changedProperty = Name
+
+	measure 'Total Product Assets QA' =
+			
+			SUM('Data Product Assets Count'[TotalAssets])
+		formatString: 0
+		lineageTag: 59956b49-610d-4539-989d-cc6f94ea8172
+
+		changedProperty = Name
+
+	measure 'Product Assets (Missing Residency)' = ```
+			
+			CALCULATE(
+			    [Total Product Assets QA],
+			    FILTER(
+			        ALL('Data Products'),
+			        ISBLANK('Data Products'[Residency])
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 31e8fbb0-0333-4465-890c-ac63d6e0a3d7
+
+		changedProperty = Name
+
+	measure 'Missing Residency Product Assets %' = ```
+			
+			DIVIDE(
+			    [Product Assets (Missing Residency)],
+			    CALCULATE([Total Product Assets QA], ALL('Data Products'))
+			)
+			
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d6523875-3e52-4a94-99ad-e6a9199d491a
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure HasFullName_DP = ```
+			
+			COALESCE(
+			    CALCULATE( MAX('dp_dataproduct_fullnameclassification_current'[HasFullNameClassification]) ),
+			    0
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 79dd57de-3e47-4397-a41e-561d6badc83e
+
+		changedProperty = Name
+
+	measure HasConfidentialCompute_DP =
+			
+			COALESCE(
+			    CALCULATE( MAX('dp_compute_inventory_current'[IsConfidential]) ),
+			    0
+			)
+		formatString: 0
+		lineageTag: 3a5f7446-9a0e-4566-9aec-416b42e761c3
+
+		changedProperty = Name
+
+	measure Show_DP_FullName_And_Confidential =
+			
+			IF( [HasFullName_DP] = 1 && [HasConfidentialCompute_DP] = 1, 1, 0 )
+		formatString: 0
+		lineageTag: 37213227-c3bb-45fc-9b2a-ce0532aae5a0
+
+		changedProperty = Name
+
+	column ID
+		dataType: string
+		isHidden
+		lineageTag: 8eae099d-0a89-4720-bb53-11e03ffdd1e6
+		sourceLineageTag: DataProductID
+		summarizeBy: none
+		sourceColumn: DataProductID
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 9679b4b2-a430-4d76-999a-bb24e9aae8f7
+		sourceLineageTag: DataProductDisplayName
+		summarizeBy: none
+		sourceColumn: DataProductDisplayName
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 8de63902-0e5b-4755-8c6f-f69b3710a160
+		sourceLineageTag: DataProductDescription
+		summarizeBy: none
+		sourceColumn: DataProductDescription
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Residency
+		dataType: string
+		lineageTag: cc39f628-3603-4110-9aaa-f25a876c4280
+		sourceLineageTag: ResidencyRegion
+		summarizeBy: none
+		sourceColumn: ResidencyRegion
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Data Products' = entity
+		mode: directLake
+		source
+			entityName: dp_dataproductresidency_gold
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+
+	changedProperty = Name
+

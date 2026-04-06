@@ -1,0 +1,162 @@
+table dp_dataproduct_residencycompliance_current
+	lineageTag: a9b36421-455f-41b4-8fb9-8b739dfa05f1
+	sourceLineageTag: [dbo].[dp_dataproduct_residencycompliance_current]
+
+	measure 'Avg Residency Compliance Score %' =
+			
+			AVERAGE (dp_dataproduct_residencycompliance_current[ResidencyScorePct])
+		lineageTag: f3e5f08b-44d7-4a6c-93e4-cc69cbe5366c
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SnapshotTimeUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d7bfa56f-17d7-46b7-b721-5341e2427a0d
+		sourceLineageTag: SnapshotTimeUtc
+		summarizeBy: none
+		sourceColumn: SnapshotTimeUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductID
+		dataType: string
+		lineageTag: eea239af-47c0-490c-b90c-2c7fbe0803f2
+		sourceLineageTag: DataProductID
+		summarizeBy: none
+		sourceColumn: DataProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductDisplayName
+		dataType: string
+		lineageTag: dbb473c2-844a-4449-9738-52390351ead1
+		sourceLineageTag: DataProductDisplayName
+		summarizeBy: none
+		sourceColumn: DataProductDisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductDescription
+		dataType: string
+		lineageTag: ebe27a8a-4931-407a-91f3-62a198c4c8b7
+		sourceLineageTag: DataProductDescription
+		summarizeBy: none
+		sourceColumn: DataProductDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column GlossaryResidencyRegionName
+		dataType: string
+		lineageTag: b1ecc43f-a621-4f4b-9479-79339e400732
+		sourceLineageTag: GlossaryResidencyRegionName
+		summarizeBy: none
+		sourceColumn: GlossaryResidencyRegionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column GlossaryResidencyRegionCode
+		dataType: string
+		lineageTag: 8af20f62-daf8-48bb-9c73-1e93195cfe5f
+		sourceLineageTag: GlossaryResidencyRegionCode
+		summarizeBy: none
+		sourceColumn: GlossaryResidencyRegionCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column GlossaryResidencyMissing
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b047ddac-6525-46ab-87d8-7ffdbd57a243
+		sourceLineageTag: GlossaryResidencyMissing
+		summarizeBy: none
+		sourceColumn: GlossaryResidencyMissing
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsApprovedResidency
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ede27264-bd67-4e89-974d-efafb53c92b9
+		sourceLineageTag: IsApprovedResidency
+		summarizeBy: none
+		sourceColumn: IsApprovedResidency
+
+		annotation SummarizationSetBy = Automatic
+
+	column AzureResourceFound
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f594950a-9d2e-4745-9779-52b65551e7b1
+		sourceLineageTag: AzureResourceFound
+		summarizeBy: none
+		sourceColumn: AzureResourceFound
+
+		annotation SummarizationSetBy = Automatic
+
+	column AzureResourceCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 2b4393bc-f9fc-4802-9898-83d67c795cad
+		sourceLineageTag: AzureResourceCount
+		summarizeBy: sum
+		sourceColumn: AzureResourceCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column AzureLocations
+		dataType: string
+		lineageTag: b9885bd3-2881-41fb-83b5-cc36debf6ee5
+		sourceLineageTag: AzureLocations
+		summarizeBy: none
+		sourceColumn: AzureLocations
+
+		annotation SummarizationSetBy = Automatic
+
+	column AzureResourceIds
+		dataType: string
+		lineageTag: 3313d348-4548-4563-899c-e20c73a2e5b4
+		sourceLineageTag: AzureResourceIds
+		summarizeBy: none
+		sourceColumn: AzureResourceIds
+
+		annotation SummarizationSetBy = Automatic
+
+	column AzureLocationMatch
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 05fb3f8b-e96e-4a9e-9010-ce03a86d7a6f
+		sourceLineageTag: AzureLocationMatch
+		summarizeBy: none
+		sourceColumn: AzureLocationMatch
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResidencyScorePct
+		dataType: int64
+		formatString: 0
+		lineageTag: 9b1baa61-d910-485d-95b7-9a8131a45276
+		sourceLineageTag: ResidencyScorePct
+		summarizeBy: sum
+		sourceColumn: ResidencyScorePct
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResidencyScoreReason
+		dataType: string
+		lineageTag: c4b62583-f76e-44c9-9e10-4d986a267466
+		sourceLineageTag: ResidencyScoreReason
+		summarizeBy: none
+		sourceColumn: ResidencyScoreReason
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dp_dataproduct_residencycompliance_current = entity
+		mode: directLake
+		source
+			entityName: dp_dataproduct_residencycompliance_current
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+

@@ -1,0 +1,127 @@
+table dp_sovereignty_kpis_timeline_table
+	lineageTag: 81a59744-3938-46d6-99af-c4d9ccfcbcc4
+	sourceLineageTag: [dbo].[dp_sovereignty_kpis_timeline_table]
+
+	measure 'Products Missing Residency (Latest)' = ```
+			
+			VAR _latest =
+			    CALCULATE (
+			        MAX ( 'dp_sovereignty_kpis_timeline_table'[SnapshotUtc] ),
+			        ALL ( 'dp_sovereignty_kpis_timeline_table' )
+			    )
+			RETURN
+			    COALESCE (
+			        CALCULATE (
+			            MAX ( 'dp_sovereignty_kpis_timeline_table'[ProductsMissingResidency] ),
+			            FILTER ( ALL ( 'dp_sovereignty_kpis_timeline_table' ), 'dp_sovereignty_kpis_timeline_table'[SnapshotUtc] = _latest )
+			        ),
+			        0
+			    )
+			
+			```
+		formatString: 0
+		lineageTag: d379933d-dd1c-49ba-a89e-8cb6b1450a93
+
+		changedProperty = Name
+
+	column SnapshotUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8a53b3f3-d90c-4921-92e1-8a689c6a3abb
+		sourceLineageTag: SnapshotUtc
+		summarizeBy: none
+		sourceColumn: SnapshotUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalPurviewAssets
+		dataType: int64
+		formatString: 0
+		lineageTag: f0d47cfe-87a3-42be-96d4-daa444c7bcbe
+		sourceLineageTag: TotalPurviewAssets
+		summarizeBy: sum
+		sourceColumn: TotalPurviewAssets
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsApproximate
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2dd2708c-260c-4a3a-b7a0-7751cee701f7
+		sourceLineageTag: IsApproximate
+		summarizeBy: none
+		sourceColumn: IsApproximate
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalProductAssets
+		dataType: int64
+		formatString: 0
+		lineageTag: df14d27c-519f-4017-aa55-521fc22f053c
+		sourceLineageTag: TotalProductAssets
+		summarizeBy: sum
+		sourceColumn: TotalProductAssets
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalDataProducts
+		dataType: int64
+		formatString: 0
+		lineageTag: db73e43d-8593-4e07-9f66-5652e68c754d
+		sourceLineageTag: TotalDataProducts
+		summarizeBy: sum
+		sourceColumn: TotalDataProducts
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductsMissingResidency
+		dataType: int64
+		formatString: 0
+		lineageTag: d6efecdb-eaaa-407d-86f8-71b1de0fd854
+		sourceLineageTag: ProductsMissingResidency
+		summarizeBy: sum
+		sourceColumn: ProductsMissingResidency
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductsWithResidency
+		dataType: int64
+		formatString: 0
+		lineageTag: 11951576-16be-44d7-ad42-f5bfca96256d
+		sourceLineageTag: ProductsWithResidency
+		summarizeBy: sum
+		sourceColumn: ProductsWithResidency
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResidencyCoveragePct
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 502c7f09-42d3-4fa3-bb88-953143f108cc
+		sourceLineageTag: ResidencyCoveragePct
+		summarizeBy: sum
+		sourceColumn: ResidencyCoveragePct
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductAssetsToPurviewAssetsRatio
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: be4e81ce-c030-49d6-85bb-3c9f0a35bb49
+		sourceLineageTag: ProductAssetsToPurviewAssetsRatio
+		summarizeBy: sum
+		sourceColumn: ProductAssetsToPurviewAssetsRatio
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dp_sovereignty_kpis_timeline_table = entity
+		mode: directLake
+		source
+			entityName: dp_sovereignty_kpis_timeline_table
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+

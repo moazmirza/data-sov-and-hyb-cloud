@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/2.0.0/schema.json",
+  "version": "4.0",
+  "datasetReference": {
+    "byConnection": {
+      "connectionString": "Data Source=powerbi://api.powerbi.com/v1.0/myorg/ext_fabric_space_moaz;initial catalog=\"Compliance Scoring Model\";integrated security=ClaimsToken;semanticmodelid=2cba0fad-4683-4178-b9a6-291c0c14952d"
+    }
+  }
+}

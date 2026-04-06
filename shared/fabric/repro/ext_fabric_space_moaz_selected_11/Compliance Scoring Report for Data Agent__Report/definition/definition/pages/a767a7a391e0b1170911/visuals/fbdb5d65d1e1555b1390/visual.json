@@ -1,0 +1,309 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "fbdb5d65d1e1555b1390",
+  "position": {
+    "x": 35.981259760541384,
+    "y": 295.84591358667359,
+    "z": 1000,
+    "height": 255.20041644976575,
+    "width": 619.6772514315461,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                    }
+                  },
+                  "Property": "data product id"
+                }
+              },
+              "queryRef": "Confidential Compute (cc) Resource Signals (Current).data product id",
+              "nativeQueryRef": "data product id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Data Products"
+                    }
+                  },
+                  "Property": "data product name"
+                }
+              },
+              "queryRef": "Data Products.data product name",
+              "nativeQueryRef": "data product name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                    }
+                  },
+                  "Property": "number of full name column"
+                }
+              },
+              "queryRef": "Sum(Confidential Compute (cc) Resource Signals (Current).number of full name column)",
+              "nativeQueryRef": "number of full name column"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                    }
+                  },
+                  "Property": "data product eligibility status for confidential compute"
+                }
+              },
+              "queryRef": "Confidential Compute (cc) Resource Signals (Current).data product eligibility status for confidential compute",
+              "nativeQueryRef": "data product eligibility status for confidential compute"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                    }
+                  },
+                  "Property": "data product confidential compute pii compliance score"
+                }
+              },
+              "queryRef": "Sum(Confidential Compute (cc) Resource Signals (Current).data product confidential compute pii compliance score)",
+              "nativeQueryRef": "data product confidential compute pii compliance score"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                    }
+                  },
+                  "Property": "data product compliance score reason"
+                }
+              },
+              "queryRef": "Confidential Compute (cc) Resource Signals (Current).data product compliance score reason",
+              "nativeQueryRef": "data product compliance score reason"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                    }
+                  },
+                  "Property": "snapshot time utc"
+                }
+              },
+              "queryRef": "Confidential Compute (cc) Resource Signals (Current).snapshot time utc",
+              "nativeQueryRef": "snapshot time utc"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                  }
+                },
+                "Property": "number of full name column"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "121.28250451940912D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Confidential Compute (cc) Resource Signals (Current).data product eligibility status for confidential compute"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "69.52541775141474D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Confidential Compute (cc) Resource Signals (Current).number of full name column)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "100.35908542545934D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(Confidential Compute (cc) Resource Signals (Current).data product confidential compute pii compliance score)"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Data Products PII Confidential Compute (CC) Score'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "083d04edb808c0c4092a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+              }
+            },
+            "Property": "data product id"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "84ac6460b290b351ad54",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Data Products"
+              }
+            },
+            "Property": "data product name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "85f38d6feb42d9c58245",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+              }
+            },
+            "Property": "number of full name column"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "82622186d46e3bdab2b9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+              }
+            },
+            "Property": "data product eligibility status for confidential compute"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6c22396d2b6e7e3e405a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+              }
+            },
+            "Property": "data product confidential compute pii compliance score"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "14b4a526703e6c7a9ee6",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+              }
+            },
+            "Property": "data product compliance score reason"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ecae4cf9ae997a0b0de0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+              }
+            },
+            "Property": "snapshot time utc"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

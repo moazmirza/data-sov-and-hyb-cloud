@@ -1,0 +1,14 @@
+[
+  {
+    "name": "purview_meta_data",
+    "path": "/Files",
+    "target": {
+      "type": "AdlsGen2",
+      "adlsGen2": {
+        "connectionId": "36de31fb-3c06-4aa7-8b47-1dff847ceb57",
+        "location": "https://adlsfordfsapfabric.dfs.core.windows.net",
+        "subpath": "/purviewssa"
+      }
+    }
+  }
+]

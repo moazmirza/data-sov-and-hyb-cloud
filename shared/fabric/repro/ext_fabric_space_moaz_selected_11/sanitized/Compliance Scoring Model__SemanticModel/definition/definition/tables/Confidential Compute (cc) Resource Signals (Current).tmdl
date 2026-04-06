@@ -1,0 +1,320 @@
+/// confidential compute scoring for all data products
+table 'Confidential Compute (cc) Resource Signals (Current)'
+	lineageTag: 01d23275-c1ef-47cb-86b1-cfb3c83761b6
+	sourceLineageTag: [dbo].[dp_dataproduct_cccompliance_current]
+
+	column 'data product id'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 30ed7a0e-ffd3-423c-9419-c0a7c44c27b9
+		sourceLineageTag: DataProductId
+		summarizeBy: none
+		sourceColumn: DataProductId
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductDisplayName
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: 492376bf-03ae-4c92-9e0d-4e8aa19430f7
+		sourceLineageTag: DataProductDisplayName
+		summarizeBy: none
+		sourceColumn: DataProductDisplayName
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// 1 means that the data product has a table with personal information, pii or full name
+	column 'full name classification'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 727751c1-a6c5-406a-84a4-1ce1df6ff6e8
+		sourceLineageTag: HasFullNameClassification
+		summarizeBy: sum
+		sourceColumn: HasFullNameClassification
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'number of full name column'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 9fcd2f4a-81fc-4b1a-93eb-d1a2861f73ba
+		sourceLineageTag: FullNameColumnCount
+		summarizeBy: sum
+		sourceColumn: FullNameColumnCount
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'data product confidential compute pii compliance score'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f078a14a-1d99-41cb-ac52-fb1f54a61e3d
+		sourceLineageTag: CCForPIIScore
+		summarizeBy: sum
+		sourceColumn: CCForPIIScore
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// if it has personal data such as full name then it is required to be running on a confidential compute
+	column 'data product eligibility status for confidential compute'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: d941e764-1352-43d1-82d3-a377db2de4c2
+		sourceLineageTag: CCForPIIStatus
+		summarizeBy: none
+		sourceColumn: CCForPIIStatus
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'data product compliance score reason'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1229305e-da99-4741-b609-67b66cc68dcd
+		sourceLineageTag: Reason
+		summarizeBy: none
+		sourceColumn: Reason
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'azure resource id'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a5dabf51-a9aa-44ef-807a-06958c9699e9
+		sourceLineageTag: ResourceId
+		summarizeBy: none
+		sourceColumn: ResourceId
+
+		changedProperty = IsHidden
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'azure resource type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f9528b9f-3bbb-48a4-a52b-d4bd9631658a
+		sourceLineageTag: ResourceType
+		summarizeBy: none
+		sourceColumn: ResourceType
+
+		changedProperty = IsHidden
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'azure resource subscription id'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 7f1af319-d352-48f6-ade0-bf152fcc4e22
+		sourceLineageTag: SubscriptionId
+		summarizeBy: none
+		sourceColumn: SubscriptionId
+
+		changedProperty = IsHidden
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'azure resource group'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b574fb69-c90e-4ac9-88e7-99c0861d8d6b
+		sourceLineageTag: ResourceGroup
+		summarizeBy: none
+		sourceColumn: ResourceGroup
+
+		changedProperty = IsHidden
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'azure resource location'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 94aa13ee-bcfa-4165-9bbc-229c515acad6
+		sourceLineageTag: Location
+		summarizeBy: none
+		sourceColumn: Location
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'azure resource compute sku'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2de2a0a6-d2fc-4869-8dee-8da0a2f2f262
+		sourceLineageTag: VmSize
+		summarizeBy: none
+		sourceColumn: VmSize
+
+		changedProperty = IsHidden
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'confidential compute security type'
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: 9a22242b-4c26-4ca9-8f2a-ef5312884342
+		sourceLineageTag: SecurityType
+		summarizeBy: none
+		sourceColumn: SecurityType
+
+		changedProperty = IsHidden
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'is sku approved'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: b9e4156e-a74c-4a40-a327-d358494c62c2
+		sourceLineageTag: IsApprovedSku
+		summarizeBy: none
+		sourceColumn: IsApprovedSku
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'data product compliance score details'
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: 88f01965-b1d6-4447-b53a-8766bf5cc87b
+		sourceLineageTag: DetailsNote
+		summarizeBy: none
+		sourceColumn: DetailsNote
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'arm error'
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: 28eabdb1-a975-45da-a5b3-ee3c860247a0
+		sourceLineageTag: ArmError
+		summarizeBy: none
+		sourceColumn: ArmError
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'snapshot time utc'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: ead22ddd-4e5c-4d2b-9a66-f905284387bc
+		sourceLineageTag: SnapshotUtc
+		summarizeBy: none
+		sourceColumn: SnapshotUtc
+
+		changedProperty = IsHidden
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'is region approved'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 3dc125da-5c97-49b8-9d5b-a0d788464be4
+		sourceLineageTag: IsApprovedRegion
+		summarizeBy: none
+		sourceColumn: IsApprovedRegion
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'last patch update scan date'
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 01fb4ee2-3103-4ec1-9b38-f12ffa63768c
+		sourceLineageTag: LastUpdateScanUtc
+		summarizeBy: none
+		sourceColumn: LastUpdateScanUtc
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'total patch updates pending'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 02e7c871-4621-445d-9a7a-e4a4b0a619db
+		sourceLineageTag: PendingUpdatesTotal
+		summarizeBy: sum
+		sourceColumn: PendingUpdatesTotal
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'patch update status'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: bc406a97-7e71-447c-9016-e697bc4b228f
+		sourceLineageTag: PatchAssessmentStatus
+		summarizeBy: none
+		sourceColumn: PatchAssessmentStatus
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Confidential Compute (cc) Resource Signals (Current)' = entity
+		mode: directLake
+		source
+			entityName: dp_dataproduct_cccompliance_current
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	changedProperty = Name
+
+	changedProperty = Description
+
+	annotation PBI_ResultType = Table
+

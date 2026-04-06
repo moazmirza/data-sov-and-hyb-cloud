@@ -1,0 +1,68 @@
+[
+  {
+    "displayName": "Compliance Scoring Model",
+    "type": "SemanticModel",
+    "id": "2cba0fad-4683-4178-b9a6-291c0c14952d",
+    "folder": "Compliance Scoring Model__SemanticModel"
+  },
+  {
+    "displayName": "Compliance Scoring Report for Data Agent",
+    "type": "Report",
+    "id": "aab3661c-c435-4950-b5b8-4138fb8e42ac",
+    "folder": "Compliance Scoring Report for Data Agent__Report"
+  },
+  {
+    "displayName": "ext_lakehouse_fabric_moaz",
+    "type": "Lakehouse",
+    "id": "05cc40d0-f1d9-4345-8dd5-f622b722340f",
+    "folder": "ext_lakehouse_fabric_moaz__Lakehouse"
+  },
+  {
+    "displayName": "ext_lakehouse_fabric_moaz",
+    "type": "SQLEndpoint",
+    "id": "099aa239-bd23-4895-bce3-a2c51d7f1d16",
+    "folder": "ext_lakehouse_fabric_moaz__SQLEndpoint"
+  },
+  {
+    "displayName": "notebook_fabric_function_sov_compliance_checks_new",
+    "type": "Notebook",
+    "id": "bd8003fe-cdba-4ce8-9b9c-f54c48216ac3",
+    "folder": "notebook_fabric_function_sov_compliance_checks_new__Notebook"
+  },
+  {
+    "displayName": "pipe_refresh_sov_checks_and_reporting_contoso",
+    "type": "DataPipeline",
+    "id": "72ac8cd1-7998-4af2-8986-abe9b4972904",
+    "folder": "pipe_refresh_sov_checks_and_reporting_contoso__DataPipeline"
+  },
+  {
+    "displayName": "Refresh And Automate Purview parquet to gold",
+    "type": "Notebook",
+    "id": "247f4c0d-7f52-47bf-ba4b-98834ef9e456",
+    "folder": "Refresh And Automate Purview parquet to gold__Notebook"
+  },
+  {
+    "displayName": "report_purview_dataproduct_residency",
+    "type": "Report",
+    "id": "bbf68c44-697f-4e45-8c2b-e68ba9f65892",
+    "folder": "report_purview_dataproduct_residency__Report"
+  },
+  {
+    "displayName": "semantic_model_purview_dataproduct_residency_gold",
+    "type": "SemanticModel",
+    "id": "8f7aded9-493f-45fe-8697-36b0145879d1",
+    "folder": "semantic_model_purview_dataproduct_residency_gold__SemanticModel"
+  },
+  {
+    "displayName": "Sov Data Agent Contoso",
+    "type": "DataAgent",
+    "id": "a70035f4-ee6a-47ff-8807-22218e578611",
+    "folder": "Sov Data Agent Contoso__DataAgent"
+  },
+  {
+    "displayName": "Sovereignty_Alerts_Activator",
+    "type": "Reflex",
+    "id": "e82b5d4d-5f5e-48cb-86eb-704ed37353ba",
+    "folder": "Sovereignty_Alerts_Activator__Reflex"
+  }
+]

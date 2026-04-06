@@ -1,0 +1,140 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "7e3f1a7d76295910d79a",
+  "position": {
+    "x": 715,
+    "y": 561,
+    "z": 2003,
+    "height": 159,
+    "width": 542,
+    "tabOrder": 2003
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Data Products"
+                    }
+                  },
+                  "Property": "data product name"
+                }
+              },
+              "queryRef": "Data Products.data product name",
+              "nativeQueryRef": "data product name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                    }
+                  },
+                  "Property": "patch update status"
+                }
+              },
+              "queryRef": "Confidential Compute (cc) Resource Signals (Current).patch update status",
+              "nativeQueryRef": "patch update status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                    }
+                  },
+                  "Property": "total patch updates pending"
+                }
+              },
+              "queryRef": "Sum(Confidential Compute (cc) Resource Signals (Current).total patch updates pending)",
+              "nativeQueryRef": "total patch updates pending"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                    }
+                  },
+                  "Property": "last patch update scan date"
+                }
+              },
+              "queryRef": "Confidential Compute (cc) Resource Signals (Current).last patch update scan date",
+              "nativeQueryRef": "last patch update scan date"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "395ff78f4027de64d9aa",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Data Products"
+              }
+            },
+            "Property": "data product name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "102262660ccc0d578060",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+              }
+            },
+            "Property": "patch update status"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a8b7e5a3bd100673d34b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+              }
+            },
+            "Property": "last patch update scan date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a7406572c8c6a8712b3a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+              }
+            },
+            "Property": "total patch updates pending"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

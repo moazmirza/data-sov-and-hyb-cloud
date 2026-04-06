@@ -1,0 +1,107 @@
+/// Data Product Compliance Scores for Residency, Patching, Defender, Tagging and Confidential Computing PII CC
+table 'Data Product Compliance Scores'
+	lineageTag: c1e09f59-4f53-4c86-ae50-142fcc74a383
+	sourceLineageTag: [dbo].[dp_dataproduct_compliance_summary_current]
+
+	column 'Data Product Id'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e99c6797-c2b4-4982-9cce-6b78dbbdec99
+		sourceLineageTag: DataProductId
+		summarizeBy: none
+		sourceColumn: DataProductId
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Product Name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ca2a890c-47d1-4e4c-a33a-064f819eba84
+		sourceLineageTag: DataProductDisplayName
+		summarizeBy: none
+		sourceColumn: DataProductDisplayName
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Residency Compliance Score'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 7803275e-695a-40a1-ab41-af326518c89f
+		sourceLineageTag: ResidencyScorePct
+		summarizeBy: sum
+		sourceColumn: ResidencyScorePct
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Confidential Computing (CC) PII Compliance Score'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 3147fa67-216b-44be-8136-87f34a0ffbf1
+		sourceLineageTag: CCScorePct
+		summarizeBy: sum
+		sourceColumn: CCScorePct
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Defender Compliance Score'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 80463205-9e73-4b12-98ae-98f320e9272f
+		sourceLineageTag: DefenderScorePct
+		summarizeBy: sum
+		sourceColumn: DefenderScorePct
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tag Compliance Score'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: b2fecf68-67b4-404b-99d8-51e1a595f148
+		sourceLineageTag: TagScorePct
+		summarizeBy: sum
+		sourceColumn: TagScorePct
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Patch Compliance Score'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 9f9cb2b4-29ff-403c-89a0-c624d36549c2
+		sourceLineageTag: PatchComplianceScorePct
+		summarizeBy: sum
+		sourceColumn: PatchComplianceScorePct
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Data Product Compliance Scores' = entity
+		mode: directLake
+		source
+			entityName: dp_dataproduct_compliance_summary_current
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	changedProperty = Name
+
+	changedProperty = Description
+
+	annotation PBI_ResultType = Table
+

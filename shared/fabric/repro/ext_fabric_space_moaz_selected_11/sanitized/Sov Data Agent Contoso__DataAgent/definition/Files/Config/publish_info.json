@@ -1,0 +1,4 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/dataAgent/definition/publishInfo/1.0.0/schema.json",
+  "description": "Answers read-only questions about Confidential Compute compliance and PII (Full Name) risk for data products using the latest snapshot. It provides counts, lists, and top reasons for noncompliance, and identifies investigation candidates (scores 50/75 with Full Name) including owners and suggested tags."
+}

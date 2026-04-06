@@ -1,0 +1,201 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "9e16cc54d1366949eb9b",
+  "position": {
+    "x": 35.812820627202569,
+    "y": 561.311147789624,
+    "z": 2002,
+    "height": 158.5996342061828,
+    "width": 678.98184413614672,
+    "tabOrder": 2002
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Data Products"
+                    }
+                  },
+                  "Property": "data product name"
+                }
+              },
+              "queryRef": "Data Products.data product name",
+              "nativeQueryRef": "data product name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                    }
+                  },
+                  "Property": "patch update status"
+                }
+              },
+              "queryRef": "Confidential Compute (cc) Resource Signals (Current).patch update status",
+              "nativeQueryRef": "patch update status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                    }
+                  },
+                  "Property": "total patch updates pending"
+                }
+              },
+              "queryRef": "Sum(Confidential Compute (cc) Resource Signals (Current).total patch updates pending)",
+              "nativeQueryRef": "total patch updates pending"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                    }
+                  },
+                  "Property": "last patch update scan date"
+                }
+              },
+              "queryRef": "Confidential Compute (cc) Resource Signals (Current).last patch update scan date",
+              "nativeQueryRef": "last patch update scan date"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Data Products Virtual Machines Missing Patch Update'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "57cb5c3285092aec3e00",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Data Products"
+              }
+            },
+            "Property": "data product name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c88ba490505839e48496",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+              }
+            },
+            "Property": "patch update status"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "Confidential Compute (cc) Resource Signals (Current)",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "c"
+                          }
+                        },
+                        "Property": "patch update status"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'NoData'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "6248005624c040069b3e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+              }
+            },
+            "Property": "last patch update scan date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "46665202ba04a1c1cb0d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+              }
+            },
+            "Property": "total patch updates pending"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

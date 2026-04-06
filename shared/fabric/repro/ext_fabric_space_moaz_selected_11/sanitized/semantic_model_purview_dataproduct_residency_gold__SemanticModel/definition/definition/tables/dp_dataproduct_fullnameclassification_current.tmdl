@@ -1,0 +1,70 @@
+table dp_dataproduct_fullnameclassification_current
+	lineageTag: d0abee92-e87d-4309-8720-2be72c50f385
+	sourceLineageTag: [dbo].[dp_dataproduct_fullnameclassification_current]
+
+	measure 'FullName DPs' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(dp_dataproduct_fullnameclassification_current[DataProductId]),
+			    dp_dataproduct_fullnameclassification_current[HasFullNameClassification] = 1
+			)
+		formatString: 0
+		lineageTag: 96873441-b963-4f38-9dc2-9acdf72ed042
+
+		changedProperty = Name
+
+	column SnapshotUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 58c40f6c-3fef-4681-b172-316c668bcebf
+		sourceLineageTag: SnapshotUtc
+		summarizeBy: none
+		sourceColumn: SnapshotUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductId
+		dataType: string
+		lineageTag: 87e6fc85-ad8c-4184-a339-998048f681fb
+		sourceLineageTag: DataProductId
+		summarizeBy: none
+		sourceColumn: DataProductId
+
+		annotation SummarizationSetBy = Automatic
+
+	column HasFullNameClassification
+		dataType: int64
+		formatString: 0
+		lineageTag: a9661d19-3313-40ee-b47c-4886419d13fd
+		sourceLineageTag: HasFullNameClassification
+		summarizeBy: sum
+		sourceColumn: HasFullNameClassification
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullNameColumnCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f76baf6-642c-451d-98ca-b5e7a3e1be4c
+		sourceLineageTag: FullNameColumnCount
+		summarizeBy: sum
+		sourceColumn: FullNameColumnCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductDisplayName
+		dataType: string
+		lineageTag: 9ffa99f6-b746-4319-93d1-48fa9c222aea
+		sourceLineageTag: DataProductDisplayName
+		summarizeBy: none
+		sourceColumn: DataProductDisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dp_dataproduct_fullnameclassification_current = entity
+		mode: directLake
+		source
+			entityName: dp_dataproduct_fullnameclassification_current
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+

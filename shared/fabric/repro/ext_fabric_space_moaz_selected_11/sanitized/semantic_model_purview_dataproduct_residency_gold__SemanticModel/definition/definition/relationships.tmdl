@@ -1,0 +1,49 @@
+relationship fcd2a189-9d76-77e2-4f06-d911b97b36f2
+	fromColumn: dp_compute_inventory_current.DataProductId
+	toColumn: 'Data Products'.ID
+
+relationship 2075f483-951f-e177-cbf8-de0265a4da3f
+	fromColumn: dp_dataproduct_fullname_no_compute_mapping_current.DataProductId
+	toColumn: 'Data Products'.ID
+
+relationship 85b2f9c8-ce22-bf68-d855-60cbd837708b
+	fromColumn: dp_dataproduct_fullname_not_confidential_current.DataProductId
+	toColumn: 'Data Products'.ID
+
+relationship f1bf0d4d-49a0-6f92-96ba-19f256ffc198
+	fromColumn: dp_dataproduct_fullnameclassification_current.DataProductId
+	toColumn: 'Data Products'.ID
+
+relationship 5997394f-9510-7b07-87ea-2f5c967f4f74
+	fromColumn: 'Data Product Assets Count'.'Product Name'
+	toColumn: 'Data Products'.Description
+
+relationship ce380a7a-e3a2-de7a-3124-f2dc7aeebcfe
+	fromColumn: 'Copilot Purview Residency Change Eligibility'.DataProductID
+	toColumn: 'Data Products'.ID
+
+relationship 717fec20-e76f-f6fc-7649-827ab69e4af5
+	fromColumn: dp_dataproduct_cccompliance_current.DataProductId
+	toColumn: 'Data Products'.ID
+
+relationship 302c76d4-065e-6fa7-2c04-707085c0fc63
+	fromColumn: dp_dataproduct_cccompliance_investigate_current.DataProductId
+	toColumn: 'Data Products'.ID
+
+relationship c7b8f884-f6c1-77df-829e-4ead9b7c98be
+	isActive: false
+	fromColumn: dp_dataproduct_residencycompliance_current.DataProductDescription
+	toColumn: 'Data Products'.ID
+
+relationship 528344bd-be25-8e0d-0e1f-a0407cfb110f
+	fromColumn: dp_dataproduct_defendercompliance_current.dataProductId
+	toColumn: 'Data Products'.ID
+
+relationship 22b47e08-521a-fd6e-6af1-41fb4fdea49e
+	fromColumn: dp_dataproduct_tagcompliance_current.dataProductId
+	toColumn: 'Data Products'.ID
+
+relationship 7b732ac4-bcaa-bee3-3404-dda4a5e0bb82
+	fromColumn: dp_dataproduct_compliance_summary_current.'Data Product ID'
+	toColumn: 'Data Products'.ID
+

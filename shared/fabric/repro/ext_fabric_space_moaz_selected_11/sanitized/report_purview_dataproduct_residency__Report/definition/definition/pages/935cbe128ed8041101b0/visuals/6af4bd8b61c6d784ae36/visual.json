@@ -1,0 +1,127 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "6af4bd8b61c6d784ae36",
+  "position": {
+    "x": 9.1832229580573959,
+    "y": 230.2869757174393,
+    "z": 3000,
+    "height": 227.46136865342166,
+    "width": 591.25827814569539,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dp_sovereignty_kpis_timeline_table"
+                    }
+                  },
+                  "Property": "SnapshotUtc"
+                }
+              },
+              "queryRef": "dp_sovereignty_kpis_timeline_table.SnapshotUtc",
+              "nativeQueryRef": "SnapshotUtc",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dp_sovereignty_kpis_timeline_table"
+                        }
+                      },
+                      "Property": "ProductAssetsToPurviewAssetsRatio"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dp_sovereignty_kpis_timeline_table.ProductAssetsToPurviewAssetsRatio)",
+              "nativeQueryRef": "Sum of ProductAssetsToPurviewAssetsRatio"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dp_sovereignty_kpis_timeline_table"
+                  }
+                },
+                "Property": "SnapshotUtc"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "anomalyDetection": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "displayName": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Find anomalies 1'"
+                }
+              }
+            },
+            "transform": {
+              "algorithm": "SampleAndDetectAnomaly",
+              "parameters": [
+                {
+                  "Literal": {
+                    "Value": "0.6D"
+                  },
+                  "Name": "Sensitivity"
+                },
+                {
+                  "Literal": {
+                    "Value": "3500L"
+                  },
+                  "Name": "SampleSizePerSeries"
+                }
+              ]
+            },
+            "explainBy": {
+              "exprs": [],
+              "kind": "ExprList"
+            }
+          },
+          "selector": {
+            "metadata": "Sum(dp_sovereignty_kpis_timeline_table.ProductAssetsToPurviewAssetsRatio)",
+            "id": "1"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

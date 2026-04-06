@@ -1,0 +1,113 @@
+table dp_dataproduct_residency_deltas
+	lineageTag: db233c4e-0f53-424f-b29a-5829d7da21e3
+	sourceLineageTag: [dbo].[dp_dataproduct_residency_deltas]
+
+	measure 'Residency Changes (Last Run)' = ```
+			
+			VAR _latest =
+			    CALCULATE (
+			        MAX ( 'dp_dataproduct_residency_deltas'[SnapshotUtc] ),
+			        ALL ( 'dp_dataproduct_residency_deltas' )
+			    )
+			RETURN
+			    COALESCE (
+			        CALCULATE (
+			            COUNTROWS ( 'dp_dataproduct_residency_deltas' ),
+			            FILTER (
+			                ALL ( 'dp_dataproduct_residency_deltas' ),
+			                'dp_dataproduct_residency_deltas'[SnapshotUtc] = _latest
+			                    && 'dp_dataproduct_residency_deltas'[HasChanged] = TRUE ()
+			            )
+			        ),
+			        0
+			    )
+			
+			```
+		formatString: 0
+		lineageTag: dd5c5145-194d-44e8-8e5e-c21146da4a04
+
+		changedProperty = Name
+
+	column SnapshotUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5d64074f-9bd5-46c4-adae-a20557e6a2cf
+		sourceLineageTag: SnapshotUtc
+		summarizeBy: none
+		sourceColumn: SnapshotUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column SnapshotDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6b5d4c02-b3cf-4bdc-b544-13bb1ee0e433
+		sourceLineageTag: SnapshotDate
+		summarizeBy: none
+		sourceColumn: SnapshotDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductID
+		dataType: string
+		lineageTag: e2ab5124-3674-454b-81ff-87ea72061155
+		sourceLineageTag: DataProductID
+		summarizeBy: none
+		sourceColumn: DataProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductDisplayName
+		dataType: string
+		lineageTag: af6a4f33-86fa-4873-8398-cc3e32245335
+		sourceLineageTag: DataProductDisplayName
+		summarizeBy: none
+		sourceColumn: DataProductDisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrevSnapshotUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c399dc5e-a913-44b0-8224-da6c1e9b10d6
+		sourceLineageTag: PrevSnapshotUtc
+		summarizeBy: none
+		sourceColumn: PrevSnapshotUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrevResidencyRegion
+		dataType: string
+		lineageTag: 5689eead-a470-4793-bf71-86c0f58af449
+		sourceLineageTag: PrevResidencyRegion
+		summarizeBy: none
+		sourceColumn: PrevResidencyRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResidencyRegion
+		dataType: string
+		lineageTag: e15b3075-8ca4-4c6c-a15a-d48b8fe9ad60
+		sourceLineageTag: ResidencyRegion
+		summarizeBy: none
+		sourceColumn: ResidencyRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column HasChanged
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 731723ad-4a0d-4d85-ad81-953c90820d48
+		sourceLineageTag: HasChanged
+		summarizeBy: none
+		sourceColumn: HasChanged
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dp_dataproduct_residency_deltas = entity
+		mode: directLake
+		source
+			entityName: dp_dataproduct_residency_deltas
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+

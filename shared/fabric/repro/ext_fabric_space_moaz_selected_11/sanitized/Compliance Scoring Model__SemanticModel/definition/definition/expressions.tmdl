@@ -1,0 +1,10 @@
+expression DatabaseQuery =
+		let
+		    database = Sql.Database("<FABRIC_SQL_ENDPOINT_HOST>", "<FABRIC_ITEM_ID_4>")
+		in
+		    database
+	lineageTag: 2da72f37-7a7f-4d48-b395-7a107e544fa9
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+

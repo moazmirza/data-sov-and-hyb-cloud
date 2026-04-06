@@ -1,0 +1,21 @@
+{
+  "definition": {
+    "parts": [
+      {
+        "path": "lakehouse.metadata.json",
+        "payload": "eyJkZWZhdWx0U2NoZW1hIjoiZGJvIn0=",
+        "payloadType": "InlineBase64"
+      },
+      {
+        "path": "shortcuts.metadata.json",
+        "payload": "Ww0KICB7DQogICAgIm5hbWUiOiAicHVydmlld19tZXRhX2RhdGEiLA0KICAgICJwYXRoIjogIi9GaWxlcyIsDQogICAgInRhcmdldCI6IHsNCiAgICAgICJ0eXBlIjogIkFkbHNHZW4yIiwNCiAgICAgICJhZGxzR2VuMiI6IHsNCiAgICAgICAgImNvbm5lY3Rpb25JZCI6ICIzNmRlMzFmYi0zYzA2LTRhYTctOGI0Ny0xZGZmODQ3Y2ViNTciLA0KICAgICAgICAibG9jYXRpb24iOiAiaHR0cHM6Ly9hZGxzZm9yZGZzYXBmYWJyaWMuZGZzLmNvcmUud2luZG93cy5uZXQiLA0KICAgICAgICAic3VicGF0aCI6ICIvcHVydmlld3NzYSINCiAgICAgIH0NCiAgICB9DQogIH0NCl0=",
+        "payloadType": "InlineBase64"
+      },
+      {
+        "path": ".platform",
+        "payload": "ewogICIkc2NoZW1hIjogImh0dHBzOi8vZGV2ZWxvcGVyLm1pY3Jvc29mdC5jb20vanNvbi1zY2hlbWFzL2ZhYnJpYy9naXRJbnRlZ3JhdGlvbi9wbGF0Zm9ybVByb3BlcnRpZXMvMi4wLjAvc2NoZW1hLmpzb24iLAogICJtZXRhZGF0YSI6IHsKICAgICJ0eXBlIjogIkxha2Vob3VzZSIsCiAgICAiZGlzcGxheU5hbWUiOiAiZXh0X2xha2Vob3VzZV9mYWJyaWNfbW9heiIKICB9LAogICJjb25maWciOiB7CiAgICAidmVyc2lvbiI6ICIyLjAiLAogICAgImxvZ2ljYWxJZCI6ICIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAiCiAgfQp9",
+        "payloadType": "InlineBase64"
+      }
+    ]
+  }
+}

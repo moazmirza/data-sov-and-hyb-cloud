@@ -1,0 +1,337 @@
+table dp_dataproduct_tagcompliance_current
+	lineageTag: 737f14bf-64e6-4c8e-af84-6281ebaad53f
+	sourceLineageTag: [dbo].[dp_dataproduct_tagcompliance_current]
+
+	measure 'Avg Tag Compliance Score %' =
+			
+			AVERAGE (dp_dataproduct_tagcompliance_current[TagScorePct])
+		lineageTag: bbe3bbd3-f1a8-4074-8246-ae8c84f79c85
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column resourceFound20
+		dataType: int64
+		formatString: 0
+		lineageTag: a85eabf8-6f47-4fd8-ba15-c077dea25177
+		sourceLineageTag: resourceFound20
+		summarizeBy: sum
+		sourceColumn: resourceFound20
+
+		annotation SummarizationSetBy = Automatic
+
+	column sovereigntyZoneExists20
+		dataType: int64
+		formatString: 0
+		lineageTag: e12760ea-99cf-4235-98e0-4ea01546cfca
+		sourceLineageTag: sovereigntyZoneExists20
+		summarizeBy: sum
+		sourceColumn: sovereigntyZoneExists20
+
+		annotation SummarizationSetBy = Automatic
+
+	column sovereigntyZoneAllowed20
+		dataType: int64
+		formatString: 0
+		lineageTag: 404a172d-380d-49dd-8513-4f4963c0ad8a
+		sourceLineageTag: sovereigntyZoneAllowed20
+		summarizeBy: sum
+		sourceColumn: sovereigntyZoneAllowed20
+
+		annotation SummarizationSetBy = Automatic
+
+	column resourceOriginExists20
+		dataType: int64
+		formatString: 0
+		lineageTag: ad078ad5-6bc1-4a04-aefe-352e93ffa843
+		sourceLineageTag: resourceOriginExists20
+		summarizeBy: sum
+		sourceColumn: resourceOriginExists20
+
+		annotation SummarizationSetBy = Automatic
+
+	column resourceOriginAllowed20
+		dataType: int64
+		formatString: 0
+		lineageTag: 857bdc1d-920f-4fec-beed-2cbab6276995
+		sourceLineageTag: resourceOriginAllowed20
+		summarizeBy: sum
+		sourceColumn: resourceOriginAllowed20
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsFabric
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f56910b8-dbfe-4fdb-a24f-ac124ff9b100
+		sourceLineageTag: IsFabric
+		summarizeBy: none
+		sourceColumn: IsFabric
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsS3
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 044363ca-891d-4467-bb45-0ba0b7ad3262
+		sourceLineageTag: IsS3
+		summarizeBy: none
+		sourceColumn: IsS3
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsSqlPaaS
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3779e8c0-f478-483c-939a-283e48daaabd
+		sourceLineageTag: IsSqlPaaS
+		summarizeBy: none
+		sourceColumn: IsSqlPaaS
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsStorage
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 21633693-504a-417d-ab30-c1f4e27e61a2
+		sourceLineageTag: IsStorage
+		summarizeBy: none
+		sourceColumn: IsStorage
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsVmLike
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a98dacb1-2065-4ecb-95e3-5b6e0f3d1921
+		sourceLineageTag: IsVmLike
+		summarizeBy: none
+		sourceColumn: IsVmLike
+
+		annotation SummarizationSetBy = Automatic
+
+	column HasFullNameClassification
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e7bafd3-a9ae-41c4-9f94-3547afe05839
+		sourceLineageTag: HasFullNameClassification
+		summarizeBy: sum
+		sourceColumn: HasFullNameClassification
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullNameColumnCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 582f96ef-d7ea-4ac1-8c00-aa850d79fa7d
+		sourceLineageTag: FullNameColumnCount
+		summarizeBy: sum
+		sourceColumn: FullNameColumnCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column TagApplicable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ae96d007-375c-4079-a304-0349d764eda0
+		sourceLineageTag: TagApplicable
+		summarizeBy: none
+		sourceColumn: TagApplicable
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResidencyApplicable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5e2a05c6-a054-4afb-969a-b18f9cdcecc3
+		sourceLineageTag: ResidencyApplicable
+		summarizeBy: none
+		sourceColumn: ResidencyApplicable
+
+		annotation SummarizationSetBy = Automatic
+
+	column CCApplicable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f6481ea6-16fa-4da3-b01d-c365bce33da2
+		sourceLineageTag: CCApplicable
+		summarizeBy: none
+		sourceColumn: CCApplicable
+
+		annotation SummarizationSetBy = Automatic
+
+	column DefenderApplicable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: daba0adb-9f37-4c5a-b72b-2ee75c3e0190
+		sourceLineageTag: DefenderApplicable
+		summarizeBy: none
+		sourceColumn: DefenderApplicable
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		dataType: string
+		lineageTag: 7e2b9260-2900-4fb8-830c-7e9861d4f265
+		sourceLineageTag: Location
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResourceGroup
+		dataType: string
+		lineageTag: 83da6ca3-0500-45cb-8c92-26236231a684
+		sourceLineageTag: ResourceGroup
+		summarizeBy: none
+		sourceColumn: ResourceGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResourceOrigin
+		dataType: string
+		lineageTag: 81c2e996-8e87-4b72-a3e9-bf37daac68b8
+		sourceLineageTag: ResourceOrigin
+		summarizeBy: none
+		sourceColumn: ResourceOrigin
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResourceType
+		dataType: string
+		lineageTag: 54cc8f2b-47ac-44fc-9052-793f3b0d07ae
+		sourceLineageTag: ResourceType
+		summarizeBy: none
+		sourceColumn: ResourceType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScoreRaw
+		dataType: int64
+		formatString: 0
+		lineageTag: a7e84eb0-dd17-4ae8-bf12-2fba89d24ea3
+		sourceLineageTag: ScoreRaw
+		summarizeBy: sum
+		sourceColumn: ScoreRaw
+
+		annotation SummarizationSetBy = Automatic
+
+	column SovereigntyZone
+		dataType: string
+		lineageTag: 52973b93-aec0-465f-851f-95079e69da11
+		sourceLineageTag: SovereigntyZone
+		summarizeBy: none
+		sourceColumn: SovereigntyZone
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubscriptionId
+		dataType: string
+		lineageTag: d0d8d48c-0407-497f-9443-caf824d6d9c6
+		sourceLineageTag: SubscriptionId
+		summarizeBy: none
+		sourceColumn: SubscriptionId
+
+		annotation SummarizationSetBy = Automatic
+
+	column SnapshotTimeUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 234dc78d-60e5-458c-ad01-1f4f44bf879d
+		sourceLineageTag: SnapshotTimeUtc
+		summarizeBy: none
+		sourceColumn: SnapshotTimeUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column TagScorePct
+		dataType: int64
+		formatString: 0
+		lineageTag: 80397857-991a-453f-9134-082a02597214
+		sourceLineageTag: TagScorePct
+		summarizeBy: sum
+		sourceColumn: TagScorePct
+
+		annotation SummarizationSetBy = Automatic
+
+	column TagState
+		dataType: string
+		lineageTag: c6941066-9124-4b23-9c6d-fbd1cc9b4379
+		sourceLineageTag: TagState
+		summarizeBy: none
+		sourceColumn: TagState
+
+		annotation SummarizationSetBy = Automatic
+
+	column TagReason
+		dataType: string
+		lineageTag: d919fba3-f398-40c5-9f6e-42f8cd18d017
+		sourceLineageTag: TagReason
+		summarizeBy: none
+		sourceColumn: TagReason
+
+		annotation SummarizationSetBy = Automatic
+
+	column dataProductId
+		dataType: string
+		lineageTag: abc6ec78-f7e9-4544-9b14-3c496d88eff5
+		sourceLineageTag: dataProductId
+		summarizeBy: none
+		sourceColumn: dataProductId
+
+		annotation SummarizationSetBy = Automatic
+
+	column dataProductDisplayName
+		dataType: string
+		lineageTag: dec7b109-2b49-42da-af7e-603321e75706
+		sourceLineageTag: dataProductDisplayName
+		summarizeBy: none
+		sourceColumn: dataProductDisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column dataProductDescription
+		dataType: string
+		lineageTag: 40878830-4021-4e67-b5d1-9ce9217be6af
+		sourceLineageTag: dataProductDescription
+		summarizeBy: none
+		sourceColumn: dataProductDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column residencyRegion
+		dataType: string
+		lineageTag: 79987463-0abd-4d70-934d-0fba8d25e736
+		sourceLineageTag: residencyRegion
+		summarizeBy: none
+		sourceColumn: residencyRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column resourceFound
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 85a45570-600f-4582-ae74-3d815747a54a
+		sourceLineageTag: resourceFound
+		summarizeBy: none
+		sourceColumn: resourceFound
+
+		annotation SummarizationSetBy = Automatic
+
+	column resourceId
+		dataType: string
+		lineageTag: 3bd9e3aa-66ab-4dfc-bc02-10ee474b997a
+		sourceLineageTag: resourceId
+		summarizeBy: none
+		sourceColumn: resourceId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dp_dataproduct_tagcompliance_current = entity
+		mode: directLake
+		source
+			entityName: dp_dataproduct_tagcompliance_current
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+

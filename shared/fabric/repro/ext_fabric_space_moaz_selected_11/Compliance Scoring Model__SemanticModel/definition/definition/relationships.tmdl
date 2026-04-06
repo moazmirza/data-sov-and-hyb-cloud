@@ -1,0 +1,13 @@
+relationship a6a55807-02b5-ccee-7456-b599bd90c85b
+	fromColumn: 'Confidential Compute (cc) PII Compliance Investigations (Current)'.'data product id'
+	toColumn: 'Data Products'.'data product id'
+
+relationship 424c3f35-ccad-51e2-8258-93bbfe42f8b7
+	fromColumn: 'Confidential Compute (cc) Resource Signals (Current)'.'data product id'
+	toColumn: 'Data Products'.'data product id'
+
+relationship 27005a4b-5481-91c4-7776-7a1cd7a221fd
+	isActive: false
+	fromColumn: 'Data Product Compliance Scores'.'Data Product Id'
+	toColumn: 'Data Products'.'data product id'
+

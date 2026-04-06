@@ -1,0 +1,7 @@
+{
+  "displayName": "Sov Data Agent Contoso",
+  "type": "DataAgent",
+  "id": "<FABRIC_ITEM_ID_10>",
+  "workspaceId": "<FABRIC_WORKSPACE_ID>"
+}
+

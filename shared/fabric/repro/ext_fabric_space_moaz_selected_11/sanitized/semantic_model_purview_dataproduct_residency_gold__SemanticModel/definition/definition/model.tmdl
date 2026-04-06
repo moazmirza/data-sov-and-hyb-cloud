@@ -1,0 +1,33 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DirectLake - ext_lakehouse_fabric_moaz"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit"]
+
+ref table 'Data Products'
+ref table 'Data Product Assets Count'
+ref table 'Purview Total Assets Count'
+ref table dp_sovereignty_kpis_timeline_table
+ref table dp_purviewassetcount_deltas
+ref table dp_dataproduct_assetcount_deltas
+ref table dp_dataproduct_residency_deltas
+ref table dp_dataproduct_fullnameclassification_current
+ref table dp_compute_inventory_current
+ref table dp_dataproduct_fullname_not_confidential_current
+ref table dp_dataproduct_fullname_no_compute_mapping_current
+ref table 'Copilot Purview Residency Change Eligibility'
+ref table dp_dataproduct_cccompliance_current
+ref table dp_dataproduct_cccompliance_investigate_current
+ref table dp_dataproduct_residencycompliance_current
+ref table dp_dataproduct_tagcompliance_current
+ref table dp_dataproduct_defendercompliance_current
+ref table dp_dataproduct_compliance_summary_current
+

@@ -1,0 +1,184 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "80a7f7a0bc4a8a0d0bd0",
+  "position": {
+    "x": 630.8167770419426,
+    "y": 368.03532008830024,
+    "z": 4000,
+    "height": 341.19205298013247,
+    "width": 635.76158940397352,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dp_dataproduct_residency_deltas"
+                    }
+                  },
+                  "Property": "SnapshotUtc"
+                }
+              },
+              "queryRef": "dp_dataproduct_residency_deltas.SnapshotUtc",
+              "nativeQueryRef": "SnapshotUtc"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dp_dataproduct_residency_deltas"
+                    }
+                  },
+                  "Property": "DataProductDisplayName"
+                }
+              },
+              "queryRef": "dp_dataproduct_residency_deltas.DataProductDisplayName",
+              "nativeQueryRef": "DataProductDisplayName"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dp_dataproduct_residency_deltas"
+                    }
+                  },
+                  "Property": "PrevResidencyRegion"
+                }
+              },
+              "queryRef": "dp_dataproduct_residency_deltas.PrevResidencyRegion",
+              "nativeQueryRef": "PrevResidencyRegion"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dp_dataproduct_residency_deltas"
+                    }
+                  },
+                  "Property": "ResidencyRegion"
+                }
+              },
+              "queryRef": "dp_dataproduct_residency_deltas.ResidencyRegion",
+              "nativeQueryRef": "ResidencyRegion"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dp_dataproduct_residency_deltas"
+                  }
+                },
+                "Property": "SnapshotUtc"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Data Product Residency over Time'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "195190a853b86356406b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dp_dataproduct_residency_deltas"
+              }
+            },
+            "Property": "HasChanged"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "dp_dataproduct_residency_deltas",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "d"
+                          }
+                        },
+                        "Property": "HasChanged"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "false"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

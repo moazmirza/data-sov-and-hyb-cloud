@@ -1,0 +1,68 @@
+[
+  {
+    "displayName": "Compliance Scoring Model",
+    "type": "SemanticModel",
+    "status": "exported",
+    "details": "parts=11"
+  },
+  {
+    "displayName": "Compliance Scoring Report for Data Agent",
+    "type": "Report",
+    "status": "exported",
+    "details": "parts=14"
+  },
+  {
+    "displayName": "ext_lakehouse_fabric_moaz",
+    "type": "Lakehouse",
+    "status": "exported",
+    "details": "parts=3"
+  },
+  {
+    "displayName": "ext_lakehouse_fabric_moaz",
+    "type": "SQLEndpoint",
+    "status": "metadata_only",
+    "details": "Response status code does not indicate success: 400 (Bad Request)."
+  },
+  {
+    "displayName": "notebook_fabric_function_sov_compliance_checks_new",
+    "type": "Notebook",
+    "status": "exported",
+    "details": "parts=2"
+  },
+  {
+    "displayName": "pipe_refresh_sov_checks_and_reporting_contoso",
+    "type": "DataPipeline",
+    "status": "exported",
+    "details": "parts=3"
+  },
+  {
+    "displayName": "Refresh And Automate Purview parquet to gold",
+    "type": "Notebook",
+    "status": "exported",
+    "details": "parts=2"
+  },
+  {
+    "displayName": "report_purview_dataproduct_residency",
+    "type": "Report",
+    "status": "exported",
+    "details": "parts=63"
+  },
+  {
+    "displayName": "semantic_model_purview_dataproduct_residency_gold",
+    "type": "SemanticModel",
+    "status": "exported",
+    "details": "parts=24"
+  },
+  {
+    "displayName": "Sov Data Agent Contoso",
+    "type": "DataAgent",
+    "status": "exported",
+    "details": "parts=7"
+  },
+  {
+    "displayName": "Sovereignty_Alerts_Activator",
+    "type": "Reflex",
+    "status": "metadata_only",
+    "details": "Response status code does not indicate success: 400 (Bad Request)."
+  }
+]

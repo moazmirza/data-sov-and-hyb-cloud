@@ -1,0 +1,218 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "7c744f8cad0295d670e4",
+  "position": {
+    "x": 656,
+    "y": 296,
+    "z": 2004,
+    "height": 255,
+    "width": 615,
+    "tabOrder": 2004
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Data Product Compliance Scores"
+                    }
+                  },
+                  "Property": "Data Product Name"
+                }
+              },
+              "queryRef": "Data Product Compliance Scores.Data Product Name",
+              "nativeQueryRef": "Data Product Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Data Product Compliance Scores"
+                    }
+                  },
+                  "Property": "Residency Compliance Score"
+                }
+              },
+              "queryRef": "Sum(Data Product Compliance Scores.Residency Compliance Score)",
+              "nativeQueryRef": "Residency Compliance Score"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Data Product Compliance Scores"
+                    }
+                  },
+                  "Property": "Confidential Computing (CC) PII Compliance Score"
+                }
+              },
+              "queryRef": "Sum(Data Product Compliance Scores.Confidential Computing (CC) PII Compliance Score)",
+              "nativeQueryRef": "Confidential Computing (CC) PII Compliance Score"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Data Product Compliance Scores"
+                    }
+                  },
+                  "Property": "Defender Compliance Score"
+                }
+              },
+              "queryRef": "Sum(Data Product Compliance Scores.Defender Compliance Score)",
+              "nativeQueryRef": "Defender Compliance Score"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Data Product Compliance Scores"
+                    }
+                  },
+                  "Property": "Tag Compliance Score"
+                }
+              },
+              "queryRef": "Sum(Data Product Compliance Scores.Tag Compliance Score)",
+              "nativeQueryRef": "Tag Compliance Score"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Data Product Compliance Scores"
+                    }
+                  },
+                  "Property": "Patch Compliance Score"
+                }
+              },
+              "queryRef": "Sum(Data Product Compliance Scores.Patch Compliance Score)",
+              "nativeQueryRef": "Patch Compliance Score"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Compliance Scores per Data Product: Residency, CC, Tag, Defender, Patch'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3e35d48889d9748a6d50",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Data Product Compliance Scores"
+              }
+            },
+            "Property": "Data Product Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e51619d5a844db560b7c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Data Product Compliance Scores"
+              }
+            },
+            "Property": "Residency Compliance Score"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "259526ad02c29b0a0e30",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Data Product Compliance Scores"
+              }
+            },
+            "Property": "Confidential Computing (CC) PII Compliance Score"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "90a11959520a6a200ceb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Data Product Compliance Scores"
+              }
+            },
+            "Property": "Defender Compliance Score"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "19badb417828bda2819c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Data Product Compliance Scores"
+              }
+            },
+            "Property": "Tag Compliance Score"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "db7ee8b202350329d9a9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Data Product Compliance Scores"
+              }
+            },
+            "Property": "Patch Compliance Score"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

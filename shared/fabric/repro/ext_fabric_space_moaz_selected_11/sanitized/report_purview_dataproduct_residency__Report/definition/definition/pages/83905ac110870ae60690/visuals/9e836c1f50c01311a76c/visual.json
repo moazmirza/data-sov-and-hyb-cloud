@@ -1,0 +1,159 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "9e836c1f50c01311a76c",
+  "position": {
+    "x": 16.1599158337717,
+    "y": 321.85165702261969,
+    "z": 2000,
+    "height": 294.91846396633349,
+    "width": 1255.7601262493424,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dp_dataproduct_cccompliance_investigate_current"
+                    }
+                  },
+                  "Property": "DataProductDisplayName"
+                }
+              },
+              "queryRef": "dp_dataproduct_cccompliance_investigate_current.DataProductDisplayName",
+              "nativeQueryRef": "DataProductDisplayName"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dp_dataproduct_cccompliance_investigate_current"
+                        }
+                      },
+                      "Property": "CCScorePct"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dp_dataproduct_cccompliance_investigate_current.CCScorePct)",
+              "nativeQueryRef": "Sum of CCScorePct"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dp_dataproduct_cccompliance_investigate_current"
+                    }
+                  },
+                  "Property": "ResourceType"
+                }
+              },
+              "queryRef": "dp_dataproduct_cccompliance_investigate_current.ResourceType",
+              "nativeQueryRef": "ResourceType"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dp_dataproduct_cccompliance_investigate_current"
+                    }
+                  },
+                  "Property": "LookupSkuOrModel"
+                }
+              },
+              "queryRef": "dp_dataproduct_cccompliance_investigate_current.LookupSkuOrModel",
+              "nativeQueryRef": "LookupSkuOrModel"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dp_dataproduct_cccompliance_investigate_current"
+                    }
+                  },
+                  "Property": "OwnerEmail"
+                }
+              },
+              "queryRef": "dp_dataproduct_cccompliance_investigate_current.OwnerEmail",
+              "nativeQueryRef": "OwnerEmail"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dp_dataproduct_cccompliance_investigate_current"
+                    }
+                  },
+                  "Property": "CCReason"
+                }
+              },
+              "queryRef": "dp_dataproduct_cccompliance_investigate_current.CCReason",
+              "nativeQueryRef": "CCReason"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "90.35350242302606D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(dp_dataproduct_cccompliance_investigate_current.CCScorePct)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "128.58763302219253D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dp_dataproduct_cccompliance_investigate_current.OwnerEmail"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "386.3598106259863D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dp_dataproduct_cccompliance_investigate_current.CCReason"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

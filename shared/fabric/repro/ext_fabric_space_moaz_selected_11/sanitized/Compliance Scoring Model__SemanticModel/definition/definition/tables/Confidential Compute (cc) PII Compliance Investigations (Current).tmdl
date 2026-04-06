@@ -1,0 +1,513 @@
+/// main Q&A fact because it already has:
+/// 
+/// score/state/reason
+/// 
+/// investigation fields
+/// 
+/// applicability
+/// 
+/// full-name classification indicators
+/// 
+/// resource metadata
+/// 
+/// owner metadata
+table 'Confidential Compute (cc) PII Compliance Investigations (Current)'
+	lineageTag: 8cbdf4cd-55a5-4599-88f1-07c9fe16bb2f
+	sourceLineageTag: [dbo].[dp_dataproduct_cccompliance_investigate_current]
+
+	column 'snapshot time utc'
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: 89802568-9124-4a35-b6ad-25ba28f3ab13
+		sourceLineageTag: SnapshotUtc
+		summarizeBy: none
+		sourceColumn: SnapshotUtc
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'data product id'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 295ff2c1-3f6d-47e9-8972-b2623fd36abc
+		sourceLineageTag: DataProductId
+		summarizeBy: none
+		sourceColumn: DataProductId
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'data product display name'
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: 0b8bee99-1b99-44e8-a633-88258bb5fe1e
+		sourceLineageTag: DataProductDisplayName
+		summarizeBy: none
+		sourceColumn: DataProductDisplayName
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'data product description'
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: 07691da4-80b0-4321-857c-268cbcd0ae42
+		sourceLineageTag: DataProductDescription
+		summarizeBy: none
+		sourceColumn: DataProductDescription
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// percentage
+	column 'confidential compute (cc) score'
+		dataType: int64
+		isHidden
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f0df5135-0902-46b4-a07d-b4ce18680bd4
+		sourceLineageTag: CCScorePct
+		summarizeBy: sum
+		sourceColumn: CCScorePct
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'confidential compute (cc) compliance state'
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: 0ae7d992-c18d-4041-aaac-d3facdd0183d
+		sourceLineageTag: CCState
+		summarizeBy: none
+		sourceColumn: CCState
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'confidential compute (cc) reason for investigation'
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: 5d39db6b-2746-4343-ba9b-101401010679
+		sourceLineageTag: CCReason
+		summarizeBy: none
+		sourceColumn: CCReason
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// 1 is a yes
+	column 'investigation required'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: f444af5b-4db1-4d2b-849c-198f7a99b52c
+		sourceLineageTag: InvestigationRequired
+		summarizeBy: none
+		sourceColumn: InvestigationRequired
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'investigation reason code'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c7a50bef-c88d-4f10-931c-3a748e51af38
+		sourceLineageTag: InvestigationReasonCode
+		summarizeBy: none
+		sourceColumn: InvestigationReasonCode
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResourceFound
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 23735ac5-1bd0-45e3-8c9a-13bfc85af5c9
+		sourceLineageTag: ResourceFound
+		summarizeBy: none
+		sourceColumn: ResourceFound
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// resource is applicable for confidential compute (cc) compliance scoring
+	column 'confidential compute (cc) applicable resource'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: 755bba31-7ae2-4ad3-b8a7-0f16361b4d7e
+		sourceLineageTag: CCApplicableResource
+		summarizeBy: none
+		sourceColumn: CCApplicableResource
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// data product is applicable for confidential compute compliance scoring
+	column 'confidential compute (cc) applicable'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: e1080bd1-c779-4946-9139-7b809e45018f
+		sourceLineageTag: CCApplicable
+		summarizeBy: none
+		sourceColumn: CCApplicable
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'azure resource id '
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: f1eb9393-dffc-4e0d-a587-568b5778b40a
+		sourceLineageTag: ResourceId
+		summarizeBy: none
+		sourceColumn: ResourceId
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'azure resource name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c2d01942-2954-4c47-937a-36b304480eec
+		sourceLineageTag: ResourceName
+		summarizeBy: none
+		sourceColumn: ResourceName
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'azure resource type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f3ed87f5-0175-4b99-9cf9-b8ba0d259a05
+		sourceLineageTag: ResourceType
+		summarizeBy: none
+		sourceColumn: ResourceType
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'subscription id'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9cb6cebd-8548-4591-9cfc-8659d8815178
+		sourceLineageTag: SubscriptionId
+		summarizeBy: none
+		sourceColumn: SubscriptionId
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// azure resource group of the data product
+	column 'azure resource group'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6ecb8ade-5865-4dff-931e-a0e7f8c85134
+		sourceLineageTag: ResourceGroup
+		summarizeBy: none
+		sourceColumn: ResourceGroup
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// location or residency or region in Azure for this product
+	column location
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 700d5cea-9bd2-4171-8191-ef3d4e8d880c
+		sourceLineageTag: Location
+		summarizeBy: none
+		sourceColumn: Location
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// 1 means yes
+	column 'has full name classification'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: ad9aac04-e784-4498-a9ea-3930b985b432
+		sourceLineageTag: HasFullNameClassification
+		summarizeBy: sum
+		sourceColumn: HasFullNameClassification
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// how many full name columns which is a personal information or PII
+	column 'full name column count'
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: ce36b9f9-328c-4c68-bedd-55e49ece2165
+		sourceLineageTag: FullNameColumnCount
+		summarizeBy: sum
+		sourceColumn: FullNameColumnCount
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'data product owner object id'
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: 0f7dff47-33a1-4e38-aec3-9feaae5f8a6e
+		sourceLineageTag: OwnerObjectId
+		summarizeBy: none
+		sourceColumn: OwnerObjectId
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'data product owner name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4a4e8715-aecc-4483-9806-ba0f547fce7d
+		sourceLineageTag: OwnerName
+		summarizeBy: none
+		sourceColumn: OwnerName
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'data product owner email'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 610c4037-4fd8-49c9-a77c-a2f751a49996
+		sourceLineageTag: OwnerEmail
+		summarizeBy: none
+		sourceColumn: OwnerEmail
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column OwnerSource
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: f7512d8e-0b0c-4151-ba18-8a1fdf1a735a
+		sourceLineageTag: OwnerSource
+		summarizeBy: none
+		sourceColumn: OwnerSource
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column OwnerResolveStatus
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: 368639ad-b5f5-49cb-847d-d1f8b6366b4f
+		sourceLineageTag: OwnerResolveStatus
+		summarizeBy: none
+		sourceColumn: OwnerResolveStatus
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'suggested investigation tag key'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 161e5f31-4b70-4d94-b8be-4b0612d410cc
+		sourceLineageTag: SuggestedTagKey
+		summarizeBy: none
+		sourceColumn: SuggestedTagKey
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'suggested investigation tag value'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 28dc76d6-bfc9-42f4-8b84-f301940cc54d
+		sourceLineageTag: SuggestedTagValue
+		summarizeBy: none
+		sourceColumn: SuggestedTagValue
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	/// current vm compute sku
+	column 'lookup sku or model'
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: 595576d4-e15b-4012-801a-a2ecae64e5b1
+		sourceLineageTag: LookupSkuOrModel
+		summarizeBy: none
+		sourceColumn: LookupSkuOrModel
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// 1 means approved sku
+	column 'is approved sku'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: b6f54732-53f8-4cc6-9a40-c69f7d6f77e7
+		sourceLineageTag: IsApprovedSku
+		summarizeBy: none
+		sourceColumn: IsApprovedSku
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// type of resource
+	column 'confidential compute (cc) resource kind'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 78c53496-99c0-4c0d-92be-f2ff8e14446d
+		sourceLineageTag: CCResourceKind
+		summarizeBy: none
+		sourceColumn: CCResourceKind
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'arc cloud provider name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 67cfb16d-f10d-401f-a02e-922ca9db95b6
+		sourceLineageTag: ArcCloudProvider
+		summarizeBy: none
+		sourceColumn: ArcCloudProvider
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'arc status'
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: 941a6dca-a11f-4054-b764-a8a60ef78c3b
+		sourceLineageTag: ArcStatus
+		summarizeBy: none
+		sourceColumn: ArcStatus
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column VmSizeCompat
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: c8e787d8-f874-48b1-9fe8-3e4f4576d9c1
+		sourceLineageTag: VmSizeCompat
+		summarizeBy: none
+		sourceColumn: VmSizeCompat
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'confidential compute security type'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 0ed5ffab-424a-4d5b-b308-4cf79ef64ace
+		sourceLineageTag: SecurityType
+		summarizeBy: none
+		sourceColumn: SecurityType
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Confidential Compute (cc) PII Compliance Investigations (Current)' = entity
+		mode: directLake
+		source
+			entityName: dp_dataproduct_cccompliance_investigate_current
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	changedProperty = Name
+
+	changedProperty = Description
+
+	annotation PBI_ResultType = Table
+

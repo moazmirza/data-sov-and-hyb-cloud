@@ -1,0 +1,43 @@
+table 'Purview Total Assets Count'
+	lineageTag: 0f317392-c265-4ab7-a840-dec179522df5
+	sourceLineageTag: [dbo].[dp_purviewassetcount_current]
+
+	column SnapshotUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7b2b1528-5bab-4555-9e51-ba4d23f3f093
+		sourceLineageTag: SnapshotUtc
+		summarizeBy: none
+		sourceColumn: SnapshotUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalAssets
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d6a538a-7468-4bea-a663-8241f6aa0cac
+		sourceLineageTag: TotalAssets
+		summarizeBy: sum
+		sourceColumn: TotalAssets
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsApproximate
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 217ff0a6-c7d0-494b-8356-0c7254364efc
+		sourceLineageTag: IsApproximate
+		summarizeBy: none
+		sourceColumn: IsApproximate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Purview Total Assets Count' = entity
+		mode: directLake
+		source
+			entityName: dp_purviewassetcount_current
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+
+	changedProperty = Name
+

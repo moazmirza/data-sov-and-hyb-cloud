@@ -1,0 +1,7 @@
+{
+  "displayName": "pipe_refresh_sov_checks_and_reporting_contoso",
+  "type": "DataPipeline",
+  "id": "<FABRIC_ITEM_ID_6>",
+  "workspaceId": "<FABRIC_WORKSPACE_ID>"
+}
+

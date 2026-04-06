@@ -1,0 +1,155 @@
+table dp_dataproduct_defendercompliance_current
+	lineageTag: 3912029f-7fd3-4884-bfcf-18b8ba3aad31
+	sourceLineageTag: [dbo].[dp_dataproduct_defendercompliance_current]
+
+	measure 'Avg Defender Compliance Score %' =
+			
+			AVERAGE (dp_dataproduct_defendercompliance_current[progressScore])
+		lineageTag: 7e9c6db2-4ed9-406f-85ec-a1a6138cdc4b
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dataProductId
+		dataType: string
+		lineageTag: 4e82b578-ba0c-41f2-a88a-10748ddac39a
+		sourceLineageTag: dataProductId
+		summarizeBy: none
+		sourceColumn: dataProductId
+
+		annotation SummarizationSetBy = Automatic
+
+	column resourceFound
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 665a5baf-6a35-4fdd-bb5a-87ebfb5ae966
+		sourceLineageTag: resourceFound
+		summarizeBy: none
+		sourceColumn: resourceFound
+
+		annotation SummarizationSetBy = Automatic
+
+	column applicable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 32ba8220-fa54-4440-8362-8d857cf70fde
+		sourceLineageTag: applicable
+		summarizeBy: none
+		sourceColumn: applicable
+
+		annotation SummarizationSetBy = Automatic
+
+	column progressScore
+		dataType: int64
+		formatString: 0
+		lineageTag: fba6109e-bfc3-4fe6-a4c2-61ee988b102f
+		sourceLineageTag: progressScore
+		summarizeBy: sum
+		sourceColumn: progressScore
+
+		annotation SummarizationSetBy = Automatic
+
+	column progressState
+		dataType: string
+		lineageTag: c692cbc9-a233-4104-8264-d5465ba21ce2
+		sourceLineageTag: progressState
+		summarizeBy: none
+		sourceColumn: progressState
+
+		annotation SummarizationSetBy = Automatic
+
+	column applicableResourceCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e6a4ff7-4921-4a8d-acf3-d5faa416fbeb
+		sourceLineageTag: applicableResourceCount
+		summarizeBy: sum
+		sourceColumn: applicableResourceCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column configuredResourceCount
+		dataType: int64
+		formatString: 0
+		lineageTag: ad248e71-c5c6-4cf1-833f-4ae004059156
+		sourceLineageTag: configuredResourceCount
+		summarizeBy: sum
+		sourceColumn: configuredResourceCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column runningResourceCount
+		dataType: int64
+		formatString: 0
+		lineageTag: a37cb4c2-fe26-4407-9199-679425b1be4c
+		sourceLineageTag: runningResourceCount
+		summarizeBy: sum
+		sourceColumn: runningResourceCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column highActiveAlertCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 0fc02afa-2291-4f4b-ba10-bb8399d59024
+		sourceLineageTag: highActiveAlertCount
+		summarizeBy: sum
+		sourceColumn: highActiveAlertCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column hasUnhealthyAssessments
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3b32b4df-7118-4cf0-b033-7d895f546500
+		sourceLineageTag: hasUnhealthyAssessments
+		summarizeBy: none
+		sourceColumn: hasUnhealthyAssessments
+
+		annotation SummarizationSetBy = Automatic
+
+	column resourcesJson
+		dataType: string
+		lineageTag: 4659d0cf-85f3-4f1f-bbd1-4338d558bb5a
+		sourceLineageTag: resourcesJson
+		summarizeBy: none
+		sourceColumn: resourcesJson
+
+		annotation SummarizationSetBy = Automatic
+
+	column evaluatedResourcesJson
+		dataType: string
+		lineageTag: 9126f55b-a739-4668-9ca0-2a91c860e8d9
+		sourceLineageTag: evaluatedResourcesJson
+		summarizeBy: none
+		sourceColumn: evaluatedResourcesJson
+
+		annotation SummarizationSetBy = Automatic
+
+	column detailsJson
+		dataType: string
+		lineageTag: 7b3f333f-7fb7-4d7a-a5d6-ad30f647716f
+		sourceLineageTag: detailsJson
+		summarizeBy: none
+		sourceColumn: detailsJson
+
+		annotation SummarizationSetBy = Automatic
+
+	column snapshotUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7bc66d69-c3fc-4396-b81c-f756a9794b5c
+		sourceLineageTag: snapshotUtc
+		summarizeBy: none
+		sourceColumn: snapshotUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dp_dataproduct_defendercompliance_current = entity
+		mode: directLake
+		source
+			entityName: dp_dataproduct_defendercompliance_current
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+

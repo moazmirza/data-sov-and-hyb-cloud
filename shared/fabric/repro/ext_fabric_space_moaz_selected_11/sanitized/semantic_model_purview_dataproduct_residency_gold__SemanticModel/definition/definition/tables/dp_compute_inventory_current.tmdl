@@ -1,0 +1,115 @@
+table dp_compute_inventory_current
+	lineageTag: 5f350aa9-dc02-4d15-9426-a7bb302c3dce
+	sourceLineageTag: [dbo].[dp_compute_inventory_current]
+
+	column SnapshotUtc
+		dataType: string
+		lineageTag: 78d78d85-495d-407d-800e-1631b39b8a52
+		sourceLineageTag: SnapshotUtc
+		summarizeBy: none
+		sourceColumn: SnapshotUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductId
+		dataType: string
+		lineageTag: 1570c13d-dee9-4589-be5b-65456fad8eae
+		sourceLineageTag: DataProductId
+		summarizeBy: none
+		sourceColumn: DataProductId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ComputeResourceId
+		dataType: string
+		lineageTag: 798f84c0-b05a-4299-b16c-4fb6f3646b98
+		sourceLineageTag: ComputeResourceId
+		summarizeBy: none
+		sourceColumn: ComputeResourceId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ComputeName
+		dataType: string
+		lineageTag: f4427765-0d5e-4d73-bf43-e5765bac0d4a
+		sourceLineageTag: ComputeName
+		summarizeBy: none
+		sourceColumn: ComputeName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResourceGroup
+		dataType: string
+		lineageTag: 515ccf7a-db38-4277-8fd1-cc9264dc3c91
+		sourceLineageTag: ResourceGroup
+		summarizeBy: none
+		sourceColumn: ResourceGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubscriptionId
+		dataType: string
+		lineageTag: fc450d7e-4850-4263-8f5f-ea61e00c0119
+		sourceLineageTag: SubscriptionId
+		summarizeBy: none
+		sourceColumn: SubscriptionId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		dataType: string
+		lineageTag: 5b3282fe-9fd1-43cf-ba9a-92151ad38a7c
+		sourceLineageTag: Location
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column SecurityType
+		dataType: string
+		lineageTag: 57a39289-b903-4c32-ad56-1792c91df628
+		sourceLineageTag: SecurityType
+		summarizeBy: none
+		sourceColumn: SecurityType
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsConfidential
+		dataType: int64
+		formatString: 0
+		lineageTag: 5bef40e3-0a9f-4b5a-ae85-0760362e5472
+		sourceLineageTag: IsConfidential
+		summarizeBy: sum
+		sourceColumn: IsConfidential
+
+		annotation SummarizationSetBy = Automatic
+
+	column TenantId
+		dataType: string
+		lineageTag: 60ddd866-a38a-40b7-85ae-3593989d41f4
+		sourceLineageTag: TenantId
+		summarizeBy: none
+		sourceColumn: TenantId
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsConfidentialBool
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: cc15898f-daf1-4dca-9cf8-17abf8efa8e7
+		sourceLineageTag: IsConfidentialBool
+		summarizeBy: none
+		sourceColumn: IsConfidentialBool
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dp_compute_inventory_current = entity
+		mode: directLake
+		source
+			entityName: dp_compute_inventory_current
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+

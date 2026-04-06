@@ -1,0 +1,156 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "62214f740b5e45619073",
+  "position": {
+    "x": 9.5013605745639467,
+    "y": 0,
+    "z": 0,
+    "height": 130.09555248249097,
+    "width": 526.96007494312357,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                        }
+                      },
+                      "Property": "data product confidential compute pii compliance score"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(Confidential Compute (cc) Resource Signals (Current).data product confidential compute pii compliance score)",
+              "nativeQueryRef": "Average of data product confidential compute pii compliance score"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                      }
+                    },
+                    "Property": "data product confidential compute pii compliance score"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'overall or average cc score'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "18103f0d31021ce67829",
+        "field": {
+          "Arithmetic": {
+            "Left": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                      }
+                    },
+                    "Property": "data product confidential compute pii compliance score"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "Right": {
+              "ScopedEval": {
+                "Expression": {
+                  "Aggregation": {
+                    "Expression": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                          }
+                        },
+                        "Property": "data product confidential compute pii compliance score"
+                      }
+                    },
+                    "Function": 1
+                  }
+                },
+                "Scope": []
+              }
+            },
+            "Operator": 3
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "0a48de2f2d0b4ab102bc",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Confidential Compute (cc) Resource Signals (Current)"
+                  }
+                },
+                "Property": "data product confidential compute pii compliance score"
+              }
+            },
+            "Function": 1
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

@@ -1,0 +1,336 @@
+/// Deterministic Copilot gating table for Purview residency glossary updates. Contains the latest residency compliance snapshot per data product, compares Azure-detected residency vs current Purview glossary residency (Gl-Region), checks approved-region eligibility, and provides Copilot-ready fields (eligibility flag, reason, target residency code, expected current residency code, suggested action) for preview/apply update workflows.
+table 'Copilot Purview Residency Change Eligibility'
+	lineageTag: f078a3dc-984b-4cae-ab52-b4d446ee845a
+	sourceLineageTag: [dbo].[dp_copilot_purview_residency_change_eligibility]
+
+	column SnapshotTimeUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c3500db5-d4e4-4ade-be66-898a7e0af092
+		sourceLineageTag: SnapshotTimeUtc
+		summarizeBy: none
+		sourceColumn: SnapshotTimeUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column EligibilityComputedAtUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: aa6e22ff-0790-4293-8df3-5a1dcfb41702
+		sourceLineageTag: EligibilityComputedAtUtc
+		summarizeBy: none
+		sourceColumn: EligibilityComputedAtUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductID
+		dataType: string
+		lineageTag: 4cd1d7fa-3273-499f-b18b-1ff81dc5af2c
+		sourceLineageTag: DataProductID
+		summarizeBy: none
+		sourceColumn: DataProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductDisplayName
+		dataType: string
+		lineageTag: b10bf2ba-5d4a-4d02-8a08-38f1df940925
+		sourceLineageTag: DataProductDisplayName
+		summarizeBy: none
+		sourceColumn: DataProductDisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductDescription
+		dataType: string
+		isHidden
+		lineageTag: 5e06f87f-ca59-49a8-88f1-ae0acce5171b
+		sourceLineageTag: DataProductDescription
+		summarizeBy: none
+		sourceColumn: DataProductDescription
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column GlossaryResidencyRegionName
+		dataType: string
+		lineageTag: 119fe603-61ab-4bcb-908a-e50af90f1b3b
+		sourceLineageTag: GlossaryResidencyRegionName
+		summarizeBy: none
+		sourceColumn: GlossaryResidencyRegionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column GlossaryResidencyRegionCode
+		dataType: string
+		lineageTag: 84dee1e9-50ec-4dc2-bbf0-bc89d6fb645c
+		sourceLineageTag: GlossaryResidencyRegionCode
+		summarizeBy: none
+		sourceColumn: GlossaryResidencyRegionCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column GlossaryResidencyMissing
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: db11cc9a-8f92-487f-bfbb-7b38bf755341
+		sourceLineageTag: GlossaryResidencyMissing
+		summarizeBy: none
+		sourceColumn: GlossaryResidencyMissing
+
+		annotation SummarizationSetBy = Automatic
+
+	column AzureResourceFound
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6f79c661-e575-4a36-b55b-b21d0768866a
+		sourceLineageTag: AzureResourceFound
+		summarizeBy: none
+		sourceColumn: AzureResourceFound
+
+		annotation SummarizationSetBy = Automatic
+
+	column AzureResourceCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 06097132-1710-485f-b8ca-f2336f5cc7fa
+		sourceLineageTag: AzureResourceCount
+		summarizeBy: sum
+		sourceColumn: AzureResourceCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column AzureResidencyCode
+		dataType: string
+		lineageTag: 2d21b6e6-3507-438d-b1ac-2eea0f5172f5
+		sourceLineageTag: AzureResidencyCode
+		summarizeBy: none
+		sourceColumn: AzureResidencyCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column AzureLocationsRaw
+		dataType: string
+		isHidden
+		lineageTag: f99a97a0-2f7d-41a6-8797-61e4ee305b29
+		sourceLineageTag: AzureLocationsRaw
+		summarizeBy: none
+		sourceColumn: AzureLocationsRaw
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column AzureResourceIds
+		dataType: string
+		isHidden
+		lineageTag: 343de7e4-6079-439c-bde6-3fd8bbb67cb2
+		sourceLineageTag: AzureResourceIds
+		summarizeBy: none
+		sourceColumn: AzureResourceIds
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column AzureLocationMatch
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 891951e3-3824-498a-b0fb-53533e1eb6b9
+		sourceLineageTag: AzureLocationMatch
+		summarizeBy: none
+		sourceColumn: AzureLocationMatch
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column HasSingleClearAzureResidencyValue
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: de841777-9bfd-44d7-95e5-615cf3424bd7
+		sourceLineageTag: HasSingleClearAzureResidencyValue
+		summarizeBy: none
+		sourceColumn: HasSingleClearAzureResidencyValue
+
+		annotation SummarizationSetBy = Automatic
+
+	/// True if Azure residency code is present in rs_approved_regions and approved=true.
+	column 'Is Azure Region Approved'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9341f397-7c4a-4fc0-ab40-75d4f4604a4f
+		sourceLineageTag: IsAzureRegionApproved
+		summarizeBy: none
+		sourceColumn: IsAzureRegionApproved
+
+		changedProperty = Description
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ApprovedRegionCodeMatch
+		dataType: string
+		isHidden
+		lineageTag: 9a2db609-6151-4205-bf3e-2ae9e5621415
+		sourceLineageTag: ApprovedRegionCodeMatch
+		summarizeBy: none
+		sourceColumn: ApprovedRegionCodeMatch
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ApprovedRegionName
+		dataType: string
+		isHidden
+		lineageTag: 64e1a4ae-b5fc-4949-9815-2c8ac9a2881a
+		sourceLineageTag: ApprovedRegionName
+		summarizeBy: none
+		sourceColumn: ApprovedRegionName
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ApprovedRegionNotes
+		dataType: string
+		isHidden
+		lineageTag: 85e3ca93-4ce8-40e2-9236-423812d74089
+		sourceLineageTag: ApprovedRegionNotes
+		summarizeBy: none
+		sourceColumn: ApprovedRegionNotes
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResidencyScorePct
+		dataType: int64
+		formatString: 0
+		lineageTag: 6620f7c6-601c-4ff5-b5ac-055c32102979
+		sourceLineageTag: ResidencyScorePct
+		summarizeBy: sum
+		sourceColumn: ResidencyScorePct
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResidencyScoreReason
+		dataType: string
+		lineageTag: 3e3e26f3-f5ff-4fcf-a628-1ff941ae05af
+		sourceLineageTag: ResidencyScoreReason
+		summarizeBy: none
+		sourceColumn: ResidencyScoreReason
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsApprovedResidency_ScorecardField
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: cd3f60b7-30cb-42f2-9e75-a7aae29e9a0f
+		sourceLineageTag: IsApprovedResidency_ScorecardField
+		summarizeBy: none
+		sourceColumn: IsApprovedResidency_ScorecardField
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Approved Azure residency code to write to Purview glossary (e.g., eastus2).
+	column 'Target Purview Residency Code'
+		dataType: string
+		lineageTag: f66fb864-20b1-4bd9-96a9-2570e7676285
+		sourceLineageTag: TargetResidencyCode
+		summarizeBy: none
+		sourceColumn: TargetResidencyCode
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Current Purview glossary residency code expected during apply; used for conflict protection (can be null if missing).
+	column 'Expected Current Purview Residency Code'
+		dataType: string
+		lineageTag: 70eef53d-f22c-482e-908c-9acf20609860
+		sourceLineageTag: ExpectedCurrentResidencyCode
+		summarizeBy: none
+		sourceColumn: ExpectedCurrentResidencyCode
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// True when Copilot may offer Purview glossary residency update based on approved Azure residency and mismatch/missing Purview residency
+	column 'Eligible for Purview Residency Update'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8a753f6d-1eb1-4de8-9dd3-28cc6810398f
+		sourceLineageTag: EligibleForResidencyUpdate
+		summarizeBy: none
+		sourceColumn: EligibleForResidencyUpdate
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Deterministic reason explaining why the data product is or is not eligible for Copilot-driven Purview residency update.
+	column 'Residency Update Eligibility Reason'
+		dataType: string
+		lineageTag: eb7aa4bf-9e3e-457c-bbb4-87decfdce0ab
+		sourceLineageTag: EligibilityReason
+		summarizeBy: none
+		sourceColumn: EligibilityReason
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Suggested action for Purview glossary under Gl-Region: add, replace, or none.
+	column 'Suggested Purview Residency Action'
+		dataType: string
+		lineageTag: 2fc15695-ab8e-46a6-acb6-d79722bd64fa
+		sourceLineageTag: SuggestedPurviewResidencyAction
+		summarizeBy: none
+		sourceColumn: SuggestedPurviewResidencyAction
+
+		changedProperty = Name
+
+		changedProperty = Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column EligibilityLogicVersion
+		dataType: string
+		isHidden
+		lineageTag: cf8ca038-6be5-4481-8b60-c02f5ec63813
+		sourceLineageTag: EligibilityLogicVersion
+		summarizeBy: none
+		sourceColumn: EligibilityLogicVersion
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Copilot Purview Residency Change Eligibility' = entity
+		mode: directLake
+		source
+			entityName: dp_copilot_purview_residency_change_eligibility
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+
+	changedProperty = Description
+
+	changedProperty = Name
+

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/2.0.0/schema.json",
+  "version": "4.0",
+  "datasetReference": {
+    "byConnection": {
+      "connectionString": "Data Source=powerbi://api.powerbi.com/v1.0/myorg/ext_fabric_space_moaz;initial catalog=semantic_model_purview_dataproduct_residency_gold;integrated security=ClaimsToken;semanticmodelid=8f7aded9-493f-45fe-8697-36b0145879d1"
+    }
+  }
+}

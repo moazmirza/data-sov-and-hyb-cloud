@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataAgent",
+    "displayName": "Sov Data Agent Contoso",
+    "description": "This agent is the analytics/Q&A engine for Confidential Compute (CC) and PII (Full Name) compliance. It uses the AI-prepped semantic model (latest snapshot overall) to:\n\nreport fully compliant (score 100) vs noncompliant (<100) data product counts\n\nexplain “why” using noncompliance reasons\n\nproduce the investigation list for CC+PII risk (Full Name present + score 50/75 only), including owner details and suggested tag key/value\nNote: scores 0/25 are treated as transitive onboarding states and are excluded from “investigation” in v1."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "00000000-0000-0000-0000-000000000000"
+  }
+}

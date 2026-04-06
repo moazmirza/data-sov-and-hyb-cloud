@@ -1,0 +1,76 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "Notebook_Refresh_Purview_Update_Dashboard",
+        "description": "Notebook_Refresh_Purview_Update_Dashboard",
+        "type": "TridentNotebook",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "notebookId": "247f4c0d-7f52-47bf-ba4b-98834ef9e456",
+          "workspaceId": "66d5a770-33db-4274-a2fc-dad6a76b7c6f"
+        }
+      },
+      {
+        "name": "Notebook_ComplianceChecks_AzureFunctions",
+        "description": "Compliance checks (calls Azure Functions, writes compliance delta tables)",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "Notebook_Refresh_Purview_Update_Dashboard",
+            "dependencyConditions": [
+              "Completed"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "notebookId": "bd8003fe-cdba-4ce8-9b9c-f54c48216ac3",
+          "workspaceId": "66d5a770-33db-4274-a2fc-dad6a76b7c6f"
+        }
+      },
+      {
+        "name": "Send Teams Message",
+        "type": "MicrosoftTeams",
+        "dependsOn": [
+          {
+            "activity": "Notebook_ComplianceChecks_AzureFunctions",
+            "dependencyConditions": [
+              "Completed"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "operationType": "SendMessageInChannel",
+          "content": "<p>The pipeline, &nbsp;@{pipeline().Pipeline}, in the workspace: @{pipeline().DataFactory}, has this status:</p>\n<p>Notebook 1: @{activity('Notebook_ComplianceChecks_AzureFunctions').output}</p>\n<p>Notebook 2: @{activity('Notebook_Refresh_Purview_Update_Dashboard').output}</p>",
+          "subject": "Contoso Data Sovereignty Pipeline Alert",
+          "teamId": "e1a9b340-6d4a-43f9-8ce5-faf859873670",
+          "channelId": "19:CsqyIBpg9_oQvmxiaZG6z_8B5wApph-uS7figeiPqpc1@thread.tacv2"
+        },
+        "externalReferences": {
+          "connection": "38ba308a-4eed-46fe-b9ee-075d30b1bc5f"
+        }
+      }
+    ]
+  }
+}

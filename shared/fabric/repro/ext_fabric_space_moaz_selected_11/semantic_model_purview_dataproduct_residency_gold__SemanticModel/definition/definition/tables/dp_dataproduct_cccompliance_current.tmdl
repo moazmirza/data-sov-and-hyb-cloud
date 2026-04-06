@@ -1,0 +1,321 @@
+table dp_dataproduct_cccompliance_current
+	lineageTag: 8a3344ed-882e-4366-80ce-e131527064db
+	sourceLineageTag: [dbo].[dp_dataproduct_cccompliance_current]
+
+	measure 'CC - Applicable PII Count' =
+			
+			CALCULATE(
+			    COUNTROWS('dp_dataproduct_cccompliance_current'),
+			    'dp_dataproduct_cccompliance_current'[CCForPIIStatus] = "Applicable"
+			)
+		formatString: 0
+		lineageTag: b44196d4-bd9e-4863-8cbe-4effcc43b210
+
+		changedProperty = Name
+
+	measure 'CC - Overall Compliance Score (Applicable PII)' =
+			
+			VAR ApplicableRows =
+			    FILTER(
+			        'dp_dataproduct_cccompliance_current',
+			        'dp_dataproduct_cccompliance_current'[CCForPIIStatus] = "Applicable"
+			    )
+			RETURN
+			    IF(
+			        COUNTROWS(ApplicableRows) = 0,
+			        BLANK(),
+			        AVERAGEX(ApplicableRows, 'dp_dataproduct_cccompliance_current'[CCForPIIScore])
+			    )
+		formatString: 0
+		isHidden
+		lineageTag: 2bd6df59-c58c-452a-be2e-f8f8b851b086
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		changedProperty = IsHidden
+
+	measure 'CC - Score 100 Count' =
+			
+			CALCULATE(
+			    COUNTROWS('dp_dataproduct_cccompliance_current'),
+			    'dp_dataproduct_cccompliance_current'[CCForPIIScore] = 100
+			)
+		formatString: 0
+		lineageTag: ad4352d7-7e53-485d-9e30-6632d5968e09
+
+		changedProperty = Name
+
+	measure 'CC - Score 25 Count' =
+			
+			CALCULATE(
+			    COUNTROWS('dp_dataproduct_cccompliance_current'),
+			    'dp_dataproduct_cccompliance_current'[CCForPIIScore] = 25
+			)
+		formatString: 0
+		lineageTag: 6606525d-9418-41c7-988c-b9948108210e
+
+		changedProperty = Name
+
+	measure 'CC - Score 50 Count' =
+			
+			CALCULATE(
+			    COUNTROWS('dp_dataproduct_cccompliance_current'),
+			    'dp_dataproduct_cccompliance_current'[CCForPIIScore] = 50
+			)
+		formatString: 0
+		lineageTag: aaf768b2-810a-4a61-a9cb-4e6d1c087a1c
+
+		changedProperty = Name
+
+	measure 'CC - Score 75 Count' =
+			
+			CALCULATE(
+			    COUNTROWS('dp_dataproduct_cccompliance_current'),
+			    'dp_dataproduct_cccompliance_current'[CCForPIIScore] = 75
+			)
+		formatString: 0
+		lineageTag: 53358a1a-e61a-4639-9601-fac3f9e6acfc
+
+		changedProperty = Name
+
+	measure 'Avg CC Compliance Score %' =
+			
+			AVERAGE (dp_dataproduct_cccompliance_current[CCForPIIScore])
+		lineageTag: d0534af9-34d2-4f00-9dcf-554be30cf135
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Patch Compliance Score %' =
+			
+			AVERAGEX(
+			    'dp_dataproduct_cccompliance_current',
+			    IF(
+			        ISBLANK('dp_dataproduct_cccompliance_current'[PendingUpdatesTotal]) ||
+			        'dp_dataproduct_cccompliance_current'[PendingUpdatesTotal] = 0,
+			        100,
+			        0
+			    )
+			)
+		lineageTag: 07c3616a-f3b8-4eb1-9d1d-19a840b2d12f
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DataProductId
+		dataType: string
+		lineageTag: 100aaa55-6094-4ade-997f-0124d6205844
+		sourceLineageTag: DataProductId
+		summarizeBy: none
+		sourceColumn: DataProductId
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductDisplayName
+		dataType: string
+		lineageTag: e1d0bcbd-2db9-4474-a5f0-6ed4329a32cf
+		sourceLineageTag: DataProductDisplayName
+		summarizeBy: none
+		sourceColumn: DataProductDisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column HasFullNameClassification
+		dataType: int64
+		formatString: 0
+		lineageTag: 68a3771c-28fc-4cb7-9350-c390901e3684
+		sourceLineageTag: HasFullNameClassification
+		summarizeBy: sum
+		sourceColumn: HasFullNameClassification
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullNameColumnCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 7b592508-e08b-425d-811e-91a850530731
+		sourceLineageTag: FullNameColumnCount
+		summarizeBy: sum
+		sourceColumn: FullNameColumnCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column CCForPIIScore
+		dataType: int64
+		formatString: 0
+		lineageTag: e9edb23b-1c06-4e35-a454-4e583872aa5b
+		sourceLineageTag: CCForPIIScore
+		summarizeBy: sum
+		sourceColumn: CCForPIIScore
+
+		annotation SummarizationSetBy = Automatic
+
+	column CCForPIIStatus
+		dataType: string
+		lineageTag: 92cad3a7-1e64-48a0-8878-4eb393b5a621
+		sourceLineageTag: CCForPIIStatus
+		summarizeBy: none
+		sourceColumn: CCForPIIStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reason
+		dataType: string
+		lineageTag: 50eca65e-4b7c-4419-96c2-2ec26b70a318
+		sourceLineageTag: Reason
+		summarizeBy: none
+		sourceColumn: Reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResourceId
+		dataType: string
+		lineageTag: 31f9cd30-a3c0-4863-923a-7174ff468129
+		sourceLineageTag: ResourceId
+		summarizeBy: none
+		sourceColumn: ResourceId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResourceType
+		dataType: string
+		lineageTag: a47f0173-018d-476d-892a-312ee57b9b9c
+		sourceLineageTag: ResourceType
+		summarizeBy: none
+		sourceColumn: ResourceType
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubscriptionId
+		dataType: string
+		lineageTag: 07544d73-d059-4b21-a94b-e8c69e2f2e1a
+		sourceLineageTag: SubscriptionId
+		summarizeBy: none
+		sourceColumn: SubscriptionId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResourceGroup
+		dataType: string
+		lineageTag: 7cb73af9-49de-4778-894d-e9d57aeee581
+		sourceLineageTag: ResourceGroup
+		summarizeBy: none
+		sourceColumn: ResourceGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		dataType: string
+		lineageTag: 47e0acc1-d65d-411c-9449-b8278d783695
+		sourceLineageTag: Location
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column VmSize
+		dataType: string
+		lineageTag: b1e6b74d-9f67-4e10-a95a-868b85e0b67a
+		sourceLineageTag: VmSize
+		summarizeBy: none
+		sourceColumn: VmSize
+
+		annotation SummarizationSetBy = Automatic
+
+	column SecurityType
+		dataType: string
+		lineageTag: 76ebf763-6565-44a6-81f0-d69550a3caaf
+		sourceLineageTag: SecurityType
+		summarizeBy: none
+		sourceColumn: SecurityType
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsApprovedSku
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f2052bfa-8b9d-4f29-a84b-11a08198e59e
+		sourceLineageTag: IsApprovedSku
+		summarizeBy: none
+		sourceColumn: IsApprovedSku
+
+		annotation SummarizationSetBy = Automatic
+
+	column DetailsNote
+		dataType: string
+		lineageTag: d69374e2-8395-4037-9d6a-6407059b664c
+		sourceLineageTag: DetailsNote
+		summarizeBy: none
+		sourceColumn: DetailsNote
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArmError
+		dataType: string
+		lineageTag: 7a7229cc-b5cc-40a1-a837-efc333c83223
+		sourceLineageTag: ArmError
+		summarizeBy: none
+		sourceColumn: ArmError
+
+		annotation SummarizationSetBy = Automatic
+
+	column SnapshotUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9de91aea-4389-4500-a304-4b5efa98f0b0
+		sourceLineageTag: SnapshotUtc
+		summarizeBy: none
+		sourceColumn: SnapshotUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsApprovedRegion
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 50112fc1-61fe-4f13-9228-eba10c66b314
+		sourceLineageTag: IsApprovedRegion
+		summarizeBy: none
+		sourceColumn: IsApprovedRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastUpdateScanUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a5cb7f3d-1bb0-4b72-b329-c4842f9ee1f3
+		sourceLineageTag: LastUpdateScanUtc
+		summarizeBy: none
+		sourceColumn: LastUpdateScanUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column PendingUpdatesTotal
+		dataType: int64
+		formatString: 0
+		lineageTag: feece78a-f5cd-4cef-b00e-abf55d36409a
+		sourceLineageTag: PendingUpdatesTotal
+		summarizeBy: sum
+		sourceColumn: PendingUpdatesTotal
+
+		annotation SummarizationSetBy = Automatic
+
+	column PatchAssessmentStatus
+		dataType: string
+		lineageTag: a6fee33b-8889-429d-bd19-2e511ea59ae2
+		sourceLineageTag: PatchAssessmentStatus
+		summarizeBy: none
+		sourceColumn: PatchAssessmentStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dp_dataproduct_cccompliance_current = entity
+		mode: directLake
+		source
+			entityName: dp_dataproduct_cccompliance_current
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+

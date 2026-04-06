@@ -1,0 +1,7 @@
+{
+  "displayName": "ext_lakehouse_fabric_moaz",
+  "type": "SQLEndpoint",
+  "id": "<FABRIC_ITEM_ID_4>",
+  "workspaceId": "<FABRIC_WORKSPACE_ID>"
+}
+

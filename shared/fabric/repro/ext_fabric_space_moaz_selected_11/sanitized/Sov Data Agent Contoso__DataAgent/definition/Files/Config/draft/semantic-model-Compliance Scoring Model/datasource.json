@@ -1,0 +1,372 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/dataAgent/definition/dataSource/1.0.0/schema.json",
+  "artifactId": "<FABRIC_ITEM_ID_1>",
+  "workspaceId": "<FABRIC_WORKSPACE_ID>",
+  "dataSourceInstructions": null,
+  "displayName": "Compliance Scoring Model",
+  "type": "semantic_model",
+  "userDescription": null,
+  "metadata": {},
+  "elements": [
+    {
+      "id": "8cbdf4cd-55a5-4599-88f1-07c9fe16bb2f",
+      "is_selected": true,
+      "display_name": "Confidential Compute (cc) PII Compliance Investigations (Current)",
+      "type": "semantic_model.table",
+      "description": "main Q&A fact because it already has:\n\nscore/state/reason\n\ninvestigation fields\n\napplicability\n\nfull-name classification indicators\n\nresource metadata\n\nowner metadata",
+      "children": [
+        {
+          "id": "67cfb16d-f10d-401f-a02e-922ca9db95b6",
+          "is_selected": true,
+          "display_name": "arc cloud provider name",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "6ecb8ade-5865-4dff-931e-a0e7f8c85134",
+          "is_selected": true,
+          "display_name": "azure resource group",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "azure resource group of the data product",
+          "children": []
+        },
+        {
+          "id": "c2d01942-2954-4c47-937a-36b304480eec",
+          "is_selected": true,
+          "display_name": "azure resource name",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "f3ed87f5-0175-4b99-9cf9-b8ba0d259a05",
+          "is_selected": true,
+          "display_name": "azure resource type",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "e1080bd1-c779-4946-9139-7b809e45018f",
+          "is_selected": true,
+          "display_name": "confidential compute (cc) applicable",
+          "type": "semantic_model.column",
+          "data_type": "Boolean",
+          "description": "data product is applicable for confidential compute compliance scoring",
+          "children": []
+        },
+        {
+          "id": "755bba31-7ae2-4ad3-b8a7-0f16361b4d7e",
+          "is_selected": true,
+          "display_name": "confidential compute (cc) applicable resource",
+          "type": "semantic_model.column",
+          "data_type": "Boolean",
+          "description": "resource is applicable for confidential compute (cc) compliance scoring",
+          "children": []
+        },
+        {
+          "id": "78c53496-99c0-4c0d-92be-f2ff8e14446d",
+          "is_selected": true,
+          "display_name": "confidential compute (cc) resource kind",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "type of resource",
+          "children": []
+        },
+        {
+          "id": "0ed5ffab-424a-4d5b-b308-4cf79ef64ace",
+          "is_selected": true,
+          "display_name": "confidential compute security type",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "295ff2c1-3f6d-47e9-8972-b2623fd36abc",
+          "is_selected": true,
+          "display_name": "data product id",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "610c4037-4fd8-49c9-a77c-a2f751a49996",
+          "is_selected": true,
+          "display_name": "data product owner email",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "4a4e8715-aecc-4483-9806-ba0f547fce7d",
+          "is_selected": true,
+          "display_name": "data product owner name",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "ce36b9f9-328c-4c68-bedd-55e49ece2165",
+          "is_selected": true,
+          "display_name": "full name column count",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "how many full name columns which is a personal information or PII",
+          "children": []
+        },
+        {
+          "id": "ad9aac04-e784-4498-a9ea-3930b985b432",
+          "is_selected": true,
+          "display_name": "has full name classification",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "1 means yes",
+          "children": []
+        },
+        {
+          "id": "c7a50bef-c88d-4f10-931c-3a748e51af38",
+          "is_selected": true,
+          "display_name": "investigation reason code",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "f444af5b-4db1-4d2b-849c-198f7a99b52c",
+          "is_selected": true,
+          "display_name": "investigation required",
+          "type": "semantic_model.column",
+          "data_type": "Boolean",
+          "description": "1 is a yes",
+          "children": []
+        },
+        {
+          "id": "b6f54732-53f8-4cc6-9a40-c69f7d6f77e7",
+          "is_selected": true,
+          "display_name": "is approved sku",
+          "type": "semantic_model.column",
+          "data_type": "Boolean",
+          "description": "1 means approved sku",
+          "children": []
+        },
+        {
+          "id": "700d5cea-9bd2-4171-8191-ef3d4e8d880c",
+          "is_selected": true,
+          "display_name": "location",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "location or residency or region in Azure for this product",
+          "children": []
+        },
+        {
+          "id": "9cb6cebd-8548-4591-9cfc-8659d8815178",
+          "is_selected": true,
+          "display_name": "subscription id",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "161e5f31-4b70-4d94-b8be-4b0612d410cc",
+          "is_selected": true,
+          "display_name": "suggested investigation tag key",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "28dc76d6-bfc9-42f4-8b84-f301940cc54d",
+          "is_selected": true,
+          "display_name": "suggested investigation tag value",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "01d23275-c1ef-47cb-86b1-cfb3c83761b6",
+      "is_selected": true,
+      "display_name": "Confidential Compute (cc) Resource Signals (Current)",
+      "type": "semantic_model.table",
+      "description": "confidential compute scoring for all data products",
+      "children": [
+        {
+          "id": "2de2a0a6-d2fc-4869-8dee-8da0a2f2f262",
+          "is_selected": true,
+          "display_name": "azure resource compute sku",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "b574fb69-c90e-4ac9-88e7-99c0861d8d6b",
+          "is_selected": true,
+          "display_name": "azure resource group",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "a5dabf51-a9aa-44ef-807a-06958c9699e9",
+          "is_selected": true,
+          "display_name": "azure resource id",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "94aa13ee-bcfa-4165-9bbc-229c515acad6",
+          "is_selected": true,
+          "display_name": "azure resource location",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "7f1af319-d352-48f6-ade0-bf152fcc4e22",
+          "is_selected": true,
+          "display_name": "azure resource subscription id",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "f9528b9f-3bbb-48a4-a52b-d4bd9631658a",
+          "is_selected": true,
+          "display_name": "azure resource type",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "1229305e-da99-4741-b609-67b66cc68dcd",
+          "is_selected": true,
+          "display_name": "data product compliance score reason",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "f078a14a-1d99-41cb-ac52-fb1f54a61e3d",
+          "is_selected": true,
+          "display_name": "data product confidential compute pii compliance score",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "d941e764-1352-43d1-82d3-a377db2de4c2",
+          "is_selected": true,
+          "display_name": "data product eligibility status for confidential compute",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": "if it has personal data such as full name then it is required to be running on a confidential compute",
+          "children": []
+        },
+        {
+          "id": "30ed7a0e-ffd3-423c-9419-c0a7c44c27b9",
+          "is_selected": true,
+          "display_name": "data product id",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "727751c1-a6c5-406a-84a4-1ce1df6ff6e8",
+          "is_selected": true,
+          "display_name": "full name classification",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": "1 means that the data product has a table with personal information, pii or full name",
+          "children": []
+        },
+        {
+          "id": "3dc125da-5c97-49b8-9d5b-a0d788464be4",
+          "is_selected": true,
+          "display_name": "is region approved",
+          "type": "semantic_model.column",
+          "data_type": "Boolean",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "b9e4156e-a74c-4a40-a327-d358494c62c2",
+          "is_selected": true,
+          "display_name": "is sku approved",
+          "type": "semantic_model.column",
+          "data_type": "Boolean",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "9fcd2f4a-81fc-4b1a-93eb-d1a2861f73ba",
+          "is_selected": true,
+          "display_name": "number of full name column",
+          "type": "semantic_model.column",
+          "data_type": "Int64",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "ead22ddd-4e5c-4d2b-9a66-f905284387bc",
+          "is_selected": true,
+          "display_name": "snapshot time utc",
+          "type": "semantic_model.column",
+          "data_type": "DateTime",
+          "description": null,
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "541b1310-6886-4ccd-b106-26709d1d1d14",
+      "is_selected": true,
+      "display_name": "Data Products",
+      "type": "semantic_model.table",
+      "description": "Use this as your lookup/dimension for:\n\nproduct name\n\ndescription\n\nproduct ID",
+      "children": [
+        {
+          "id": "c8d149a8-8140-4172-95b5-2e9dae45f87a",
+          "is_selected": true,
+          "display_name": "data product id",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        },
+        {
+          "id": "c152d34b-2f3b-415f-bfc2-1bc541bfab6b",
+          "is_selected": true,
+          "display_name": "data product name",
+          "type": "semantic_model.column",
+          "data_type": "String",
+          "description": null,
+          "children": []
+        }
+      ]
+    }
+  ]
+}

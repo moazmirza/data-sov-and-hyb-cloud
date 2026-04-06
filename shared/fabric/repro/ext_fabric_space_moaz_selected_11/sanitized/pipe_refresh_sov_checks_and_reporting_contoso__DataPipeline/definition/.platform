@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "pipe_refresh_sov_checks_and_reporting_contoso",
+    "description": "Notebook 1: Compliance checks (calls Azure Functions, writes compliance delta tables). Notebook 2: Sovereignty dashboard notebook (reads the refreshed tables / semantic model prep)"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "00000000-0000-0000-0000-000000000000"
+  }
+}

@@ -1,0 +1,104 @@
+table dp_purviewassetcount_deltas
+	lineageTag: 24601635-8fe1-4616-894f-ffc486b4e26c
+	sourceLineageTag: [dbo].[dp_purviewassetcount_deltas]
+
+	measure 'Purview DeltaPct (Last Run)' =
+			
+			VAR _latest =
+			    CALCULATE (
+			        MAX ( 'dp_purviewassetcount_deltas'[SnapshotUtc] ),
+			        ALL ( 'dp_purviewassetcount_deltas' )
+			    )
+			RETURN
+			    CALCULATE (
+			        MAX ( 'dp_purviewassetcount_deltas'[DeltaPct] ),
+			        FILTER ( ALL ( 'dp_purviewassetcount_deltas' ), 'dp_purviewassetcount_deltas'[SnapshotUtc] = _latest )
+			    )
+		formatString: 0.00
+		lineageTag: e556142a-61e1-4929-955b-255f3d41da9f
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Purview SpikeDrop Flag (Last Run)' = ```
+			
+			VAR _threshold = 0.05
+			VAR _pct = [Purview DeltaPct (Last Run)]
+			RETURN
+			    IF ( NOT ISBLANK ( _pct ) && ABS ( _pct ) >= _threshold, 1, 0 )
+			
+			```
+		formatString: 0
+		lineageTag: 3c8f7120-56d6-4c08-b6c4-73e006e2ee5b
+
+		changedProperty = Name
+
+	column SnapshotUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: df79cc5d-c874-4644-be08-5ea49458c65d
+		sourceLineageTag: SnapshotUtc
+		summarizeBy: none
+		sourceColumn: SnapshotUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalAssets
+		dataType: int64
+		formatString: 0
+		lineageTag: 41d5ea42-b6f0-4694-adbb-f0b3a40353d3
+		sourceLineageTag: TotalAssets
+		summarizeBy: sum
+		sourceColumn: TotalAssets
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsApproximate
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7a5995cb-dbef-4083-9263-ebdc2ae3844f
+		sourceLineageTag: IsApproximate
+		summarizeBy: none
+		sourceColumn: IsApproximate
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrevTotalAssets
+		dataType: int64
+		formatString: 0
+		lineageTag: 2a3a3591-165b-4cf5-a1b0-b78ca22465f1
+		sourceLineageTag: PrevTotalAssets
+		summarizeBy: sum
+		sourceColumn: PrevTotalAssets
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeltaAssets
+		dataType: int64
+		formatString: 0
+		lineageTag: 610d0072-8ac1-460e-b767-8e8f4838ce80
+		sourceLineageTag: DeltaAssets
+		summarizeBy: sum
+		sourceColumn: DeltaAssets
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeltaPct
+		dataType: double
+		lineageTag: 99ba1cef-b272-4bb4-a5ce-15b21ae91901
+		sourceLineageTag: DeltaPct
+		summarizeBy: sum
+		sourceColumn: DeltaPct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition dp_purviewassetcount_deltas = entity
+		mode: directLake
+		source
+			entityName: dp_purviewassetcount_deltas
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+

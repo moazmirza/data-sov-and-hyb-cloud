@@ -1,0 +1,34 @@
+table 'Data Product Assets Count'
+	lineageTag: b1b1df9d-9ef7-42d0-b08d-28168a84b1a5
+	sourceLineageTag: [dbo].[dp_dataproduct_assetcounts_gold]
+
+	column 'Product Name'
+		dataType: string
+		lineageTag: a06c8aaa-aa84-4811-af77-101d1d3ccf21
+		sourceLineageTag: DataProductName
+		summarizeBy: none
+		sourceColumn: DataProductName
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalAssets
+		dataType: int64
+		formatString: 0
+		lineageTag: 3f341af0-9a1b-49a6-9b1c-4f27f7c59603
+		sourceLineageTag: TotalAssets
+		summarizeBy: sum
+		sourceColumn: TotalAssets
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Data Product Assets Count' = entity
+		mode: directLake
+		source
+			entityName: dp_dataproduct_assetcounts_gold
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+
+	changedProperty = Name
+

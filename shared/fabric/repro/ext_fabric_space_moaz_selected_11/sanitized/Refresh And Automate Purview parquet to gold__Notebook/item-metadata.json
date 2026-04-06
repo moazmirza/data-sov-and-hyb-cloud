@@ -1,0 +1,7 @@
+{
+  "displayName": "Refresh And Automate Purview parquet to gold",
+  "type": "Notebook",
+  "id": "<FABRIC_ITEM_ID_7>",
+  "workspaceId": "<FABRIC_WORKSPACE_ID>"
+}
+

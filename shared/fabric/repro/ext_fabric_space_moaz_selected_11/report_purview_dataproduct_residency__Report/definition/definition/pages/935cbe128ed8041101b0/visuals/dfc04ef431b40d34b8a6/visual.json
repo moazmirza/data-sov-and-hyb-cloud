@@ -1,0 +1,80 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "dfc04ef431b40d34b8a6",
+  "position": {
+    "x": 630.8167770419426,
+    "y": 41.677704194260485,
+    "z": 2000,
+    "height": 136.3355408388521,
+    "width": 505.78366445916117,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dp_sovereignty_kpis_timeline_table"
+                    }
+                  },
+                  "Property": "SnapshotUtc"
+                }
+              },
+              "queryRef": "dp_sovereignty_kpis_timeline_table.SnapshotUtc",
+              "nativeQueryRef": "SnapshotUtc",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dp_sovereignty_kpis_timeline_table"
+                        }
+                      },
+                      "Property": "ResidencyCoveragePct"
+                    }
+                  },
+                  "Function": 4
+                }
+              },
+              "queryRef": "Sum(dp_sovereignty_kpis_timeline_table.ResidencyCoveragePct)",
+              "nativeQueryRef": "Max of ResidencyCoveragePct"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dp_sovereignty_kpis_timeline_table"
+                  }
+                },
+                "Property": "SnapshotUtc"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

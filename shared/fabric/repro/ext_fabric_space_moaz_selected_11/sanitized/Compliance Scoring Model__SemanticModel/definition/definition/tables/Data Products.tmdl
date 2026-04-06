@@ -1,0 +1,78 @@
+/// Use this as your lookup/dimension for:
+/// 
+/// product name
+/// 
+/// description
+/// 
+/// product ID
+table 'Data Products'
+	lineageTag: 541b1310-6886-4ccd-b106-26709d1d1d14
+	sourceLineageTag: [dbo].[dp_dataproductresidency_gold]
+
+	column 'data product id'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c8d149a8-8140-4172-95b5-2e9dae45f87a
+		sourceLineageTag: DataProductID
+		summarizeBy: none
+		sourceColumn: DataProductID
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'data product name'
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c152d34b-2f3b-415f-bfc2-1bc541bfab6b
+		sourceLineageTag: DataProductDisplayName
+		summarizeBy: none
+		sourceColumn: DataProductDisplayName
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'data product description'
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: e9b0c290-079f-4bdc-b5f7-4e52550f16b9
+		sourceLineageTag: DataProductDescription
+		summarizeBy: none
+		sourceColumn: DataProductDescription
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'residency region'
+		dataType: string
+		isHidden
+		sourceProviderType: varchar(8000)
+		lineageTag: 7b6de2f4-c4c7-4d7b-a43c-7ba2dc2ec3b9
+		sourceLineageTag: ResidencyRegion
+		summarizeBy: none
+		sourceColumn: ResidencyRegion
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Data Products' = entity
+		mode: directLake
+		source
+			entityName: dp_dataproductresidency_gold
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	changedProperty = Name
+
+	changedProperty = Description
+
+	annotation PBI_ResultType = Table
+

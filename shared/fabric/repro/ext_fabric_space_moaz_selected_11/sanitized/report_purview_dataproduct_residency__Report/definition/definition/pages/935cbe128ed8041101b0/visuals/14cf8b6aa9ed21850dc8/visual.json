@@ -1,0 +1,127 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "14cf8b6aa9ed21850dc8",
+  "position": {
+    "x": 9.1832229580573959,
+    "y": 476.82119205298017,
+    "z": 1000,
+    "height": 232.40618101545255,
+    "width": 591.25827814569539,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dp_sovereignty_kpis_timeline_table"
+                    }
+                  },
+                  "Property": "SnapshotUtc"
+                }
+              },
+              "queryRef": "dp_sovereignty_kpis_timeline_table.SnapshotUtc",
+              "nativeQueryRef": "SnapshotUtc",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dp_sovereignty_kpis_timeline_table"
+                        }
+                      },
+                      "Property": "TotalProductAssets"
+                    }
+                  },
+                  "Function": 4
+                }
+              },
+              "queryRef": "Sum(dp_sovereignty_kpis_timeline_table.TotalProductAssets)",
+              "nativeQueryRef": "Max of TotalProductAssets"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dp_sovereignty_kpis_timeline_table"
+                  }
+                },
+                "Property": "SnapshotUtc"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "anomalyDetection": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "displayName": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Find anomalies 1'"
+                }
+              }
+            },
+            "transform": {
+              "algorithm": "SampleAndDetectAnomaly",
+              "parameters": [
+                {
+                  "Literal": {
+                    "Value": "0.7D"
+                  },
+                  "Name": "Sensitivity"
+                },
+                {
+                  "Literal": {
+                    "Value": "3500L"
+                  },
+                  "Name": "SampleSizePerSeries"
+                }
+              ]
+            },
+            "explainBy": {
+              "exprs": [],
+              "kind": "ExprList"
+            }
+          },
+          "selector": {
+            "metadata": "Sum(dp_sovereignty_kpis_timeline_table.TotalProductAssets)",
+            "id": "1"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

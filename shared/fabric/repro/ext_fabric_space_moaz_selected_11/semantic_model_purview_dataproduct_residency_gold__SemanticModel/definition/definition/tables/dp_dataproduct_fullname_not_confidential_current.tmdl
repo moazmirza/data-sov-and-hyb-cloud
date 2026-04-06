@@ -1,0 +1,89 @@
+table dp_dataproduct_fullname_not_confidential_current
+	lineageTag: 0899d71f-2945-4807-a872-d841d8b4e4ef
+	sourceLineageTag: [dbo].[dp_dataproduct_fullname_not_confidential_current]
+
+	measure 'FullName DPs - Not Confidential' = ```
+			
+			DISTINCTCOUNT(dp_dataproduct_fullname_not_confidential_current[DataProductId])
+			
+			```
+		formatString: 0
+		lineageTag: 71b808aa-3546-4bd0-96d7-1a4b44944fd3
+
+		changedProperty = Name
+
+	measure 'Mapped VMs - Not Confidential' = ```
+			
+			SUM(dp_dataproduct_fullname_not_confidential_current[ComputeVmCount])
+			
+			```
+		formatString: 0
+		lineageTag: 12ad88f2-0b33-4131-bffe-5ea67e6d7fc1
+
+		changedProperty = Name
+
+	column SnapshotUtc
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1d524cdb-79d5-4e47-beaa-a1b75a697f60
+		sourceLineageTag: SnapshotUtc
+		summarizeBy: none
+		sourceColumn: SnapshotUtc
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductId
+		dataType: string
+		lineageTag: 9cace83d-743b-49c2-a3b5-4a06566577ad
+		sourceLineageTag: DataProductId
+		summarizeBy: none
+		sourceColumn: DataProductId
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataProductDisplayName
+		dataType: string
+		lineageTag: 4d17a00c-32ec-426c-a709-3749c2bbf79f
+		sourceLineageTag: DataProductDisplayName
+		summarizeBy: none
+		sourceColumn: DataProductDisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullNameColumnCount
+		dataType: int64
+		formatString: 0
+		lineageTag: d4a9b19b-90cb-4f64-b82f-67a5c555f231
+		sourceLineageTag: FullNameColumnCount
+		summarizeBy: sum
+		sourceColumn: FullNameColumnCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column ComputeVmCount
+		dataType: int64
+		formatString: 0
+		lineageTag: f0111831-2eb3-4455-8993-7fd9e390fc16
+		sourceLineageTag: ComputeVmCount
+		summarizeBy: sum
+		sourceColumn: ComputeVmCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsConfidentialCompute
+		dataType: int64
+		formatString: 0
+		lineageTag: 9b7dbd79-5298-41c1-96f5-7ad68a3c2183
+		sourceLineageTag: IsConfidentialCompute
+		summarizeBy: sum
+		sourceColumn: IsConfidentialCompute
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dp_dataproduct_fullname_not_confidential_current = entity
+		mode: directLake
+		source
+			entityName: dp_dataproduct_fullname_not_confidential_current
+			schemaName: dbo
+			expressionSource: 'DirectLake - ext_lakehouse_fabric_moaz'
+
