@@ -237,6 +237,28 @@ This section documents each notebook's structure and data transformation flow.
 
 ---
 
+### Notebook 2: "notebook_fabric_function_sov_compliance_checks_new__Notebook"
+
+**Purpose:** Scores data products across sovereignty controls (Tag, Residency, Confidential Compute for PII, Defender) by calling secured Azure Function APIs, then writes current and historical compliance scorecards for reporting.
+
+#### Block Flow:
+1. **Setup + Imports** → Load Python libraries (requests, msal, pyspark) and notebook runtime dependencies
+2. **Secrets + Config** → Read Key Vault secrets and configure tenant/client IDs, API scope, subscriptions, and function routes
+3. **Auth Helpers** → Acquire Entra token (client credentials) and initialize batched API invocation helpers
+4. **Load DP Base** → Read dp_dataproductresidency_gold and optional PII/classification context for scoring applicability
+5. **Applicability Flags** → Derive TagApplicable, ResidencyApplicable, CCApplicable, DefenderApplicable flags
+6. **Tag Compliance Call** → POST batch requests to /api/azure/tagCompliance and parse results
+7. **Residency Compliance Call** → POST batch requests to /api/azure/residencyCompliance and parse results
+8. **CC for PII Call** → POST batch requests to /api/azure/ccForPiiCompliance and parse results
+9. **Defender Compliance Call** → POST batch requests to /api/azure/defenderCompliance and parse results
+10. **Current + History Writes** → Overwrite current tables and append history tables for each compliance domain
+11. **Compliance Summary Build** → Produce unified per-product compliance summary table for matrix/scorecard visuals
+
+#### Component Flow Diagram:
+- **Lakehouse Base Tables** → **Applicability Logic** → **Function App APIs (EasyAuth + Entra token)** → **Score DataFrames** → **Current/History Compliance Tables** → **Compliance Summary** → **Power BI**
+
+---
+
 ## Notebook Execution Deep Dive
 For full notebook execution details, including external component interactions and authentication paths, see **[NOTEBOOK_BLOCKS.md](NOTEBOOK_BLOCKS.md)**.
 
