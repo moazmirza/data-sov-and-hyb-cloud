@@ -211,3 +211,48 @@ Column derivation in `dp_dataproduct_compliance_summary_current` (from notebook 
 3. Create visual in Power BI/Fabric, bind to table/measure
 4. Export report definition, commit to git
 
+
+## Notebook Execution Blocks & Data Transformations
+
+This section documents each notebook's structure and data transformation flow.
+
+### Notebook 1: "Refresh And Automate Purview parquet to gold__Notebook"
+
+**Purpose:** Materializes Purview SSA exports into Delta tables, builds gold-layer aggregations, populates history/delta tables for trend analysis and anomaly detection.
+
+#### Block Flow:
+1. **Dependencies** → Install msal for Purview API
+2. **Raw Ingest** → Parquet → dbo.* managed tables (uc_dataproduct, glossaryterm, ssa_dataasset_raw, etc.)
+3. **Gold: Residency** → 3-table JOIN → dp_dataproductresidency_gold (1 row per product + region)
+4. **History: Residency** → Append gold snapshots → dp_dataproductresidency_history
+5. **Gold: Assets** → Aggregate join → dp_dataproduct_assetcounts_gold (asset counts per product)
+6. **History: Assets** → Append gold snapshots → dp_dataproduct_assetcounts_history
+7. **Purview API** → Fetch total asset count from Purview → dp_purviewassetcount_current
+8. **History: Purview** → Append snapshots → dp_purviewassetcount_history
+9. **Delta Tables** → LAG window functions on history → dp_*_deltas (compute percent-change for anomalies)
+10. **KPI Timeline** → AS-OF joins (time-bounded) → dp_sovereignty_kpis_timeline_table (single unified timeline)
+
+#### Component Flow Diagram:
+- **Files (OneLake)** → **dbo.* (Raw)** → **Gold Tables** → **History (Append)** → **Delta Tables (Trend)** → **KPI Timeline** → **Power BI**
+
+---
+
+## Notebook Execution Deep Dive
+### Notebook 2: "notebook_fabric_function_sov_compliance_checks_new__Notebook"
+
+2. **Helpers** → Register auth/batching/Delta-write utilities (reusable across compliance checks)
+3. **Load DP Base** → Read dp_dataproductresidency_gold + derive product categories (IsS3, IsVmLike, IsSqlPaaS, IsHybridComputeMachine) + PII flag
+4. **Applicability Flags** → Filter: TagApplicable (not S3), ResidencyApplicable (all), CCApplicable (PII only), DefenderApplicable (compute/SQL/Arc, not S3/Fabric)
+5. **Tag Compliance** → POST batch DP IDs → Tag API → Reshape responses → ScoreDF
+6. **Write Tag** → Overwrite dp_dataproduct_tagcompliance_current + append history
+7. **Residency Compliance** → POST batch DP IDs → Residency API → Reshape → ScoreDF
+8. **Write Residency** → Overwrite current + append history
+9. **CC for PII Compliance** → POST (CC-applicable DPs only) → CC API → Reshape → ScoreDF (N/A=100 for non-PII products)
+10. **Write CC** → Overwrite current + append history
+11. **Defender Compliance** → POST (compute/SQL/Arc resources) → Defender API → Reshape → ScoreDF
+12. **Write Defender** → Overwrite current + append history
+13. **Compliance Summary** (optional) → UNION/PIVOT all scorecards → 1 row per product, N compliance dimensions
+
+#### Component Transformation:
+- **DP Base** → **Categorize & Flag** → **Batch to 4 APIs** → **Reshape to 4 ScoreDFs** → **4 Scorecard Tables (Current+History)** → **Optional Summary Table** → **Power BI Compliance Matrix**
+
