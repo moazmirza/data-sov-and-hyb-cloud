@@ -73,28 +73,54 @@ graph LR
 
 ## Page-specific lineage: Sovereignty Monitoring (Compliance Dashboard)
 
-Purpose: Multi-dimensional compliance scorecard and historical trends for residency, compute, defender, tag, and patch compliance across data products.
+Purpose: Compliance dashboard lineage aligned to how tables are actually built in `notebook_fabric_function_sov_compliance_checks_new`.
 
 ```mermaid
 graph LR
-  LH["🏪 ext_lakehouse_fabric_moaz"]
+  subgraph NOTEBOOK_BUILD["Notebook build: notebook_fabric_function_sov_compliance_checks_new"]
+    DP_BASE["dp_dataproductresidency_gold\n(base data products)"]
+    REGIONS["rs_approved_regions"]
+    CC_SKUS["rs_confidential_compute_skus"]
+    PII["dp_dataproduct_fullnameclassification_current"]
+    FUNC["Function App APIs\ntag/residency/cc/defender"]
 
-  LH -->|DirectLake| CS["dp_dataproduct_compliance_summary_current"]
-  LH -->|DirectLake| RC["dp_dataproduct_residencycompliance_current"]
-  LH -->|DirectLake| AD["dp_dataproduct_assetcount_deltas"]
-  LH -->|DirectLake| RD["dp_dataproduct_residency_deltas"]
-  LH -->|DirectLake| DP["Data Products"]
+    DP_BASE --> TAG_CUR["dp_dataproduct_tagcompliance_current"]
+    FUNC --> TAG_CUR
 
-  CS --> MATRIX["Compliance Matrix\n(Residency, CC, Defender, Tag, Patch)"]
-  RC --> SCORE["Avg Residency Compliance Score"]
-  AD --> ASSET_TREND["Asset Count Over Time"]
-  RD --> RES_TREND["Residency Changes Over Time"]
-  DP --> SLICER["Data Product Slicer"]
+    DP_BASE --> RES_CUR["dp_dataproduct_residencycompliance_current"]
+    REGIONS --> RES_CUR
+    FUNC --> RES_CUR
 
-  SLICER --> MATRIX
-  SLICER --> SCORE
-  SLICER --> ASSET_TREND
-  SLICER --> RES_TREND
+    DP_BASE --> CC_CUR["dp_dataproduct_cccompliance_current"]
+    PII --> CC_CUR
+    CC_SKUS --> CC_CUR
+    FUNC --> CC_CUR
+
+    DP_BASE --> DEF_CUR["dp_dataproduct_defendercompliance_current"]
+    FUNC --> DEF_CUR
+
+    RES_CUR --> COMP_SUM["dp_dataproduct_compliance_summary_current"]
+    TAG_CUR --> COMP_SUM
+    CC_CUR --> COMP_SUM
+    DEF_CUR --> COMP_SUM
+    DP_BASE --> COMP_SUM
+  end
+
+  COMP_SUM --> MATRIX["Compliance Matrix\n(Residency, CC, Defender, Tag, Patch)"]
+  RES_CUR --> SCORE["Avg Residency Compliance Score"]
+
+  subgraph OTHER_PIPELINES["Other snapshot pipelines (not created in this notebook)"]
+    ASSET_DELTA["dp_dataproduct_assetcount_deltas"]
+    RES_DELTA["dp_dataproduct_residency_deltas"]
+  end
+
+  ASSET_DELTA --> ASSET_TREND["Asset Count Over Time"]
+  RES_DELTA --> RES_TREND["Residency Changes Over Time"]
+
+  DP_SLICER["Data Products slicer"] --> MATRIX
+  DP_SLICER --> SCORE
+  DP_SLICER --> ASSET_TREND
+  DP_SLICER --> RES_TREND
 
   MATRIX --> PAGE["Sovereignty Monitoring Page\nreport_purview_dataproduct_residency__Report"]
   SCORE --> PAGE
@@ -103,11 +129,13 @@ graph LR
 ```
 
 Key tables feeding this page:
-- `dp_dataproduct_compliance_summary_current`: compliance scores for the five dimensions.
-- `dp_dataproduct_residencycompliance_current`: residency compliance and score source.
-- `dp_dataproduct_assetcount_deltas`: asset count movement over snapshot runs.
-- `dp_dataproduct_residency_deltas`: residency region changes across runs.
-- `Data Products`: slicer/filter dimension by product.
+- Built by `notebook_fabric_function_sov_compliance_checks_new`: `dp_dataproduct_residencycompliance_current`
+- Built by `notebook_fabric_function_sov_compliance_checks_new`: `dp_dataproduct_tagcompliance_current`
+- Built by `notebook_fabric_function_sov_compliance_checks_new`: `dp_dataproduct_cccompliance_current`
+- Built by `notebook_fabric_function_sov_compliance_checks_new`: `dp_dataproduct_defendercompliance_current`
+- Built by `notebook_fabric_function_sov_compliance_checks_new`: `dp_dataproduct_compliance_summary_current` (from the four current tables above + `dp_dataproductresidency_gold`)
+- Consumed on this page but created by other snapshot pipelines: `dp_dataproduct_assetcount_deltas`
+- Consumed on this page but created by other snapshot pipelines: `dp_dataproduct_residency_deltas`
 
 ## Complete table inventory & report mapping
 
