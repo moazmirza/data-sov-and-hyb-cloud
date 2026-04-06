@@ -73,69 +73,44 @@ graph LR
 
 ## Page-specific lineage: Sovereignty Monitoring (Compliance Dashboard)
 
-Purpose: Compliance dashboard lineage aligned to how tables are actually built in `notebook_fabric_function_sov_compliance_checks_new`.
+Purpose: Compliance Dashboard lineage for the single semantic-model table used by this page: `dp_dataproduct_compliance_summary_current`.
 
 ```mermaid
 graph LR
-  subgraph NOTEBOOK_BUILD["Notebook build: notebook_fabric_function_sov_compliance_checks_new"]
-    DP_BASE["dp_dataproductresidency_gold\n(base data products)"]
-    REGIONS["rs_approved_regions"]
-    CC_SKUS["rs_confidential_compute_skus"]
-    PII["dp_dataproduct_fullnameclassification_current"]
-    FUNC["Function App APIs\ntag/residency/cc/defender"]
+  subgraph NOTEBOOK_SQL["Notebook section: Table to hold Avg Compliance Score..."]
+    R0["dp_dataproductresidency_gold"] --> BP["base_products (UNION)"]
+    C0["dp_dataproduct_cccompliance_current"] --> BP
+    D0["dp_dataproduct_defendercompliance_current"] --> BP
+    T0["dp_dataproduct_tagcompliance_current"] --> BP
+    BP --> BPD["base_products_dedup\nMAX(DataProductDisplayName) by DataProductId"]
 
-    DP_BASE --> TAG_CUR["dp_dataproduct_tagcompliance_current"]
-    FUNC --> TAG_CUR
+    R1["dp_dataproduct_residencycompliance_current"] --> RES["residency\nAVG(ResidencyScorePct)"]
+    C1["dp_dataproduct_cccompliance_current"] --> CC["cc\nAVG(CCForPIIScore)"]
+    D1["dp_dataproduct_defendercompliance_current"] --> DEF["defender\nAVG(progressScore)"]
+    T1["dp_dataproduct_tagcompliance_current"] --> TAG["tagging\nAVG(TagScorePct)"]
+    C2["dp_dataproduct_cccompliance_current"] --> PATCH["patching\nAVG(CASE PatchAssessmentStatus, PendingUpdatesTotal)"]
 
-    DP_BASE --> RES_CUR["dp_dataproduct_residencycompliance_current"]
-    REGIONS --> RES_CUR
-    FUNC --> RES_CUR
-
-    DP_BASE --> CC_CUR["dp_dataproduct_cccompliance_current"]
-    PII --> CC_CUR
-    CC_SKUS --> CC_CUR
-    FUNC --> CC_CUR
-
-    DP_BASE --> DEF_CUR["dp_dataproduct_defendercompliance_current"]
-    FUNC --> DEF_CUR
-
-    RES_CUR --> COMP_SUM["dp_dataproduct_compliance_summary_current"]
-    TAG_CUR --> COMP_SUM
-    CC_CUR --> COMP_SUM
-    DEF_CUR --> COMP_SUM
-    DP_BASE --> COMP_SUM
+    BPD --> FINAL["dp_dataproduct_compliance_summary_current"]
+    RES --> FINAL
+    CC --> FINAL
+    DEF --> FINAL
+    TAG --> FINAL
+    PATCH --> FINAL
   end
 
-  COMP_SUM --> MATRIX["Compliance Matrix\n(Residency, CC, Defender, Tag, Patch)"]
-  RES_CUR --> SCORE["Avg Residency Compliance Score"]
-
-  subgraph OTHER_PIPELINES["Other snapshot pipelines (not created in this notebook)"]
-    ASSET_DELTA["dp_dataproduct_assetcount_deltas"]
-    RES_DELTA["dp_dataproduct_residency_deltas"]
-  end
-
-  ASSET_DELTA --> ASSET_TREND["Asset Count Over Time"]
-  RES_DELTA --> RES_TREND["Residency Changes Over Time"]
-
-  DP_SLICER["Data Products slicer"] --> MATRIX
-  DP_SLICER --> SCORE
-  DP_SLICER --> ASSET_TREND
-  DP_SLICER --> RES_TREND
-
-  MATRIX --> PAGE["Sovereignty Monitoring Page\nreport_purview_dataproduct_residency__Report"]
-  SCORE --> PAGE
-  ASSET_TREND --> PAGE
-  RES_TREND --> PAGE
+  FINAL --> SM["Semantic model table:\ndp_dataproduct_compliance_summary_current (DirectLake)"]
+  SM --> PAGE["Compliance Dashboard page\n(report_purview_dataproduct_residency__Report)"]
+  SM --> COLS["Columns used in page visuals:\nData Product ID, Data Product Name,\nResidency Compliance (%), Conf. Compute Compliance (%),\nDefender Compliance (%), Tag Compliance (%), Patch Compliance (%)"]
 ```
 
-Key tables feeding this page:
-- Built by `notebook_fabric_function_sov_compliance_checks_new`: `dp_dataproduct_residencycompliance_current`
-- Built by `notebook_fabric_function_sov_compliance_checks_new`: `dp_dataproduct_tagcompliance_current`
-- Built by `notebook_fabric_function_sov_compliance_checks_new`: `dp_dataproduct_cccompliance_current`
-- Built by `notebook_fabric_function_sov_compliance_checks_new`: `dp_dataproduct_defendercompliance_current`
-- Built by `notebook_fabric_function_sov_compliance_checks_new`: `dp_dataproduct_compliance_summary_current` (from the four current tables above + `dp_dataproductresidency_gold`)
-- Consumed on this page but created by other snapshot pipelines: `dp_dataproduct_assetcount_deltas`
-- Consumed on this page but created by other snapshot pipelines: `dp_dataproduct_residency_deltas`
+Column derivation in `dp_dataproduct_compliance_summary_current` (from notebook SQL):
+- `Data Product ID`: from `base_products_dedup.DataProductId` (union of product IDs from base + current compliance tables).
+- `Data Product Name`: from `base_products_dedup.DataProductDisplayName` (`MAX` name per product ID).
+- `Residency Compliance (%)`: `ROUND(AVG(ResidencyScorePct),0)` from `dp_dataproduct_residencycompliance_current`.
+- `Conf. Compute Compliance (%)`: `ROUND(AVG(CCForPIIScore),0)` from `dp_dataproduct_cccompliance_current`.
+- `Defender Compliance (%)`: `ROUND(AVG(progressScore),0)` from `dp_dataproduct_defendercompliance_current`.
+- `Tag Compliance (%)`: `ROUND(AVG(TagScorePct),0)` from `dp_dataproduct_tagcompliance_current`.
+- `Patch Compliance (%)`: `ROUND(AVG(CASE PatchAssessmentStatus/PendingUpdatesTotal ...),0)` from `dp_dataproduct_cccompliance_current`.
 
 ## Complete table inventory & report mapping
 
