@@ -12,9 +12,6 @@ This folder stores Microsoft Fabric implementation assets, grouped by artifact t
 - `data-agents/`: Data agent and Reflex/Activator metadata.
 - `repro/`: reproducible exports, sanitization scripts, and replay guides.
 
-For this solution snapshot, item folders are grouped under:
-- `*/ext_fabric_space_moaz_selected_11/`
-
 ## End-to-end relationship
 
 ```mermaid

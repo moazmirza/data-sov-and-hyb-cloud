@@ -16,13 +16,13 @@ Purpose: reusable local artifact pack for the 11 selected Fabric items from work
 
 ## Where the item folders were moved
 
-To keep `shared/fabric` easy to browse, the exported item folders were moved to type-based locations:
-- `shared/fabric/semantic-models/ext_fabric_space_moaz_selected_11/`
-- `shared/fabric/reports/ext_fabric_space_moaz_selected_11/`
-- `shared/fabric/notebooks/ext_fabric_space_moaz_selected_11/`
-- `shared/fabric/pipelines/ext_fabric_space_moaz_selected_11/`
-- `shared/fabric/lakehouses/ext_fabric_space_moaz_selected_11/`
-- `shared/fabric/data-agents/ext_fabric_space_moaz_selected_11/`
+To keep `shared/fabric-ext_fabric_space_moaz` easy to browse, the exported item folders were moved to type-based locations:
+- `shared/fabric-ext_fabric_space_moaz/semantic-models/`
+- `shared/fabric-ext_fabric_space_moaz/reports/`
+- `shared/fabric-ext_fabric_space_moaz/notebooks/`
+- `shared/fabric-ext_fabric_space_moaz/pipelines/`
+- `shared/fabric-ext_fabric_space_moaz/lakehouses/`
+- `shared/fabric-ext_fabric_space_moaz/data-agents/`
 
 `sanitized/` remains in this repro pack for portable cross-tenant replay.
 
