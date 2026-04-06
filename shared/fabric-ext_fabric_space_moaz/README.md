@@ -71,6 +71,44 @@ graph LR
   REPORT1 --> USER["👤 Analyst / Operator"]
 ```
 
+## Page-specific lineage: Sovereignty Monitoring (Compliance Dashboard)
+
+Purpose: Multi-dimensional compliance scorecard and historical trends for residency, compute, defender, tag, and patch compliance across data products.
+
+```mermaid
+graph LR
+  LH["🏪 ext_lakehouse_fabric_moaz"]
+
+  LH -->|DirectLake| CS["dp_dataproduct_compliance_summary_current"]
+  LH -->|DirectLake| RC["dp_dataproduct_residencycompliance_current"]
+  LH -->|DirectLake| AD["dp_dataproduct_assetcount_deltas"]
+  LH -->|DirectLake| RD["dp_dataproduct_residency_deltas"]
+  LH -->|DirectLake| DP["Data Products"]
+
+  CS --> MATRIX["Compliance Matrix\n(Residency, CC, Defender, Tag, Patch)"]
+  RC --> SCORE["Avg Residency Compliance Score"]
+  AD --> ASSET_TREND["Asset Count Over Time"]
+  RD --> RES_TREND["Residency Changes Over Time"]
+  DP --> SLICER["Data Product Slicer"]
+
+  SLICER --> MATRIX
+  SLICER --> SCORE
+  SLICER --> ASSET_TREND
+  SLICER --> RES_TREND
+
+  MATRIX --> PAGE["Sovereignty Monitoring Page\nreport_purview_dataproduct_residency__Report"]
+  SCORE --> PAGE
+  ASSET_TREND --> PAGE
+  RES_TREND --> PAGE
+```
+
+Key tables feeding this page:
+- `dp_dataproduct_compliance_summary_current`: compliance scores for the five dimensions.
+- `dp_dataproduct_residencycompliance_current`: residency compliance and score source.
+- `dp_dataproduct_assetcount_deltas`: asset count movement over snapshot runs.
+- `dp_dataproduct_residency_deltas`: residency region changes across runs.
+- `Data Products`: slicer/filter dimension by product.
+
 ## Complete table inventory & report mapping
 
 ### Semantic model: `semantic_model_purview_dataproduct_residency_gold`
