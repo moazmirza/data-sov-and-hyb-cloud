@@ -170,3 +170,4 @@ graph LR
 2. Open semantic model TMDL files to see available columns & measures
 3. Create visual in Power BI/Fabric, bind to table/measure
 4. Export report definition, commit to git
+
