@@ -238,21 +238,11 @@ This section documents each notebook's structure and data transformation flow.
 ---
 
 ## Notebook Execution Deep Dive
-### Notebook 2: "notebook_fabric_function_sov_compliance_checks_new__Notebook"
+For full notebook execution details, including external component interactions and authentication paths, see **[NOTEBOOK_BLOCKS.md](NOTEBOOK_BLOCKS.md)**.
 
-2. **Helpers** → Register auth/batching/Delta-write utilities (reusable across compliance checks)
-3. **Load DP Base** → Read dp_dataproductresidency_gold + derive product categories (IsS3, IsVmLike, IsSqlPaaS, IsHybridComputeMachine) + PII flag
-4. **Applicability Flags** → Filter: TagApplicable (not S3), ResidencyApplicable (all), CCApplicable (PII only), DefenderApplicable (compute/SQL/Arc, not S3/Fabric)
-5. **Tag Compliance** → POST batch DP IDs → Tag API → Reshape responses → ScoreDF
-6. **Write Tag** → Overwrite dp_dataproduct_tagcompliance_current + append history
-7. **Residency Compliance** → POST batch DP IDs → Residency API → Reshape → ScoreDF
-8. **Write Residency** → Overwrite current + append history
-9. **CC for PII Compliance** → POST (CC-applicable DPs only) → CC API → Reshape → ScoreDF (N/A=100 for non-PII products)
-10. **Write CC** → Overwrite current + append history
-11. **Defender Compliance** → POST (compute/SQL/Arc resources) → Defender API → Reshape → ScoreDF
-12. **Write Defender** → Overwrite current + append history
-13. **Compliance Summary** (optional) → UNION/PIVOT all scorecards → 1 row per product, N compliance dimensions
-
-#### Component Transformation:
-- **DP Base** → **Categorize & Flag** → **Batch to 4 APIs** → **Reshape to 4 ScoreDFs** → **4 Scorecard Tables (Current+History)** → **Optional Summary Table** → **Power BI Compliance Matrix**
+The deep-dive includes:
+- Block-by-block data transformation narrative for both notebooks
+- Exact Function App integration details (base URL, routes, batched request pattern)
+- Purview API interaction details (Data Map endpoint, query type, token scope)
+- Authentication map (Key Vault secret retrieval, Entra client credentials, API audiences/scopes)
 
