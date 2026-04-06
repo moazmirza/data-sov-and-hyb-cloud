@@ -6,10 +6,6 @@ Purpose: reusable local artifact pack for the 11 selected Fabric items from work
 - `manifest.selected-items.json`: item name/type/id mapping for the selected scope.
 - `export-summary.json`: per-item export status from Fabric API.
 - `import-order-and-rebind-runbook.md`: deterministic import order and post-import rebinding checklist.
-- Per-item folders:
-  - `item-metadata.json`
-  - `definition/` files when Fabric `getDefinition` returned parts.
-  - `definition-response.json` or `export-error.txt`.
 - `security-review-notebooks.md`: notebook secret scan results.
 - `sanitized/`: shareable copies with IDs/URLs/emails replaced by placeholders.
 - `workspace.parameters.template.json`: target-environment values to populate.
@@ -17,6 +13,18 @@ Purpose: reusable local artifact pack for the 11 selected Fabric items from work
 - `_automation/validate-sanitized-pack.ps1`: validates no forbidden source literals remain.
 - `_automation/sanitization-report.json`: generated replacement report.
 - `_automation/sanitization-validation-report.json`: generated validation results.
+
+## Where the item folders were moved
+
+To keep `shared/fabric` easy to browse, the exported item folders were moved to type-based locations:
+- `shared/fabric/semantic-models/ext_fabric_space_moaz_selected_11/`
+- `shared/fabric/reports/ext_fabric_space_moaz_selected_11/`
+- `shared/fabric/notebooks/ext_fabric_space_moaz_selected_11/`
+- `shared/fabric/pipelines/ext_fabric_space_moaz_selected_11/`
+- `shared/fabric/lakehouses/ext_fabric_space_moaz_selected_11/`
+- `shared/fabric/data-agents/ext_fabric_space_moaz_selected_11/`
+
+`sanitized/` remains in this repro pack for portable cross-tenant replay.
 
 ## Export result snapshot
 - Exported with definition parts: Semantic models, reports, lakehouse, data pipeline, notebooks, data agent.
