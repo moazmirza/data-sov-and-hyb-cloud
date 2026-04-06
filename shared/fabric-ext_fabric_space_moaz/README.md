@@ -29,6 +29,48 @@ graph LR
   X -.documents and validates.-> R
 ```
 
+## Data lineage: Lakehouse → Tables → Measures → Report visuals
+
+```mermaid
+graph LR
+  LH["🏪 ext_lakehouse_fabric_moaz<br/>(Delta Lake Tables)"]
+  
+  LH -->|DirectLake Zero-Copy| DIM1["📊 Dimension Tables<br/>(current-state snapshot)"]
+  LH -->|DirectLake Zero-Copy| FACT1["📈 Fact Tables<br/>(delta/history)"]
+  
+  DIM1 --> DATA_PROD["Data Products"]
+  DIM1 --> RES_CURR["dp_dataproduct_residencycompliance_current"]
+  DIM1 --> COMP_SUMM["dp_dataproduct_compliance_summary_current"]
+  DIM1 --> OTHER_DIM["Other dimension tables<br/>(CC, Defender, Tag, etc.)"]
+  
+  FACT1 --> RES_DELTAS["dp_dataproduct_residency_deltas"]
+  FACT1 --> ASSET_DELTAS["dp_dataproduct_assetcount_deltas"]
+  FACT1 --> PUR_DELTAS["dp_purviewassetcount_deltas"]
+  
+  DATA_PROD -->|Measures| M1["Total Data Products<br/>Residency Coverage %"]
+  RES_CURR -->|Measure| M2["Avg Residency<br/>Compliance Score %"]
+  RES_DELTAS -->|Measures| M3["Residency Changes<br/>Last Run"]
+  PUR_DELTAS -->|Measures| M4["Purview Delta %<br/>Spike/Drop Flag"]
+  COMP_SUMM --> M5["Compliance Scores<br/>All Dimensions"]
+  OTHER_DIM --> M6["CC %, Defender %,<br/>Tag %, Patch %"]
+  
+  M1 --> VC1["Card/Scorecard<br/>Alert Cards Page"]
+  M2 --> VC2["Scorecard Visuals<br/>Sovereignty Page"]
+  M3 --> VC3["Card + Table<br/>Alert Cards &<br/>Sovereignty"]
+  M4 --> VC4["Spike/Drop Card<br/>Alert Cards Page"]
+  M5 --> VC5["Compliance Matrix<br/>Sovereignty Page"]
+  M6 --> VC6["Multi-Scorecard<br/>Matrix"]
+  
+  VC1 --> REPORT1["🔴 report_purview_dataproduct_residency__Report"]
+  VC2 --> REPORT1
+  VC3 --> REPORT1
+  VC4 --> REPORT1
+  VC5 --> REPORT1
+  VC6 --> REPORT1
+  
+  REPORT1 --> USER["👤 Analyst / Operator"]
+```
+
 ## Complete table inventory & report mapping
 
 ### Semantic model: `semantic_model_purview_dataproduct_residency_gold`
