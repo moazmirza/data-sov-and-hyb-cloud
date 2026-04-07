@@ -1629,7 +1629,7 @@ from pyspark.sql import functions as F, types as T
 from datetime import datetime, timezone
 
 # ---- DEMO FALLBACK CONFIG (update these) ----
-OWNER_EMAIL_DEMO_FALLBACK = "momirza@MngEnvMCAP960910.onmicrosoft.com"   # <-- change this
+OWNER_EMAIL_DEMO_FALLBACK = "<owner_email>"   # <-- change this
 OWNER_NAME_DEMO_FALLBACK  = "Demo Owner"
 
 # We are intentionally skipping Graph resolution for now in Fabric notebook
@@ -1705,7 +1705,7 @@ DATA_PRODUCT_OWNER_PATH = "Files/purview_meta_data/DomainModel/DataProductOwner"
 OWNER_CONTACT_TABLE = "dp_dataproduct_owner_contact_current"
 
 # Demo fallback (until Graph resolution is added)
-OWNER_EMAIL_DEMO_FALLBACK = "momirza@MngEnvMCAP960910.onmicrosoft.com"   # <-- CHANGE THIS
+OWNER_EMAIL_DEMO_FALLBACK = "<owner_email>"   # <-- CHANGE THIS
 OWNER_NAME_DEMO_FALLBACK  = "Demo Owner"
 
 # =========================
