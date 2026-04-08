@@ -41,6 +41,10 @@ flowchart LR
 | policies and assignements enforcing required tags |  |  |  |
 | dataproductid tag is added to the data sources |  |  |  |
 
+## Build Instructions
+
+> **To be completed.** Detailed build instructions for Module 1 will be added in a future iteration. This section will cover step-by-step guidance for provisioning the Azure landing zone, onboarding Arc-enabled data sources, configuring Purview and Fabric workspaces, assigning policies and initiatives, and applying the `dataproductid` tag — all of which are prerequisites for modules 2 through 5.
+
 ## Testing
 
 - Validate Arc connection status for onboarded data sources.
