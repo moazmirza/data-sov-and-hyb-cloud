@@ -1,94 +1,50 @@
 # Solution Module 3: Dashboard Hydration for CC-for-PII
 
-## Solution Module 3 Details: Dashboard Hydration for CC-for-PII
+## Prerequisite
 
-### Scope
+- Module 1 must be completed.
+- `dataproductid` tagging from Module 1 is required for ARG lookup.
+- Full name classification tables must be available from the Fabric data prep path.
 
-This solution documents how Confidential Compute for PII (CC-for-PII) is hydrated from notebook processing into the `Compliance Dashboard` page visuals.
-
-### Architecture Diagram
+## Architecture Diagram
 
 ```mermaid
 flowchart LR
-	LH["Lakehouse sources"] --> BASE["Notebook: build dp_base"]
-	LH --> RULES["Ruleset table<br/>CC_SKUS_TABLE = rs_confidential_compute_skus"]
-	BASE --> PII{"PII gate<br/>HasFullNameClassification == 1 ?"}
-	PII -- No --> NA1["NA_NotPII<br/>CCForPIIScore = 100"]
-	PII -- Yes --> CALL["Call Azure Function<br/>/api/azure/ccForPiiCompliance<br/>payload: subscriptions + dataProductIds"]
-
-	CALL --> ARG["Azure Function lookup in ARG<br/>match by tags['dataproductid']"]
-	ARG --> RT{"Resource type"}
-	RT --> VM["Azure VM<br/>vmSize/securityType<br/>ARG first, ARM fallback"]
-	RT --> ARC["Arc machine<br/>detectedProperties.model"]
-	RT --> SQLVM["SQL VM<br/>resolve linked compute VM<br/>ARG first, ARM fallback"]
-	RT --> NONE["No matching tagged resource"]
-
-	VM --> RET["Return resourceFound, vmApplicable,<br/>ccLookupSku, ccLookupSkuSource,<br/>resource metadata + patch fields"]
-	ARC --> RET
-	SQLVM --> RET
-	NONE --> RET
-
-	RET --> JOIN["Notebook joins API output<br/>back to full product list"]
-	NA1 --> JOIN
-
-	JOIN --> SCORE["Notebook scoring rubric<br/>0 / 25 / 50 / 75 / 100"]
-	RULES --> SCORE
-	SCORE --> CC["Write dp_dataproduct_cccompliance_current"]
-	CC --> SUMM["Build compliance summary<br/>CCScorePct = AVG(CCForPIIScore)<br/>by DataProductId"]
-	SUMM --> MODEL["Semantic model mapping<br/>Conf. Compute Compliance (%) <- CCScorePct"]
-	MODEL --> DASH["Compliance Dashboard visuals<br/>Gauge + table"]
+    GOLD[PII classification tables and product metadata] --> NB[Fabric notebook compliance checks]
+    SKU[rs_confidential_compute_skus] --> NB
+    NB --> API[/api/azure/ccForPiiCompliance]
+    API --> ARG[Azure Resource Graph lookup by dataproductid]
+    ARG --> VM[VM Arc SQL VM normalization and lookup SKU/model]
+    VM --> NB
+    NB --> CURR[dp_dataproduct_cccompliance_current]
+    CURR --> INV[dp_dataproduct_cccompliance_investigate_current]
+    CURR --> SUMM[dp_dataproduct_compliance_summary_current]
+    SUMM --> SEM[Semantic model]
+    SEM --> PBI[Compliance Dashboard CC visuals]
+    INV --> M5[Module 5 agent action path]
 ```
 
-### Data Product Applicability (PII gate)
+## Building Blocks
 
-The notebook confirms PII applicability from table `dp_dataproduct_fullnameclassification_current` and uses these fields:
-- `HasFullNameClassification`
-- `FullNameColumnCount`
+| Component | Artifact | Role |
+|---|---|---|
+| Notebook | `notebook_fabric_function_sov_compliance_checks_new (5).ipynb` | Computes CC-for-PII posture and investigation candidates |
+| Function API | `/api/azure/ccForPiiCompliance` | Returns resource and compute metadata (VM/Arc/SQL VM) |
+| Rules table | `rs_confidential_compute_skus` | Confidential and approved SKU/model policy source |
+| PII gate table | `dp_dataproduct_fullnameclassification_current` | Determines `CCApplicable` path based on PII signal |
+| Current output | `dp_dataproduct_cccompliance_current` | Product-level CC score and reasoning |
+| Investigation output | `dp_dataproduct_cccompliance_investigate_current` | Candidate set for governed follow-up action |
+| Reporting output | `dp_dataproduct_compliance_summary_current` | Dashboard-friendly rollup of scores |
 
-It then derives:
-- `CCApplicable = (HasFullNameClassification == 1)`
+## Testing
 
-Ruleset lookup used by notebook scoring:
-- `CC_SKUS_TABLE = "rs_confidential_compute_skus"`
-- This table is joined by normalized lookup SKU/model (`LookupSku_lc`) to determine:
-	- `IsConfidentialSku`
-	- `IsApprovedSkuCalc`
+1. Validate PII gate behavior with products both in and out of `HasFullNameClassification` scope.
+2. Validate ARG matching via `dataproductid` tag for VM and Arc resources.
+3. Validate scoring outcomes for `NotFound`, `NA_NotPII`, `Applicable` non-confidential, and approved confidential SKUs.
+4. Validate `dp_dataproduct_cccompliance_investigate_current` contains only actionable rows.
+5. Validate Compliance Dashboard CC metrics align with `CCScorePct` in summary table.
 
-Behavior:
-- `CCApplicable = true`: data product is sent to the CC endpoint for evaluation.
-- `CCApplicable = false`: data product is still retained in output as `NA_NotPII` with score `100`.
+## Comments
 
-### Azure Function lookup key
-
-The Azure Function performs Resource Graph lookup using the Azure resource tag key:
-- `tags['dataproductid']`
-
-It matches resources against the incoming `dataProductIds` and applies supported-type logic for:
-- Azure VM
-- Arc machine
-- SQL VM (using linked compute VM)
-
-### CC Scoring Rubric (clarified)
-
-| Outcome | Exact condition | Score | Meaning |
-|---|---|---:|---|
-| `NA_NotPII` | `CCApplicable == false` | 100 | Out of CC scope because product is not PII-applicable |
-| `NotFound` | `resourceFound == false` | 0 | No matching tagged Azure resource found |
-| `NA_NotApplicable` | `resourceFound == true` and `vmApplicable == false` | 100 | Resource exists but not in supported CC compute scope |
-| Applicable, Azure VM lookup missing | `resourceFound == true` and `vmApplicable == true` and Azure VM lookup SKU missing | 25 | In-scope Azure VM but VM size lookup unavailable |
-| Applicable, Arc model missing | `resourceFound == true` and `vmApplicable == true` and Arc lookup model missing | 50 | In-scope Arc resource but model unavailable |
-| Applicable, non-confidential SKU/model | `IsConfidentialSku == false` | 50 | Resource is in scope but not running confidential compute |
-| Applicable, confidential but unapproved | `IsConfidentialSku == true` and `IsApprovedSkuCalc == false` | 75 | Confidential compute detected but not approved |
-| Applicable, confidential and approved | `IsConfidentialSku == true` and `IsApprovedSkuCalc == true` | 100 | Fully compliant confidential compute posture |
-
-How the ruleset affects scoring:
-- If lookup SKU/model does not exist in `rs_confidential_compute_skus`, notebook treats it as non-confidential (`IsConfidentialSku = false`) and scores `50` when applicable.
-- If it exists with approved flag false, notebook scores `75`.
-- If it exists with approved flag true, notebook scores `100`.
-
-### Dashboard roll-up mapping
-
-- Per-product score is written as `CCForPIIScore` in `dp_dataproduct_cccompliance_current`.
-- Compliance summary derives `CCScorePct = AVG(CCForPIIScore)` per `DataProductId`.
-- Semantic model maps `CCScorePct` to `Conf. Compute Compliance (%)`.
-- Compliance Dashboard gauge and table visuals render from that mapped score.
+- Mapped to slide 28 in the PPT mapping you provided.
+- Module 5 depends on this module because it consumes the investigation table and score outputs.

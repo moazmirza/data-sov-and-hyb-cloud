@@ -1,64 +1,49 @@
 # Solution Module 2: Dashboard Hydration for Residency
 
-## Solution Module 2 Details: Dashboard Hydration for Residency
+## Prerequisite
 
-### Scope
+- Module 1 must be completed.
+- `dataproductid` tagging and policy baseline from Module 1 must be in place.
+- Purview and Fabric baseline setup from Module 1 must be available.
 
-This solution documents how residency compliance is hydrated from notebook processing into the `Compliance Dashboard` page visuals.
-
-### Architecture Diagram
+## Architecture Diagram
 
 ```mermaid
 flowchart LR
-	LH["Lakehouse sources"] --> BASE["Notebook: build dp_base"]
-	BASE --> GLOSS["Glossary residency input<br/>from dp_dataproductresidency_gold.ResidencyRegion"]
-	GLOSS --> RULES["Approved region lookup<br/>rs_approved_regions"]
-
-	BASE --> CALL["Call Azure Function<br/>/api/azure/residencyCompliance<br/>payload: subscriptions + dataProductIds"]
-	CALL --> ARG["Resource Graph lookup by tag<br/>tags['dataproductid']<br/>(plus DataProductID/DataProductId variants)"]
-	ARG --> AZ["Return resourceFound, resourceCount,<br/>locations[], resources[]"]
-	AZ --> S3{"Is S3 product and no Azure resource?"}
-	S3 -- Yes --> AWS["Fallback call<br/>/api/azure/residencyComplianceAws<br/>bucket location -> AzureLocations"]
-	S3 -- No --> JOIN
-	AWS --> JOIN["Join API/fallback output back to full product list"]
-
-	RULES --> SCORE["Notebook residency scoring<br/>0 / 25 / 50 / 75 / 100"]
-	JOIN --> SCORE
-
-	SCORE --> RES["Write dp_dataproduct_residencycompliance_current"]
-	RES --> SUMM["Build compliance summary<br/>ResidencyScorePct = AVG(ResidencyScorePct)<br/>by DataProductId"]
-	SUMM --> MODEL["Semantic model mapping<br/>Residency Compliance (%) <- ResidencyScorePct"]
-	MODEL --> DASH["Compliance Dashboard visuals<br/>Residency gauge + table"]
+    GOLD[Gold table dp_dataproductresidency_gold] --> NB[Fabric notebook compliance checks]
+    RULES[rs_approved_regions] --> NB
+    NB --> API[/api/azure/residencyCompliance]
+    API --> ARG[Azure Resource Graph by dataproductid tag]
+    API --> AWS[/api/azure/residencyComplianceAws fallback for S3]
+    ARG --> NB
+    AWS --> NB
+    NB --> CURR[dp_dataproduct_residencycompliance_current]
+    CURR --> SUMM[dp_dataproduct_compliance_summary_current]
+    SUMM --> SEM[Semantic model]
+    SEM --> PBI[Compliance Dashboard residency visuals]
 ```
 
-### Data Product Applicability and Selection Criteria
+## Building Blocks
 
-The residency block evaluates the full data product list, then scores each row using resource lookup plus glossary/rules evaluation.
+| Component | Artifact | Role |
+|---|---|---|
+| Notebook | `notebook_fabric_function_sov_compliance_checks_new (5).ipynb` | Orchestrates residency scoring and writes current-state tables |
+| Function API | `/api/azure/residencyCompliance` | Resolves Azure resource location signal using ARG and `dataproductid` tags |
+| Function API fallback | `/api/azure/residencyComplianceAws` | Provides location fallback for S3-backed products when Azure resource is absent |
+| Gold source table | `dp_dataproductresidency_gold` | Baseline data product and glossary residency input |
+| Rules table | `rs_approved_regions` | Approved residency policy reference for scoring |
+| Output table | `dp_dataproduct_residencycompliance_current` | Product-level residency compliance output |
+| Reporting table | `dp_dataproduct_compliance_summary_current` | Aggregated score for dashboard consumption |
 
-Selection and enrichment logic:
-- Base products come from `dp_base` (derived from `dp_dataproductresidency_gold`).
-- Glossary residency input comes from `ResidencyRegion` in that base set.
-- Approved-region validation comes from `rs_approved_regions` (code/name + approved flag).
-- Notebook calls `/api/azure/residencyCompliance` for all data products.
-- The function resolves resources via Resource Graph using `tags['dataproductid']` and also supports `tags['DataProductID']` / `tags['DataProductId']` variants.
-- If the product is S3 and Azure resource lookup is empty, notebook calls `/api/azure/residencyComplianceAws` to derive bucket location and feeds that into the same scoring path.
+## Testing
 
-### Residency Scoring Rubric (clarified)
+1. Run notebook residency block and verify `dp_dataproduct_residencycompliance_current` refreshes.
+2. Validate score outputs for expected paths: `NotFound`, `MissingGlossaryResidency`, `ApprovedButMismatched`, `Compliant`.
+3. Validate at least one S3 fallback case exercises `/api/azure/residencyComplianceAws`.
+4. Validate dashboard visuals reflect updated `ResidencyScorePct` values.
+5. Validate approved-region blocking behavior when region is outside `rs_approved_regions`.
 
-| Outcome | Exact condition | Score | Meaning |
-|---|---|---:|---|
-| `NotFound` | `AzureResourceFound == false` | 0 | No associated Azure resource and no valid S3 fallback location found |
-| `MissingGlossaryResidency` | `AzureResourceFound == true` and `GlossaryResidencyMissing == true` | 25 | Resource exists, but Purview glossary residency is missing/blank/unknown |
-| `UnapprovedGlossaryResidency` | `AzureResourceFound == true` and `GlossaryResidencyMissing == false` and `IsApprovedResidency == false` | 50 | Glossary residency is present but not in approved region rules |
-| `ApprovedButMismatched` | `AzureResourceFound == true` and `IsApprovedResidency == true` and `AzureLocationMatch == false` | 75 | Residency is approved but does not match detected resource location |
-| `Compliant` | `AzureResourceFound == true` and `IsApprovedResidency == true` and `AzureLocationMatch == true` | 100 | Resource found, glossary residency approved, and strict location match achieved |
+## Comments
 
-Strict match rule used by notebook:
-- `AzureLocationMatch` is true only when normalized `AzureLocations` equals normalized `GlossaryResidencyRegionCode`.
-
-### Dashboard roll-up mapping
-
-- Per-product score is written as `ResidencyScorePct` in `dp_dataproduct_residencycompliance_current`.
-- Compliance summary derives `ResidencyScorePct = AVG(ResidencyScorePct)` per `DataProductId`.
-- Semantic model maps this to `Residency Compliance (%)`.
-- Compliance Dashboard residency gauge uses `Average of Residency Compliance (%)`, and the table shows `Residency Compliance (%)` per data product.
+- Mapped to slide 27 in the PPT mapping you provided.
+- Module 4 consumes the residency outputs and eligibility state from this module.
