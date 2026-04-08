@@ -12,7 +12,7 @@
 flowchart LR
     GOLD[PII classification tables and product metadata] --> NB[Fabric notebook compliance checks]
     SKU[rs_confidential_compute_skus] --> NB
-    NB --> API[/api/azure/ccForPiiCompliance]
+    NB --> API["/api/azure/ccForPiiCompliance"]
     API --> ARG[Azure Resource Graph lookup by dataproductid]
     ARG --> VM[VM Arc SQL VM normalization and lookup SKU/model]
     VM --> NB

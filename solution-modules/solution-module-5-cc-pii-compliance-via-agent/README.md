@@ -17,7 +17,7 @@ flowchart LR
     PBI --> TOPIC
 
     TOPIC --> FLOW2[Flow Apply_CCPII_Tag_And_Notify]
-    FLOW2 --> API[/api/azure/ccPiiInvestigateTagApply via CCPII_ApplyInvestigateTag]
+    FLOW2 --> API["/api/azure/ccPiiInvestigateTagApply via CCPII_ApplyInvestigateTag"]
     API --> TAG[Resource tag merge action]
     API --> TEAM[Teams adaptive card notification]
     API --> LOG[Action response and changelog signal]

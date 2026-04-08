@@ -12,9 +12,9 @@
 flowchart LR
     GOLD[Gold table dp_dataproductresidency_gold] --> NB[Fabric notebook compliance checks]
     RULES[rs_approved_regions] --> NB
-    NB --> API[/api/azure/residencyCompliance]
+    NB --> API["/api/azure/residencyCompliance"]
     API --> ARG[Azure Resource Graph by dataproductid tag]
-    API --> AWS[/api/azure/residencyComplianceAws fallback for S3]
+    API --> AWS["/api/azure/residencyComplianceAws fallback for S3"]
     ARG --> NB
     AWS --> NB
     NB --> CURR[dp_dataproduct_residencycompliance_current]

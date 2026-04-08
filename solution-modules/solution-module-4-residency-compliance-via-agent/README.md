@@ -14,11 +14,11 @@ flowchart LR
 	FLOWA --> TOPIC[Copilot topic PurviewResidencyGlossaryUpdateWorkflow]
 
 	TOPIC --> FLOWB[Flow ResidencyUpdatePreview_wrapped]
-	FLOWB --> PREVIEW[/api/purview/residencyUpdatePreview]
+	FLOWB --> PREVIEW["/api/purview/residencyUpdatePreview"]
 	PREVIEW --> TOPIC
 
 	TOPIC --> FLOWC[Flow ResidencyUpdateApply_wrapped]
-	FLOWC --> APPLY[/api/purview/residencyUpdateApply]
+	FLOWC --> APPLY["/api/purview/residencyUpdateApply"]
 	APPLY --> PURVIEW[Purview glossary term relationship update]
 	APPLY --> LOG[Action log and response payload]
 	LOG --> TOPIC
