@@ -4,6 +4,12 @@ This repository is a modular reference implementation for governance, sovereignt
 
 The implementation journey is centered on `solution-modules/`, with shared technical assets under `shared/` and cross-cutting guidance under `docs/`.
 
+## Intended Audience
+
+- Platform engineers standing up governance and sovereignty controls.
+- Data and analytics teams building compliance dashboards in Fabric/Power BI.
+- Automation teams implementing Copilot + Power Platform governed action workflows.
+
 ## Start Here
 
 1. Read the solution overview:
@@ -14,6 +20,12 @@ The implementation journey is centered on `solution-modules/`, with shared techn
 	- [solution-modules/solution-module-1-foundational/README.md](solution-modules/solution-module-1-foundational/README.md)
 3. Implement hydration modules (2 through 6).
 4. Implement agent/action modules (7 and 8) after hydration outputs are in place.
+
+## Implementation Paths
+
+- Dashboard-only path: implement modules `1 -> 2 -> 3 -> 4 -> 5 -> 6`.
+- Full governed-action path: implement modules `1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8`.
+- Fast validation path (POC): implement module 1, then modules 2 and 3 first to validate the base dashboard scoring pipeline.
 
 ## Solution Modules
 
@@ -34,6 +46,12 @@ The implementation journey is centered on `solution-modules/`, with shared techn
 - Module 7 depends on module 2 outputs.
 - Module 8 depends on module 3 outputs.
 - Recommended implementation order: `1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8`.
+
+## Expected Outcomes By Stage
+
+- After module 1: shared identities, policies, tags, function baseline, Purview/Fabric baseline, and orchestration foundations are in place.
+- After modules 2-6: compliance dashboard is hydrated with residency, CC-for-PII, defender, tag, and patch signals.
+- After modules 7-8: governed Copilot workflows can preview/apply residency and investigate-tag actions with confirmation controls.
 
 ## Repository Structure
 
@@ -63,6 +81,14 @@ data-sov-and-hyb-cloud/
 - `solution-modules/` explains what to build and in what order.
 - `shared/` stores reusable implementation assets (notebooks, function app exports, flows, connectors, policy artifacts, templates, and model/report assets).
 - Each module README references the required assets in `shared/` and provides build/test guidance for that module scope.
+
+## Additional Documentation
+
+- Docs index: [docs/README.md](docs/README.md)
+- Shared asset index: [shared/README.md](shared/README.md)
+- Module catalog: [solution-modules/README.md](solution-modules/README.md)
+- Security guidance: [SECURITY.md](SECURITY.md)
+- Contribution guidance: [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Release Bundles
 
