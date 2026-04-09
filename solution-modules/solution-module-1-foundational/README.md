@@ -116,7 +116,83 @@ The following steps establish the shared baseline that modules 2 through 8 assum
 3. Enable and validate Purview metadata export (SSA/DomainModel) so downstream notebook ingestion has source data.
 4. Verify service principals used by functions have required Purview permissions.
 
-### 9. Configure Fabric baseline
+### 9. Scan data sources into Purview
+
+Register and scan your in-scope data sources into the Purview collection hierarchy established in step 8. This makes metadata and classifications available for downstream compliance checking and residency analysis.
+
+**Data source scanning overview:**
+
+1. **SAP S/4 HANA using SHIR (Self-Hosted Integration Runtime)**
+   - Prerequisite: Deploy and configure Self-Hosted Integration Runtime in your SAP landscape.
+   - High-level steps:
+     - Register SAP S/4 HANA data source in Purview Data Map.
+     - Configure SHIR credentials (service principal or user account with SAP read access).
+     - Create and schedule scan with connection to your SAP system.
+     - Scope scan to relevant modules, function groups, and tables for your governance scope.
+   - Official documentation: [Discover and govern SAP S/4 HANA with Microsoft Purview](https://learn.microsoft.com/en-us/purview/register-scan-sap-s4hana)
+
+2. **Azure SQL Database**
+   - High-level steps:
+     - Register Azure SQL Database data source in Purview.
+     - Configure authentication (managed identity, service principal, or SQL authentication).
+     - Ensure firewall allows Purview connectivity (either via Azure services bypass or SHIR).
+     - Create scan rule set and assign classification rules.
+     - Schedule scan and validate asset discovery in Unified Catalog.
+   - Official documentation: [Discover and govern Azure SQL Database in Microsoft Purview](https://learn.microsoft.com/en-us/purview/register-scan-azure-sql-database)
+
+3. **SQL Server on Azure IaaS**
+   - High-level steps:
+     - Ensure SQL Server VM is Arc-connected (see step 5).
+     - Register SQL Server data source in Purview using FQDN or IP.
+     - Configure authentication via SHIR (required for on-premises/Arc-connected SQL).
+     - Create scan and scope to in-scope databases.
+     - Monitor scan results for successful asset classification.
+   - Official documentation: [Discover and govern SQL Server in Microsoft Purview](https://learn.microsoft.com/en-us/purview/register-scan-sql-server)
+
+4. **Azure Data Lake Storage Gen2 (ADLS Gen2)**
+   - High-level steps:
+     - Register ADLS Gen2 storage account in Purview collection.
+     - Assign Storage Blob Data Reader role to Purview managed identity.
+     - Configure networking (firewall bypass or self-hosted IR if private endpoints in use).
+     - Create scan, scope to relevant containers/folders, and choose file types.
+     - Schedule recurring scans aligned with data pipeline cadence.
+   - Official documentation: [Connect to Azure Data Lake Storage in Microsoft Purview](https://learn.microsoft.com/en-us/purview/register-scan-adls-gen2)
+
+5. **AWS S3**
+   - High-level steps:
+     - Create AWS IAM role with S3 read permissions and trust relationship to Microsoft (use External ID from Purview).
+     - Register AWS account (for all buckets) or individual S3 bucket in Purview.
+     - Create credential in Purview using Role ARN from AWS.
+     - For KMS-encrypted buckets, add KMS Decrypt policy to the IAM role.
+     - Create scan, scope to buckets/prefixes, and run incremental or full scan.
+   - Official documentation: [Amazon S3 Multicloud Scanning Connector for Microsoft Purview](https://learn.microsoft.com/en-us/purview/register-scan-amazon-s3)
+
+6. **Azure Files (SMB shares)**
+   - High-level steps:
+     - Register Azure Files data source in Purview using storage account and file share path.
+     - Configure authentication via managed identity (Purview SAMI needs Storage File Data Reader).
+     - Configure networking if Storage account has private endpoints or firewall enabled.
+     - Create scan rule set specifying file types to include.
+     - Schedule scan and monitor classification results.
+   - Official documentation: [Discover and govern Azure Files in Microsoft Purview](https://learn.microsoft.com/en-us/purview/register-scan-azure-files)
+
+7. **SQL Server on AWS IaaS**
+   - High-level steps:
+     - Ensure SQL Server instance is reachable from SHIR (deployed on AWS or routable via network).
+     - Register SQL Server data source in Purview using AWS instance endpoint/hostname.
+     - Configure SHIR connectivity to AWS SQL instance (network, VPN, or direct endpoint access).
+     - Create scan with SHIR-based authentication (SQL login or Windows authentication via SHIR machine).
+     - Scope scan to relevant databases and validate asset ingestion.
+   - Official documentation: [Discover and govern SQL Server in Microsoft Purview](https://learn.microsoft.com/en-us/purview/register-scan-sql-server)
+
+**Common scanning best practices:**
+- Define and apply consistent cataloging metadata (collection hierarchy, asset naming) for all scans.
+- Use scan rule sets aligned with your data classification policy.
+- Enable lineage extraction where supported (Azure SQL, ADLS, Fabric, etc.) for downstream impact analysis.
+- Schedule recurring scans based on data freshness requirements (daily, weekly, or on-demand).
+- Monitor scan run history and address any failures before modules 2–8 metadata dependencies activate.
+
+### 10. Configure Fabric baseline
 
 1. Create shared Fabric workspace and Lakehouse for the solution.
 2. Grant workspace access to engineering, reporting, and automation identities.
@@ -125,7 +201,7 @@ The following steps establish the shared baseline that modules 2 through 8 assum
 	- Compliance checks notebook
 4. Confirm Synapse Spark runtime availability and workspace capacity settings.
 
-### 10. Deploy shared function app baseline
+### 11. Deploy shared function app baseline
 
 1. Deploy `shared/functions/azure-functions/func-purv-contoso/`.
 2. Confirm all required routes are present and reachable with Entra-authenticated calls:
@@ -140,20 +216,20 @@ The following steps establish the shared baseline that modules 2 through 8 assum
 	- `/api/purview/residencyUpdateApply`
 3. Configure required baseline app settings (`RESOURCE_GRAPH_API_VERSION`, `AZURE_SUBSCRIPTIONS`, cross-tenant `ARM_TENANT_B_*` where needed, Purview endpoint settings, timeout settings).
 
-### 11. Establish semantic model and report baseline
+### 12. Establish semantic model and report baseline
 
 1. Import semantic model assets from `shared/semantic-model/fabric-model/`.
 2. Validate model bindings to Lakehouse SQL endpoint and expected tables.
 3. Prepare report workspace and bind report assets from `shared/reports/powerbi/` to the published semantic model.
 4. Define dataset refresh schedule that aligns with pipeline cadence.
 
-### 12. Establish orchestration baseline
+### 13. Establish orchestration baseline
 
 1. Create Fabric pipeline baseline with notebook sequencing support (gold ingestion then compliance checks).
 2. Define schedule windows aligned with Purview export availability.
 3. Enable pipeline failure notifications and run-history retention.
 
-### 13. Foundation readiness gate (must pass before modules 2-8)
+### 14. Foundation readiness gate (must pass before modules 2-8)
 
 1. Resource discovery check: tagged resources are discoverable via ARG using `dataproductid`.
 2. Security check: notebook identity resolves Key Vault secrets successfully.
