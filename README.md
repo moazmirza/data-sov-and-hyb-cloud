@@ -1,40 +1,39 @@
 # Data Governance and Hybrid Cloud Flexibility - Reference Solution
 
-This repository is organized as a productized reference implementation for governance, sovereignty, and hybrid cloud compliance scenarios across Azure, Microsoft Fabric, Purview, Power Platform, Azure Functions, and Copilot Studio.
+This repository is a modular reference implementation for governance, sovereignty, and hybrid cloud compliance across Azure, Microsoft Fabric, Purview, Azure Functions, Power Platform, and Copilot Studio.
 
-The repo is module-driven by design. Readers start with shared foundation guidance, then choose the module they want to prepare, build, and test.
+The implementation journey is centered on `solution-modules/`, with shared technical assets under `shared/` and cross-cutting guidance under `docs/`.
 
-## How To Navigate This Repo
+## Start Here
 
-- New to the solution: start with [docs/overview/what-this-solution-is.md](docs/overview/what-this-solution-is.md), [docs/overview/architecture-overview.md](docs/overview/architecture-overview.md), and [docs/overview/module-selection-guide.md](docs/overview/module-selection-guide.md).
-- Implementing one scenario: go directly to the relevant module under `modules/`, then follow `README.md` -> `dependencies.md` -> `prepare.md` -> `build.md` -> `test.md`.
-- Implementing the full platform: start with [modules/module-0-foundation/README.md](modules/module-0-foundation/README.md), then implement Modules 1 through 5 in sequence.
+1. Read the solution overview:
+	- [docs/overview/what-this-solution-is.md](docs/overview/what-this-solution-is.md)
+	- [docs/overview/architecture-overview.md](docs/overview/architecture-overview.md)
+	- [docs/overview/module-selection-guide.md](docs/overview/module-selection-guide.md)
+2. Complete the foundation module first:
+	- [solution-modules/solution-module-1-foundational/README.md](solution-modules/solution-module-1-foundational/README.md)
+3. Implement hydration modules (2 through 6).
+4. Implement agent/action modules (7 and 8) after hydration outputs are in place.
 
 ## Solution Modules
 
-| Module | Purpose | Action Model | Estimated Effort | Entry Point |
-|---|---|---|---|---|
-| 0 | Shared foundation | Readiness and platform setup | Medium | [modules/module-0-foundation/README.md](modules/module-0-foundation/README.md) |
-| 1 | Resource tagging | Read-first, optional remediation | Medium | [modules/module-1-resource-tagging/README.md](modules/module-1-resource-tagging/README.md) |
-| 2 | Data residency | Read-first, optional remediation | Medium | [modules/module-2-data-residency/README.md](modules/module-2-data-residency/README.md) |
-| 3 | Confidential computing | Investigation plus action-enabled flows | High | [modules/module-3-confidential-computing/README.md](modules/module-3-confidential-computing/README.md) |
-| 4 | Defender enablement | Read-first, optional remediation | Medium | [modules/module-4-defender-enablement/README.md](modules/module-4-defender-enablement/README.md) |
-| 5 | OS patching enablement | Read-first reporting and validation | Medium | [modules/module-5-os-patching-enablement/README.md](modules/module-5-os-patching-enablement/README.md) |
+| Module | Name | Purpose | Entry Point |
+|---|---|---|---|
+| 1 | Foundational | Shared platform, identity, policy, tagging, Purview/Fabric/function baselines required by all downstream modules | [solution-modules/solution-module-1-foundational/README.md](solution-modules/solution-module-1-foundational/README.md) |
+| 2 | Dashboard Hydration for Residency | Hydrates residency compliance scoring and reporting datasets | [solution-modules/solution-module-2-dashboard-hydration-residency/README.md](solution-modules/solution-module-2-dashboard-hydration-residency/README.md) |
+| 3 | Dashboard Hydration for CC-for-PII | Hydrates confidential-compute-for-PII scoring and investigation datasets | [solution-modules/solution-module-3-dashboard-hydration-cc-pii/README.md](solution-modules/solution-module-3-dashboard-hydration-cc-pii/README.md) |
+| 4 | Dashboard Hydration for Defender | Hydrates defender posture scoring into compliance summary/reporting surfaces | [solution-modules/solution-module-4-dashboard-hydration-defender/README.md](solution-modules/solution-module-4-dashboard-hydration-defender/README.md) |
+| 5 | Dashboard Hydration for Tag | Hydrates tag governance scoring into compliance summary/reporting surfaces | [solution-modules/solution-module-5-dashboard-hydration-tag/README.md](solution-modules/solution-module-5-dashboard-hydration-tag/README.md) |
+| 6 | Dashboard Hydration for Patch | Hydrates patch posture signals and patch compliance percentages | [solution-modules/solution-module-6-dashboard-hydration-patch/README.md](solution-modules/solution-module-6-dashboard-hydration-patch/README.md) |
+| 7 | Residency Compliance via Agent | Copilot + flow workflow for governed Purview residency update (preview then apply) | [solution-modules/solution-module-7-residency-compliance-via-agent/README.md](solution-modules/solution-module-7-residency-compliance-via-agent/README.md) |
+| 8 | CC-for-PII Compliance via Agent | Copilot + flow workflow for governed investigate-tag application | [solution-modules/solution-module-8-cc-pii-compliance-via-agent/README.md](solution-modules/solution-module-8-cc-pii-compliance-via-agent/README.md) |
 
-## Module Dependency Matrix
+## Dependency Flow
 
-| Module | Purpose | Depends on Foundation | Depends on Fabric | Depends on Purview | Depends on Power Platform | Depends on Copilot Studio |
-|---|---|---:|---:|---:|---:|---:|
-| 0 | Shared foundation | No | Optional | Optional | No | No |
-| 1 | Resource tagging | Yes | Yes | No | Optional | Optional |
-| 2 | Data residency | Yes | Yes | Yes | Optional | Optional |
-| 3 | Confidential computing | Yes | Yes | Optional | Yes | Yes |
-| 4 | Defender enablement | Yes | Yes | No | Optional | Optional |
-| 5 | OS patching enablement | Yes | Yes | No | Optional | Optional |
-
-## Architecture At A Glance
-
-Use the shared architecture assets in [docs/images/README.md](docs/images/README.md). Module-specific architecture slices are documented inside each module folder.
+- Module 1 is mandatory for modules 2 through 8.
+- Module 7 depends on module 2 outputs.
+- Module 8 depends on module 3 outputs.
+- Recommended implementation order: `1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8`.
 
 ## Repository Structure
 
@@ -45,21 +44,34 @@ data-sov-and-hyb-cloud/
 |   |-- foundation/
 |   |-- reference/
 |   `-- images/
-|-- modules/
+|-- solution-modules/
 |-- shared/
+|   |-- azure-policies/
+|   |-- fabric/
+|   |-- functions/
+|   |-- infra/
+|   |-- power-platform/
+|   |-- reports/
+|   |-- semantic-model/
+|   `-- templates/
 |-- releases/
 `-- .github/workflows/
 ```
 
-## Shared Versus Module Content
+## How `shared/` and `solution-modules/` Work Together
 
-- `modules/` is the primary reader journey and implementation playbook layer.
-- `shared/` stores the reusable technical assets organized by implementation type.
-- `docs/` contains shared context, foundation guidance, and reference material.
-- `releases/` is reserved for module bundles and full-solution bundles.
+- `solution-modules/` explains what to build and in what order.
+- `shared/` stores reusable implementation assets (notebooks, function app exports, flows, connectors, policy artifacts, templates, and model/report assets).
+- Each module README references the required assets in `shared/` and provides build/test guidance for that module scope.
+
+## Release Bundles
+
+- Use [releases/README.md](releases/README.md) for bundle packaging guidance.
+- Use `releases/module-bundles/` for per-module artifacts.
+- Use `releases/full-solution-bundles/` for full environment packages.
 
 ## Security Notice
 
-This repository contains sanitized patterns and placeholder values only.
+This repository is sanitized and intended for reference implementation patterns.
 
-Do not publish tenant IDs, subscription IDs, app registration IDs, real URLs, keys, internal screenshots, or customer-specific names. Use placeholders such as `<TENANT_ID>`, `<SUBSCRIPTION_ID>`, `<FUNCTION_APP_URL>`, and `<WORKSPACE_NAME>`.
+Do not commit tenant IDs, subscription IDs, app registration IDs, real URLs, keys, internal screenshots, or customer-specific names. Use placeholders such as `<TENANT_ID>`, `<SUBSCRIPTION_ID>`, `<FUNCTION_APP_URL>`, and `<WORKSPACE_NAME>`.
