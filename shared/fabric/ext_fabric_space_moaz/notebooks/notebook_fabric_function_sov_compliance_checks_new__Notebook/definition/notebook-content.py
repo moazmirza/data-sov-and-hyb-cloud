@@ -114,7 +114,7 @@ ROUTES = {
 # =========================
 # Subscriptions + batching
 # =========================
-SUBSCRIPTIONS = ["17d52165-9be5-418b-a7f4-6b3e7d82d155","3557eaf8-74a8-4e8a-b260-b28c90fc9379"]   # same list you used for tag/cc/residency
+SUBSCRIPTIONS = ["<SUBSCRIPTION_ID_1>","<SUBSCRIPTION_ID_2>"]   # same list you used for tag/cc/residency
 BATCH_SIZE = int(os.getenv("DP_CHUNK_SIZE", "200"))  # function supports up to 500; 200 is safe
 
 # =========================

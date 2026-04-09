@@ -1140,13 +1140,13 @@ TENANT_CONTEXTS = [
         "tenant_id": "30c6fd04-b13e-43b1-906e-eed50b203685",
         "client_id": "a99598e5-cd1e-49bf-a3d4-a6ab04f23b12",
         "client_secret": spn_conf_comp_check_ext_secret_value,
-        "subscriptions": ["17d52165-9be5-418b-a7f4-6b3e7d82d155"]
+    "subscriptions": ["<SUBSCRIPTION_ID_1>"]
     },
     {
         "tenant_id": "16b3c013-d300-468d-ac64-7eda0820b6d3",
         "client_id": "789e24ac-10c1-41c4-bea6-73e5728cce00",
         "client_secret": spn_conf_comp_check_secret_value,
-        "subscriptions": ["3557eaf8-74a8-4e8a-b260-b28c90fc9379"]
+    "subscriptions": ["<SUBSCRIPTION_ID_2>"]
     }
 ]
 

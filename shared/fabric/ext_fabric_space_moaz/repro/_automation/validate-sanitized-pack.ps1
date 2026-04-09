@@ -17,8 +17,8 @@ $forbiddenLiterals = @(
     "66d5a770-33db-4274-a2fc-dad6a76b7c6f",
     "30c6fd04-b13e-43b1-906e-eed50b203685",
     "16b3c013-d300-468d-ac64-7eda0820b6d3",
-    "17d52165-9be5-418b-a7f4-6b3e7d82d155",
-    "3557eaf8-74a8-4e8a-b260-b28c90fc9379",
+    "<SOURCE_SUBSCRIPTION_ID_1>",
+    "<SOURCE_SUBSCRIPTION_ID_2>",
     "05d107b2-6b35-48e5-93fe-824663d5fb8e",
     "8c98bd9e-6f84-44a6-b663-7ae2aec7135d",
     "a99598e5-cd1e-49bf-a3d4-a6ab04f23b12",
@@ -26,11 +26,11 @@ $forbiddenLiterals = @(
     "fec2dea8-4aa7-4903-bab4-7139a09b9056",
     "https://func-purv-contoso-gkcbavefesdqhre2.eastus2-01.azurewebsites.net",
     "https://kv-purview-sap.vault.azure.net/",
-    "momirza@MngEnvMCAP960910.onmicrosoft.com",
-    "ext_fabric_space_moaz",
+    "<SOURCE_OWNER_EMAIL>",
+    "<SOURCE_WORKSPACE_NAME>",
     "AT64MMB6WGYUHEDO53KQWIBWQU-OCT5KZW3GN2EFIX43LLKO234N4.datawarehouse.fabric.microsoft.com",
     "adlsfordfsapfabric.dfs.core.windows.net",
-    "19:CsqyIBpg9_oQvmxiaZG6z_8B5wApph-uS7figeiPqpc1@thread.tacv2"
+    "<SOURCE_TEAMS_CHANNEL_ID>"
 )
 
 $forbiddenPatterns = @(

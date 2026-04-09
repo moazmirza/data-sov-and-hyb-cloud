@@ -1,6 +1,6 @@
 {
   "extendedLocation": null,
-  "id": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057",
   "identity": {
     "principalId": "d45813cd-74af-48b9-8d64-42d28656bd20",
     "tenantId": "30c6fd04-b13e-43b1-906e-eed50b203685",
@@ -147,7 +147,7 @@
   "resourceGroup": "rg_arc_us_contoso",
   "resources": [
     {
-      "id": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057/extensions/MDE.Windows",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057/extensions/MDE.Windows",
       "location": "eastus2",
       "name": "MDE.Windows",
       "properties": {
@@ -158,7 +158,7 @@
           "status": {
             "code": "0",
             "level": "Information",
-            "message": "Extension Message: {\r\n    \"azureResourceId\":  \"/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057\",\r\n    \"securityWorkspaceId\":  \"17d52165-9be5-418b-a7f4-6b3e7d82d155\",\r\n    \"osDetails\":  {\r\n                      \"osMetadata\":  {\r\n                                         \"majorVersion\":  10,\r\n                                         \"minorVersion\":  0,\r\n                                         \"buildVersion\":  20348,\r\n                                         \"productType\":  3,\r\n                                         \"operatingSystemSku\":  8\r\n                                     },\r\n                      \"osName\":  \"Microsoft Windows Server 2022 Datacenter\"\r\n                  },\r\n    \"onboardingPackageOperationResultCode\":  \"Success\",\r\n    \"proxyUri\":  null,\r\n    \"machineId\":  \"439d29967dc1b782567a5d2e5c29230e9d92007e\"\r\n}"
+            "message": "Extension Message: {\r\n    \"azureResourceId\":  \"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057\",\r\n    \"securityWorkspaceId\":  \"00000000-0000-0000-0000-000000000000\",\r\n    \"osDetails\":  {\r\n                      \"osMetadata\":  {\r\n                                         \"majorVersion\":  10,\r\n                                         \"minorVersion\":  0,\r\n                                         \"buildVersion\":  20348,\r\n                                         \"productType\":  3,\r\n                                         \"operatingSystemSku\":  8\r\n                                     },\r\n                      \"osName\":  \"Microsoft Windows Server 2022 Datacenter\"\r\n                  },\r\n    \"onboardingPackageOperationResultCode\":  \"Success\",\r\n    \"proxyUri\":  null,\r\n    \"machineId\":  \"439d29967dc1b782567a5d2e5c29230e9d92007e\"\r\n}"
           },
           "type": "MDE.Windows",
           "typeHandlerVersion": "1.0.17.0"
@@ -167,7 +167,7 @@
         "publisher": "Microsoft.Azure.AzureDefenderForServers",
         "settings": {
           "autoUpdate": true,
-          "azureResourceId": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057",
+          "azureResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057",
           "forceReOnboarding": false,
           "vNextEnabled": true
         },
@@ -186,7 +186,7 @@
       "type": "Microsoft.HybridCompute/machines/extensions"
     },
     {
-      "id": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057/extensions/WindowsAgent.SqlServer",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057/extensions/WindowsAgent.SqlServer",
       "location": "eastus2",
       "name": "WindowsAgent.SqlServer",
       "properties": {
@@ -224,7 +224,7 @@
       "type": "Microsoft.HybridCompute/machines/extensions"
     },
     {
-      "id": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057/extensions/WindowsOsUpdateExtension",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg_arc_us_contoso/providers/Microsoft.HybridCompute/machines/i-05c131818f13b0057/extensions/WindowsOsUpdateExtension",
       "location": "eastus2",
       "name": "WindowsOsUpdateExtension",
       "properties": {

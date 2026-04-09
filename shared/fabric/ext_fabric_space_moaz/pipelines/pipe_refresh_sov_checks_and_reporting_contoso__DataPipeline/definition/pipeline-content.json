@@ -64,8 +64,8 @@
           "operationType": "SendMessageInChannel",
           "content": "<p>The pipeline, &nbsp;@{pipeline().Pipeline}, in the workspace: @{pipeline().DataFactory}, has this status:</p>\n<p>Notebook 1: @{activity('Notebook_ComplianceChecks_AzureFunctions').output}</p>\n<p>Notebook 2: @{activity('Notebook_Refresh_Purview_Update_Dashboard').output}</p>",
           "subject": "Contoso Data Sovereignty Pipeline Alert",
-          "teamId": "e1a9b340-6d4a-43f9-8ce5-faf859873670",
-          "channelId": "19:CsqyIBpg9_oQvmxiaZG6z_8B5wApph-uS7figeiPqpc1@thread.tacv2"
+          "teamId": "<TEAMS_TEAM_ID>",
+          "channelId": "<TEAMS_CHANNEL_ID>"
         },
         "externalReferences": {
           "connection": "38ba308a-4eed-46fe-b9ee-075d30b1bc5f"

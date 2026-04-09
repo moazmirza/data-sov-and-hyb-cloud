@@ -1,6 +1,6 @@
 {
   "extendedLocation": null,
-  "id": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_eu_contoso/providers/Microsoft.HybridCompute/machines/i-0c2d4ca587bee1bbf",
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg_arc_eu_contoso/providers/Microsoft.HybridCompute/machines/i-0c2d4ca587bee1bbf",
   "identity": {
     "principalId": "828b14e2-97f6-4fd0-aa29-f5fb084fe19d",
     "tenantId": "30c6fd04-b13e-43b1-906e-eed50b203685",
@@ -143,7 +143,7 @@
   "resourceGroup": "rg_arc_eu_contoso",
   "resources": [
     {
-      "id": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_eu_contoso/providers/Microsoft.HybridCompute/machines/i-0c2d4ca587bee1bbf/extensions/MDE.Windows",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg_arc_eu_contoso/providers/Microsoft.HybridCompute/machines/i-0c2d4ca587bee1bbf/extensions/MDE.Windows",
       "location": "germanywestcentral",
       "name": "MDE.Windows",
       "properties": {
@@ -154,7 +154,7 @@
           "status": {
             "code": "0",
             "level": "Information",
-            "message": "Extension Message: {\r\n    \"azureResourceId\":  \"/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_eu_contoso/providers/Microsoft.HybridCompute/machines/i-0c2d4ca587bee1bbf\",\r\n    \"securityWorkspaceId\":  \"17d52165-9be5-418b-a7f4-6b3e7d82d155\",\r\n    \"osDetails\":  {\r\n                      \"osMetadata\":  {\r\n                                         \"majorVersion\":  10,\r\n                                         \"minorVersion\":  0,\r\n                                         \"buildVersion\":  26100,\r\n                                         \"productType\":  3,\r\n                                         \"operatingSystemSku\":  8\r\n                                     },\r\n                      \"osName\":  \"Microsoft Windows Server 2025 Datacenter\"\r\n                  },\r\n    \"onboardingPackageOperationResultCode\":  \"Success\",\r\n    \"proxyUri\":  null,\r\n    \"machineId\":  \"0f78331fe28f309a5c8e1c40365fa76dc0d133ae\"\r\n}"
+            "message": "Extension Message: {\r\n    \"azureResourceId\":  \"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg_arc_eu_contoso/providers/Microsoft.HybridCompute/machines/i-0c2d4ca587bee1bbf\",\r\n    \"securityWorkspaceId\":  \"00000000-0000-0000-0000-000000000000\",\r\n    \"osDetails\":  {\r\n                      \"osMetadata\":  {\r\n                                         \"majorVersion\":  10,\r\n                                         \"minorVersion\":  0,\r\n                                         \"buildVersion\":  26100,\r\n                                         \"productType\":  3,\r\n                                         \"operatingSystemSku\":  8\r\n                                     },\r\n                      \"osName\":  \"Microsoft Windows Server 2025 Datacenter\"\r\n                  },\r\n    \"onboardingPackageOperationResultCode\":  \"Success\",\r\n    \"proxyUri\":  null,\r\n    \"machineId\":  \"0f78331fe28f309a5c8e1c40365fa76dc0d133ae\"\r\n}"
           },
           "type": "MDE.Windows",
           "typeHandlerVersion": "1.0.17.0"
@@ -163,7 +163,7 @@
         "publisher": "Microsoft.Azure.AzureDefenderForServers",
         "settings": {
           "autoUpdate": true,
-          "azureResourceId": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_eu_contoso/providers/Microsoft.HybridCompute/machines/i-0c2d4ca587bee1bbf",
+          "azureResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg_arc_eu_contoso/providers/Microsoft.HybridCompute/machines/i-0c2d4ca587bee1bbf",
           "forceReOnboarding": false,
           "vNextEnabled": true
         },
@@ -182,7 +182,7 @@
       "type": "Microsoft.HybridCompute/machines/extensions"
     },
     {
-      "id": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_eu_contoso/providers/Microsoft.HybridCompute/machines/i-0c2d4ca587bee1bbf/extensions/ChangeTracking-Windows",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg_arc_eu_contoso/providers/Microsoft.HybridCompute/machines/i-0c2d4ca587bee1bbf/extensions/ChangeTracking-Windows",
       "location": "germanywestcentral",
       "name": "ChangeTracking-Windows",
       "properties": {
@@ -215,7 +215,7 @@
       "type": "Microsoft.HybridCompute/machines/extensions"
     },
     {
-      "id": "/subscriptions/17d52165-9be5-418b-a7f4-6b3e7d82d155/resourceGroups/rg_arc_eu_contoso/providers/Microsoft.HybridCompute/machines/i-0c2d4ca587bee1bbf/extensions/AzureMonitorWindowsAgent",
+      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg_arc_eu_contoso/providers/Microsoft.HybridCompute/machines/i-0c2d4ca587bee1bbf/extensions/AzureMonitorWindowsAgent",
       "location": "germanywestcentral",
       "name": "AzureMonitorWindowsAgent",
       "properties": {
