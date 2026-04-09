@@ -33,16 +33,16 @@ flowchart LR
 
 | Building Block | Details | Owner | Notes |
 |---|---|---|---|
-| Azure landing zone |  |  |  |
-| creation of data sources |  |  |  |
-| purview initial setup |  |  |  |
-| fabric initial setup |  |  |  |
-| arc onboarding |  |  |  |
-| defender and os updates are enabled through arc for respective data sources |  |  |  |
-| azure policies |  |  |  |
-| initiatives |  |  |  |
-| policies and assignements enforcing required tags |  |  |  |
-| dataproductid tag is added to the data sources |  |  |  |
+| Azure landing zone | Management group structure, subscription layout, resource groups for platform and workload resources | Platform Team / Cloud CAM | Foundation for all downstream resources; defines billing and governance boundaries |
+| Provisioning of data sources | Azure SQL DB, SQL Server on IaaS (Azure/AWS), ADLS Gen2, Azure Files, AWS S3 instances as applicable | Data/Workload Owners | Must exist before Arc onboarding and tagging; validate network accessibility from scanner IR |
+| Purview initial setup | Account creation, collection hierarchy, glossary terms (residency, sovereignty), metadata export config | Data Governance Lead | Required before Step 9 scanning; enables downstream modules to ingest catalog metadata |
+| Fabric initial setup | Workspace creation, Lakehouse provisioning, capacity assignment, notebook/pipeline workspace permissions | Analytics Lead | Required before gold ingestion and compliance checks; synapse spark compute must be available |
+| Arc onboarding | Arc agent installation, machine health checks, Arc extensions enabled (Defender, Patch Manager) on SQL VMs/servers | Infrastructure/Security Team | Prerequisite for modules 4 & 6; enables Defender telemetry and OS patch assessments |
+| Defender and OS updates enabled via Arc | Microsoft Defender for Cloud agent deployment, OS patch management policy, patch compliance scanning | Security Team | Feeds into module module 4 & 6 compliance scoring; Arc machines must be healthy and reporting |
+| Azure policies | Policy definitions for sovereignty tagging, origin tagging, MI/KV audit access control | Policy/Governance Team | Deployed from `shared/azure-policies/` artifacts; scope to same subscriptions as module pipelines |
+| Policy initiatives | Bundled policy collections (sovereignty, origin, audit) assigned to resource groups and subscriptions | Policy/Governance Team | Drives automated compliance evaluation; must complete before hydration to establish baseline compliance state |
+| Policies and assignments enforcing required tags | Denine/audit policies for `dataproductid`, `resource-origin`, `sovereignty-zone` tags on VMs, Storage, SQL resources | Data/Workload Owners + Policy Team | Essential for resource discovery via ARG and compliance scoring in modules 3–8 |
+| `dataproductid` tag applied to data sources | Mandatory tag assigned to all in-scope resources (VMs, databases, storage, compute) with standardized values | Workload/Data Owners | Used in resource queries for compliance checks, residency scoring, and cost allocation across modules |
 
 ## Build Instructions
 
