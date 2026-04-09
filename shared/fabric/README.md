@@ -33,7 +33,7 @@ graph LR
 
 ```mermaid
 graph LR
-  LH["🏪 ext_lakehouse_fabric_moaz<br/>(Delta Lake Tables)"]
+  LH["🏪 <FABRIC_LAKEHOUSE_NAME><br/>(Delta Lake Tables)"]
   
   LH -->|DirectLake Zero-Copy| DIM1["📊 Dimension Tables<br/>(current-state snapshot)"]
   LH -->|DirectLake Zero-Copy| FACT1["📈 Fact Tables<br/>(delta/history)"]
@@ -215,7 +215,7 @@ This is a focused quick-reference for the tables that Copilot topics, Power Auto
 - **Fact (delta-tracking)**: `*_deltas` suffix. Multiple rows per product (one per snapshot run). Tracks changes between snapshots.
 - **Dimension (dimension/reference)**: Dimension-style table without `_current` suffix (e.g., `Data Products`, `Copilot Purview Residency Change Eligibility`). Master reference.
 - **Fact (aggregate/timeline)**: `*_timeline_table`, `*_kpis_*`. Historical snapshots for trend analysis.
-- **All source**: DirectLake from `ext_lakehouse_fabric_moaz` lakehouse. Zero-copy DirectLake query engine.
+- **All source**: DirectLake from `<FABRIC_LAKEHOUSE_NAME>` lakehouse. Zero-copy DirectLake query engine.
 
 ## Data freshness expectations
 

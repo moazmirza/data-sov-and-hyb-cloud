@@ -9,7 +9,7 @@ Purpose: baseline evidence for Arc machine `i-05c131818f13b0057` used for govern
 - OS: `windows 10.0.20348.4773`
 
 ## Associated Tags
-- `dataproductid=fc24b70e-469e-4dc2-a0d1-73bcf189638c`
+- `dataproductid=<DATAPRODUCT_ID>`
 - `resource-origin=arc`
 - `sovereignty-zone=comprehensive`
 

@@ -45,9 +45,9 @@ The following steps take you from a completed Module 2 baseline to a working Cop
 ### 1. Deploy the Purview function app routes
 
 1. Navigate to `shared/functions/azure-functions/func-purv-contoso/` and confirm the three Purview routes are included in your function app deployment: `/api/purview/residency`, `/api/purview/residencyUpdatePreview`, `/api/purview/residencyUpdateApply`.
-2. The Purview routes require a separate service principal with **Data Curator** role on the Microsoft Purview collection. Create an SPN (e.g., `spn-purview-contoso`) and store its client secret in Key Vault under the secret name used by the function app (`Secret-for-Purview-SAP-SP-Moaz` per Notebook 1 reference). Grant this SPN the **Purview Data Curator** role at the root collection level.
+2. The Purview routes require a separate service principal with **Data Curator** role on the Microsoft Purview collection. Create an SPN (e.g., `spn-purview-contoso`) and store its client secret in Key Vault under your Purview service-principal secret name (for example, `<PURVIEW_SP_SECRET_NAME>`). Grant this SPN the **Purview Data Curator** role at the root collection level.
 3. Set the following environment variables (or App Settings) on the function app:
-	- `PURVIEW_ACCOUNT_NAME`: your Purview account name (e.g., `ext-purview-moaz`)
+	- `PURVIEW_ACCOUNT_NAME`: your Purview account name (e.g., `<PURVIEW_ACCOUNT_NAME>`)
 	- `TENANT_ID`: your Entra tenant ID
 	- `PURVIEW_SPN_CLIENT_ID`: the Purview SPN client ID
 	- `PURVIEW_SPN_CLIENT_SECRET_KV_REF`: Key Vault reference expression pointing to the SPN secret

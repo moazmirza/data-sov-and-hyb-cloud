@@ -9,7 +9,7 @@ Purpose: provide a repeatable import order and dependency rebinding flow for thi
 - Sanitized pack has been rebuilt and validated.
 
 ## Import Order
-1. `ext_lakehouse_fabric_moaz__Lakehouse` (Lakehouse)
+1. `<FABRIC_LAKEHOUSE_NAME>__Lakehouse` (Lakehouse)
 2. `semantic_model_purview_dataproduct_residency_gold__SemanticModel` (SemanticModel)
 3. `Compliance Scoring Model__SemanticModel` (SemanticModel)
 4. `Refresh And Automate Purview parquet to gold__Notebook` (Notebook)
@@ -20,7 +20,7 @@ Purpose: provide a repeatable import order and dependency rebinding flow for thi
 9. `Sov Data Agent Contoso__DataAgent` (DataAgent)
 
 ## Metadata-Only Items
-- `ext_lakehouse_fabric_moaz__SQLEndpoint` (SQLEndpoint)
+- `<FABRIC_LAKEHOUSE_NAME>__SQLEndpoint` (SQLEndpoint)
 - `Sovereignty_Alerts_Activator__Reflex` (Reflex)
 
 These two were metadata-only from the export API in this run. Recreate manually in target workspace, then bind to corresponding imported artifacts.

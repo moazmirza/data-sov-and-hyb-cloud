@@ -79,7 +79,7 @@ The following steps establish the shared baseline that modules 2 through 8 assum
 1. Deploy Key Vault (for example `kv-purview-sap`) in the shared platform scope.
 2. Add required secrets referenced by notebooks and function app:
 	- `Secret-for-spn-func-compliance-check`
-	- `Secret-for-Purview-SAP-SP-Moaz` (or environment equivalent)
+	- `<PURVIEW_SP_SECRET_NAME>` (for example, `Secret-for-purview-sp`)
 3. Grant the Fabric notebook execution identity `Key Vault Secrets User` on the vault.
 4. Configure function app Key Vault references for secrets instead of plain-text app settings.
 

@@ -1,6 +1,6 @@
 # Fabric Repro Pack - Selected 11 Items
 
-Purpose: reusable local artifact pack for the 11 selected Fabric items from workspace `ext_fabric_space_moaz`, sanitized for cross-tenant onboarding.
+Purpose: reusable local artifact pack for selected Fabric items from a source workspace, sanitized for cross-tenant onboarding.
 
 ## What is included
 - `manifest.selected-items.json`: item name/type/id mapping for the selected scope.
@@ -16,13 +16,13 @@ Purpose: reusable local artifact pack for the 11 selected Fabric items from work
 
 ## Where the item folders were moved
 
-To keep `shared/fabric-ext_fabric_space_moaz` easy to browse, the exported item folders were moved to type-based locations:
-- `shared/fabric-ext_fabric_space_moaz/semantic-models/`
-- `shared/fabric-ext_fabric_space_moaz/reports/`
-- `shared/fabric-ext_fabric_space_moaz/notebooks/`
-- `shared/fabric-ext_fabric_space_moaz/pipelines/`
-- `shared/fabric-ext_fabric_space_moaz/lakehouses/`
-- `shared/fabric-ext_fabric_space_moaz/data-agents/`
+To keep this Fabric export area easy to browse, the exported item folders were moved to type-based locations under `shared/fabric/`:
+- `semantic-models/`
+- `reports/`
+- `notebooks/`
+- `pipelines/`
+- `lakehouses/`
+- `data-agents/`
 
 `sanitized/` remains in this repro pack for portable cross-tenant replay.
 

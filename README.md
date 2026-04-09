@@ -90,6 +90,26 @@ data-sov-and-hyb-cloud/
 - Security guidance: [SECURITY.md](SECURITY.md)
 - Contribution guidance: [CONTRIBUTING.md](CONTRIBUTING.md)
 
+## Main-Branch Readiness Checklist
+
+Use this checklist before promoting from `dev` to `main`:
+
+1. Documentation sanity:
+	- Root and module READMEs reflect current folder names and module order.
+	- All links resolve.
+2. Security sanity:
+	- No real tenant IDs, subscription IDs, client IDs, webhook URLs, personal emails, or customer names in docs/artifacts.
+	- Environment-specific endpoints and IDs are replaced with placeholders.
+3. Build reproducibility:
+	- Module 1 baseline steps are complete and validated.
+	- At least one full hydration pipeline run is successful (modules 2-6 path).
+4. Agent safety:
+	- Preview-before-apply path is validated for module 7.
+	- Guarded confirmation flow is validated for module 8.
+5. Release hygiene:
+	- Relevant updates are captured in [CHANGELOG.md](CHANGELOG.md).
+	- Bundles under `releases/` are current for intended publication scope.
+
 ## Release Bundles
 
 - Use [releases/README.md](releases/README.md) for bundle packaging guidance.

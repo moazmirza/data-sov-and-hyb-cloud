@@ -15,7 +15,7 @@ flowchart LR
   A --> D[Azure Key Vault\nkv-purview-sap]
   A --> E[Microsoft Entra ID\nOAuth2 client credentials]
   E --> F[Azure Purview Data Map API]
-  E --> G[Azure Function App\nfunc-purv-contoso-gkcbavefesdqhre2]
+  E --> G[Azure Function App\n<FUNCTION_APP_NAME>]
   F --> C
   G --> C
   C --> H[Semantic Model + Reports]
@@ -35,9 +35,9 @@ Materialize Purview self-serve analytics exports into Lakehouse Delta tables, bu
 |---|---|---|---|
 | OneLake Files area | Reads Purview export folders under Files/purview_meta_data/DomainModel | Fabric workspace data plane access | Spark parquet/delta reads from DomainModel entities such as DataProduct, GlossaryTerm, DataAssetColumn, Classification |
 | Lakehouse metastore | Creates/overwrites managed Delta tables (dbo.* and dp_*) | Fabric runtime permissions | saveAsTable and SQL CREATE TABLE/INSERT OVERWRITE |
-| Azure Key Vault: kv-purview-sap | Reads secrets used by API callers | notebookutils.credentials.getSecret with notebook execution identity | Secret names include Secret-for-Purview-SAP-SP-Moaz and related app secrets |
+| Azure Key Vault: <KEY_VAULT_NAME> | Reads secrets used by API callers | notebookutils.credentials.getSecret with notebook execution identity | Secret names include <PURVIEW_SP_SECRET_NAME> and related app secrets |
 | Microsoft Entra ID token endpoint | Issues OAuth token for Purview API | OAuth2 client credentials grant using MSAL | Authority: https://login.microsoftonline.com/{tenantId} |
-| Azure Purview Data Map API | Fetches current global asset count | Bearer token for resource scope https://purview.azure.net/.default | Endpoint used: https://ext-purview-moaz.purview.azure.com/datamap/api/search/query?api-version=2023-09-01 with keywords=* |
+| Azure Purview Data Map API | Fetches current global asset count | Bearer token for resource scope https://purview.azure.net/.default | Endpoint used: https://<PURVIEW_ACCOUNT_NAME>.purview.azure.com/datamap/api/search/query?api-version=2023-09-01 with keywords=* |
 
 ### Block Flow With Component Context
 
@@ -105,9 +105,9 @@ Compute compliance scores by calling Azure Function endpoints (tag, residency, c
 
 | Component | How notebook interacts | Authentication method | Technical details |
 |---|---|---|---|
-| Azure Key Vault: kv-purview-sap | Reads Function App client secret | notebookutils.credentials.getSecret with notebook execution identity | Secret name used: Secret-for-spn-func-compliance-check |
-| Microsoft Entra ID token endpoint | Issues access token for Function API audience | OAuth2 client credentials grant using MSAL | Scope used: api://fec2dea8-4aa7-4903-bab4-7139a09b9056/.default |
-| Function App | Calls compliance APIs in batches | Bearer token to Function App EasyAuth-protected API | Base URL: https://func-purv-contoso-gkcbavefesdqhre2.eastus2-01.azurewebsites.net |
+| Azure Key Vault: <KEY_VAULT_NAME> | Reads Function App client secret | notebookutils.credentials.getSecret with notebook execution identity | Secret name used: <FUNCTION_SP_SECRET_NAME> |
+| Microsoft Entra ID token endpoint | Issues access token for Function API audience | OAuth2 client credentials grant using MSAL | Scope used: api://<FUNCTION_APP_CLIENT_ID>/.default |
+| Function App | Calls compliance APIs in batches | Bearer token to Function App EasyAuth-protected API | Base URL: https://<FUNCTION_APP_NAME>.azurewebsites.net |
 | Function route: tagCompliance | Evaluates resource tag compliance | Same token as above | POST /api/azure/tagCompliance |
 | Function route: residencyCompliance | Evaluates residency compliance | Same token as above | POST /api/azure/residencyCompliance |
 | Function route: ccForPiiCompliance | Evaluates confidential compute for PII workloads | Same token as above | POST /api/azure/ccForPiiCompliance |
@@ -165,8 +165,8 @@ Base product table + optional PII classification
 | Target component | Auth type | Grant flow | Credential source | Token audience/scope |
 |---|---|---|---|---|
 | Azure Key Vault (secret read) | Notebook identity to Key Vault | Platform-managed | notebookutils.credentials.getSecret | N/A (handled by Fabric runtime) |
-| Purview Data Map API | Entra OAuth bearer token | Client credentials via MSAL | KV secret: Secret-for-Purview-SAP-SP-Moaz | https://purview.azure.net/.default |
-| Function App APIs | Entra OAuth bearer token + EasyAuth | Client credentials via MSAL | KV secret: Secret-for-spn-func-compliance-check | api://fec2dea8-4aa7-4903-bab4-7139a09b9056/.default |
+| Purview Data Map API | Entra OAuth bearer token | Client credentials via MSAL | KV secret: <PURVIEW_SP_SECRET_NAME> | https://purview.azure.net/.default |
+| Function App APIs | Entra OAuth bearer token + EasyAuth | Client credentials via MSAL | KV secret: <FUNCTION_SP_SECRET_NAME> | api://<FUNCTION_APP_CLIENT_ID>/.default |
 
 ## Data Transformation Reference Table
 
