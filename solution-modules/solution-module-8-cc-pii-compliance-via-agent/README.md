@@ -1,4 +1,4 @@
-# Solution Module 5: CC-for-PII Compliance via Agent
+# Solution Module 8: CC-for-PII Compliance via Agent
 
 ## Prerequisite
 
@@ -51,15 +51,15 @@ The following steps take you from a completed Module 3 baseline to a working Cop
 4. Redeploy after setting environment variables.
 5. Test `/api/azure/ccPiiInvestigateTagApply` directly with a sample payload containing a known resource ID, owner email, CC score, and request ID. Confirm the response includes `applied/skipped/failed` counts and a Teams card is posted.
 
-### 2. Import the custom connector (shared with Module 4)
+### 2. Import the custom connector (shared with Module 7)
 
-1. If Module 4 was already set up, the custom connector is already imported — verify the `CCPII_ApplyInvestigateTag` operation is visible in the connector's action list.
-2. If starting fresh, import the connector from `shared/power-platform/custom-connector/purview-func-app-contoso/` as described in Module 4 Build Instructions step 2.
+1. If Module 7 was already set up, the custom connector is already imported — verify the `CCPII_ApplyInvestigateTag` operation is visible in the connector's action list.
+2. If starting fresh, import the connector from `shared/power-platform/custom-connector/purview-func-app-contoso/` as described in Module 7 Build Instructions step 2.
 3. Confirm the `CCPII_ApplyInvestigateTag` operation maps to `POST /api/azure/ccPiiInvestigateTagApply` in the connector definition.
 
 ### 3. Create Power Automate connections and import flows
 
-1. In the Power Platform environment, create or reuse the custom connector connection from Module 4.
+1. In the Power Platform environment, create or reuse the custom connector connection from Module 7.
 2. Import the two flows from `shared/power-platform/flows/` in dependency order:
     1. `Retrieve_CCPII_Eligibility` — queries Power BI for eligible investigation candidates from `dp_dataproduct_cccompliance_investigate_current` in the semantic model. Requires a **Power BI** connection pointing to the Module 3 semantic model dataset.
     2. `Apply_CCPII_Tag_And_Notify` — executes tag apply and Teams notification. Requires the custom connector connection.
@@ -70,15 +70,15 @@ The following steps take you from a completed Module 3 baseline to a working Cop
 ### 4. Import the Copilot topic
 
 1. Use `copilotagentsolution_1_0_0_1_managed.zip` (in `shared/power-platform/solution-assets/`) or the individual topic XML from `shared/power-platform/copilot-agent/Topic/` as your import source. Prefer the managed solution ZIP for a complete environment.
-2. If the managed solution was already imported for Module 4, the `ApplyPIICCInvestigateTag` topic should already be present. Navigate to **Copilot Studio → your agent → Topics** and verify the topic is listed and active.
+2. If the managed solution was already imported for Module 7, the `ApplyPIICCInvestigateTag` topic should already be present. Navigate to **Copilot Studio → your agent → Topics** and verify the topic is listed and active.
 3. If importing fresh: go to **Solutions → Import solution** in the Power Platform admin center, upload the ZIP, and map the two flow connection references for `Retrieve_CCPII_Eligibility` and `Apply_CCPII_Tag_And_Notify` during import.
 4. After import, open the `ApplyPIICCInvestigateTag` topic in Copilot Studio and confirm the flow calls inside the topic reference the correctly imported flows (not stale IDs from a different environment).
 
 ### 5. Configure the Copilot agent
 
 1. Confirm the topic trigger phrases are appropriate for your users (e.g., "apply CC PII investigate tag", "tag data product for CC investigation").
-2. Ensure the agent is published to the same channel used for Module 4, or to a dedicated channel if this module is deployed independently.
-3. If deploying into a shared agent alongside Module 4, verify there is no topic conflict between `ApplyPIICCInvestigateTag` and `PurviewResidencyGlossaryUpdateWorkflow` trigger phrases.
+2. Ensure the agent is published to the same channel used for Module 7, or to a dedicated channel if this module is deployed independently.
+3. If deploying into a shared agent alongside Module 7, verify there is no topic conflict between `ApplyPIICCInvestigateTag` and `PurviewResidencyGlossaryUpdateWorkflow` trigger phrases.
 4. Publish the agent.
 
 ### 6. Validate the investigation table in the semantic model

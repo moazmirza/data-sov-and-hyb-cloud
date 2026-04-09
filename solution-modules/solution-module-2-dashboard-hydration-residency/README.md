@@ -112,4 +112,4 @@ The following steps take you from a clean Module 1 foundation to a running Compl
 ## Comments
 
 - Mapped to slide 27 in the PPT mapping you provided.
-- Module 4 consumes the residency outputs and eligibility state from this module.
+- Module 7 consumes the residency outputs and eligibility state from this module.

@@ -21,7 +21,7 @@ flowchart LR
     CURR --> SUMM[dp_dataproduct_compliance_summary_current]
     SUMM --> SEM[Semantic model]
     SEM --> PBI[Compliance Dashboard CC visuals]
-    INV --> M5[Module 5 agent action path]
+    INV --> M8[Module 8 agent action path]
 ```
 
 ## Building Blocks
@@ -92,7 +92,7 @@ The following steps take you from a clean Module 1 foundation to a running Compl
 2. Confirm the **CC-for-PII compliance** page or visuals consume `CCScorePct` from the semantic model.
 3. Publish the updated report to the Fabric workspace.
 4. On any dashboard tile pinned from the CC visuals page, configure the tile display to **not** override the semantic model refresh schedule. Let the semantic model refresh drive data freshness; the tile should reflect the latest cached value.
-5. Validate that the `dp_dataproduct_cccompliance_investigate_current` table is accessible in the semantic model (this table is also consumed by Module 5).
+5. Validate that the `dp_dataproduct_cccompliance_investigate_current` table is accessible in the semantic model (this table is also consumed by Module 8).
 
 ### 9. Validate end-to-end flow
 
@@ -113,4 +113,4 @@ The following steps take you from a clean Module 1 foundation to a running Compl
 ## Comments
 
 - Mapped to slide 28 in the PPT mapping you provided.
-- Module 5 depends on this module because it consumes the investigation table and score outputs.
+- Module 8 depends on this module because it consumes the investigation table and score outputs.

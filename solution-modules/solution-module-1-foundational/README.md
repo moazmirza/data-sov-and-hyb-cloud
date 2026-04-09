@@ -4,7 +4,7 @@
 
 None. This is the baseline module for the rest of the solution modules.
 
-Completion of this module is required before modules 2, 3, 4, and 5.
+Completion of this module is required before modules 2 through 8.
 
 ## Architecture Diagram
 
@@ -22,8 +22,11 @@ flowchart LR
 		FAB --> M2
 		TAG --> M3[Module 3]
 		ARC --> M3
-		M2 --> M4[Module 4]
-		M3 --> M5[Module 5]
+		ARC --> M4[Module 4]
+		TAG --> M5[Module 5]
+		ARC --> M6[Module 6]
+		M2 --> M7[Module 7]
+		M3 --> M8[Module 8]
 ```
 
 ## Building Blocks
@@ -43,7 +46,7 @@ flowchart LR
 
 ## Build Instructions
 
-> **To be completed.** Detailed build instructions for Module 1 will be added in a future iteration. This section will cover step-by-step guidance for provisioning the Azure landing zone, onboarding Arc-enabled data sources, configuring Purview and Fabric workspaces, assigning policies and initiatives, and applying the `dataproductid` tag — all of which are prerequisites for modules 2 through 5.
+> **To be completed.** Detailed build instructions for Module 1 will be added in a future iteration. This section will cover step-by-step guidance for provisioning the Azure landing zone, onboarding Arc-enabled data sources, configuring Purview and Fabric workspaces, assigning policies and initiatives, and applying the `dataproductid` tag — all of which are prerequisites for modules 2 through 8.
 
 ## Testing
 
@@ -57,5 +60,8 @@ flowchart LR
 - Module dependency map:
 	- Module 2 depends on Module 1.
 	- Module 3 depends on Module 1.
-	- Module 4 depends on Modules 1 and 2.
-	- Module 5 depends on Modules 1 and 3.
+	- Module 4 depends on Module 1.
+	- Module 5 depends on Module 1.
+	- Module 6 depends on Modules 1 and 3.
+	- Module 7 depends on Modules 1 and 2.
+	- Module 8 depends on Modules 1 and 3.
