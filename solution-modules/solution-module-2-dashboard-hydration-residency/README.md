@@ -10,18 +10,42 @@
 
 ```mermaid
 flowchart LR
-    GOLD[Gold table dp_dataproductresidency_gold] --> NB[Fabric notebook compliance checks]
-    RULES[rs_approved_regions] --> NB
-    NB --> API["/api/azure/residencyCompliance"]
-    API --> ARG[Azure Resource Graph by dataproductid tag]
-    API --> AWS["/api/azure/residencyComplianceAws fallback for S3"]
-    ARG --> NB
-    AWS --> NB
-    NB --> CURR[dp_dataproduct_residencycompliance_current]
-    CURR --> SUMM[dp_dataproduct_compliance_summary_current]
-    SUMM --> SEM[Semantic model]
-    SEM --> PBI[Compliance Dashboard residency visuals]
+    subgraph FAB[Fabric Lakehouse]
+        direction TB
+        GOLD["Gold table\ndp_dataproductresidency_gold"]
+        RULES["Rules table\nrs_approved_regions"]
+        NB["Fabric notebook\nresidency compliance checks"]
+        CURR["Current output\ndp_dataproduct_residencycompliance_current"]
+        SUMM["Summary output\ndp_dataproduct_compliance_summary_current"]
+        SEM["Semantic model"]
+        PBI["Compliance Dashboard\nresidency visuals"]
+    end
+
+    subgraph AZURE[Azure Function App]
+        direction TB
+        API["/api/azure/residencyCompliance"]
+        AWS["Fallback /api/azure/residencyComplianceAws\nfor S3-backed products"]
+    end
+
+    subgraph ARG[Azure Resource Discovery]
+        direction TB
+        ARGQ["Azure Resource Graph\nlookup by dataproductid tag"]
+    end
+
+    GOLD --> NB
+    RULES --> NB
+    NB -->|reads policy and approved regions| API
+    API -->|queries Azure resources| ARGQ
+    ARGQ -->|returns resource metadata| API
+    API -->|Azure result| NB
+    AWS -->|S3 fallback result| NB
+    NB --> CURR
+    CURR --> SUMM
+    SUMM --> SEM
+    SEM --> PBI
 ```
+
+This swim-lane view clarifies the end-to-end sequence: the Fabric notebook starts from the gold product baseline and approved-region rules, resolves Azure resource context through the Function App and Azure Resource Graph, applies the S3 fallback path when required, and then writes the current-state and summary datasets for dashboard reporting.
 
 ## Building Blocks
 
